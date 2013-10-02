@@ -39,13 +39,13 @@ function mysql_internal_connect(){
     //Load dbsettings array with connection info
     require_once(IS2_ROOT_PATH . 'db/dbConfig.php');
     
-    $link2 = mysqli_connect($dbsettings["server"], $dbsettings["user"], $dbsettings["pass"]) or
-	    $debug->error(mysqli_error($link2) . "<br />Not conected", "SQL Error");
-
-    mysqli_select_db($link2, $dbsettings["name"]) or $debug->error(mysqli_error($link2) . "<br />Not conected", "SQL Error");
+    $link2 = mysqli_init();
+    if (!$link2->real_connect($dbsettings["server"], $dbsettings["user"], $dbsettings["pass"], $dbsettings["name"], $dbsettings['port'])) {
+        $debug->error('Error de conexión (' . mysqli_connect_errno() . ') '. mysqli_connect_error(), "SQL Error");
+    }
+    
     mysqli_query($link2, "set character set utf8");
     mysqli_query($link2, "set names utf8");
-    echo mysqli_error($link2);
 }
 
 function secure_text_query($text){

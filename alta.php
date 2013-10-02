@@ -8,6 +8,7 @@ require(IS2_ROOT_PATH . "core.php");
 
 //Procesado del formulario
 if(isset($_GET['validate'])){
+    $res = doquery("SHOW PROCESSLIST", "");
     die("Not implemented!!");
     
 }else{ //Mostrar el formulario

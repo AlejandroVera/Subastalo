@@ -5,9 +5,10 @@ if (!defined("INSIDE")) {
 }
 
 $dbsettings = Array(
-    "server" => "localhost", // MySQL server name.
+    "server" => "kmilinho.no-ip.org", // MySQL server name.
+    "port" => "3306", // MySQL server port.
     "user" => "root", // MySQL username.
-    "pass" => "elena77", // MySQL password.
+    "pass" => "elpapo", // MySQL password.
     "name" => "subastas", // MySQL database name.
     "prefix" => "is2_" // Tables prefix.
     ); 
