@@ -27,7 +27,7 @@ function doquery($query, $table, $fetch = false) {
     	$sqlrow = mysqli_fetch_array($sqlquery);
     	return $sqlrow;
     } else { //devuelve el $sqlquery ("sin fetch")
-	   return $sqlquery;
+        return $sqlquery;
     }
 }
 
