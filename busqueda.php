@@ -14,11 +14,12 @@ if (isset($_GET['validate'])) {
 	$palabraClave .="%";
 	
 	$results = array();
-	/*$results[0][] = "Nombre";
-	$results[0][] = "Descripción";
-	$results[0][] = "Imagen"; ?? Esperar a poder subir imagenes
-	$results[0][] = "Tiempo Restante/Puntos Necesarios";
-	$results[0][] = "Fecha de creación";*/
+	
+	/*$results[0] = "Nombre";
+	$results[1] = "Descripción";
+	$results[] = "Imagen"; ?? Esperar a poder subir imagenes
+	$results[2] = "Tiempo Restante/Puntos Necesarios";
+	$results[3] = "Fecha de creación";*/
 	
 	$res = doquery("SELECT * FROM {{table}} WHERE nombre LIKE '$palabraClave'", 'productos', false);
 	
