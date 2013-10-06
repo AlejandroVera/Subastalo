@@ -25,25 +25,32 @@ if(isset($_GET['validate'])){
             $values .= "'{$value}',";
         }
         
-        $fields[strlen($fields)-1] = '';
-        $values[strlen($values)-1] = '';
+        //Sustituir la ultima coma por un espacio
+        $fields[strlen($fields)-1] = ' ';
+        $values[strlen($values)-1] = ' ';
         
         //Registramos al usuario
         $res = doquery("INSERT INTO {{table}} ({$fields}) VALUES ({$values})", 'usuarios');
         
         if($res){ //Registro correcto
-            $sendStatus = sendMail($datos['email'], 'Activación de cuenta', 'Necesitarás activar tu cuenta. Funcionalidad aun no disponible.');
+            $asunto = 'Activación de cuenta';
+            $msg = "Necesitarás activar tu cuenta accediendo al siguiente enlace: {$WEB_CONFIG['web_url']}";
+            $sendStatus = sendMail($datos['email'], 'Activación de cuenta', 'Necesitarás activar tu cuenta.'.$WEB_CONFIG['web_url']);
             if(!$sendStatus){
-                //TODO: mostrar mensaje con el error
+                echo "No se ha podido enviar el correo de confirmación.";
             }
+            
+            //TODO: mostrar mensaje indicando que se ha registrado correctamente y debe mirar el email
+            echo "El registro se ha realizado correctamente. Se le ha enviado un correo con un link de activación de cuenta.";
+               
         }else{ //Fallo en el registro
-            //TODO: mostrar mensaje con el error
+            echo "Se ha producido un error en el registro.";
         }
     }else{
-        //TODO: mostrar mensaje con el error
+        foreach ($datos['error'] as $error) {
+            echo "<div>{$error}</div>";
+        }
     }
-    
-    die("Not implemented!!");
     
 }else{ //Mostrar el formulario
     
@@ -57,8 +64,8 @@ function validaFormularioAlta(){
     $retArray['error'] = array();
     
     //Nombre usuario
-    if(isset($_POST['nombre_usuario']))
-        $retArray['nombre_usuario'] = secure_text_query($_POST['nombre_usuario']);
+    if(isset($_POST['username']))
+        $retArray['username'] = secure_text_query($_POST['username']);
     else
         $retArray['error'][] = 'Falta "Nombre usuario"';
     
@@ -92,6 +99,12 @@ function validaFormularioAlta(){
     else
         $retArray['error'][] = 'Falta "Ciudad"';
     
+    //Pais
+    if(isset($_POST['pais']))
+        $retArray['pais'] = secure_text_query($_POST['pais']);
+    else
+        $retArray['error'][] = 'Falta "Pais"';
+    
     //Fecha nacimiento
     if(isset($_POST['fecha_nacimiento']))
         $retArray['fecha_nacimiento'] = secure_text_query($_POST['fecha_nacimiento']);
@@ -105,33 +118,38 @@ function validaFormularioAlta(){
         $retArray['error'][] = 'Falta "Teléfono"';
     
     //Email
-    if(isset($_POST['email']) && isset($_POST['email_check']) && $_POST['email'] == $_POST['email_check']){
-        if(isValidEmail($_POST['email']))
-            $retArray['email'] = secure_text_query($_POST['email']);
-        else
-            $retArray['error'][] = 'El email no sigue un formato válido';
+    if(isset($_POST['email']) && isset($_POST['email_check'])){
+        if(strtolower($_POST['email']) == strtolower($_POST['email_check'])){
+            if(isValidEmail($_POST['email']))
+                $retArray['email'] = secure_text_query(strtolower($_POST['email']));
+            else
+                $retArray['error'][] = 'El email no sigue un formato válido';
+        }else
+            $retArray['error'][] = 'Los emails no son iguales';
     }else
         $retArray['error'][] = 'Falta "Email"';
     
     //Contraseña
-    if(isset($_POST['pass']) && isset($_POST['pass_check']) && $_POST['pass'] == $_POST['pass_check']){
-        if(isValidPass($_POST['pass']))
-            $retArray['pass'] = sha1($_POST['pass']);
+    if(isset($_POST['password']) && isset($_POST['pass_check']) && $_POST['password'] == $_POST['pass_check']){
+        if(isValidPass($_POST['password']))
+            $retArray['password'] = sha1($_POST['password']);
         else
            $retArray['error'][] = 'La contraseña debe tener al menos un número y un carácter especial y no tener menos de 6 caracteres'; 
         
-    }else
+    }else if($_POST['password'] != $_POST['pass_check'])
+        $retArray['error'][] = 'Las contraseñas no son iguales';
+    else
         $retArray['error'][] = 'Falta "Contraseña"';
     
     //Comprobar que no existe el nombre de usuario ni el email
-    if(isset($retArray['nombre_usuario'])){
-        $us =  doquery("SELECT username FROM {{table}} WHERE username = '{$retArray['nombre_usuario']}' LIMIT 1", 'usuarios', true);
+    if(isset($retArray['username'])){
+        $us =  doquery("SELECT username FROM {{table}} WHERE username = '{$retArray['username']}' LIMIT 1", 'usuarios', true);
         if($us != NULL)
             $retArray['error'][] = 'El nombre de usuario ya existe';
     }
     
     if(isset($retArray['email'])){
-        $em =  doquery("SELECT email FROM {{table}} WHERE email = '{$retArray['email']}' LIMIT 1", 'usuarios', true);
+        $em =  doquery("SELECT email FROM {{table}} WHERE email LIKE '{$retArray['email']}' LIMIT 1", 'usuarios', true);
         if($em != NULL)
             $retArray['error'][] = 'El email ya existe';
     }

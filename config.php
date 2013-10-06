@@ -1,9 +1,10 @@
 <?php
 
-global $web_config;
+global $WEB_CONFIG;
 
-$web_config = array(
-    'debug' => true
+$WEB_CONFIG = array(
+    'debug' => true,
+    'web_url' => 'http://localhost/subastas/confirmar.php'
 );
 
 

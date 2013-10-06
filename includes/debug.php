@@ -26,9 +26,9 @@ class debug {
 
     function error($message, $title) {
 
-    	global $link2, $web_config;
+    	global $link2, $WEB_CONFIG;
     
-    	if ($web_config['debug']) {
+    	if ($WEB_CONFIG['debug']) {
     	    echo "<h2>$title</h2><br><font color=red>$message</font><br><hr>";
     	    echo "<table>" . $this->log . "</table>";
     	}
