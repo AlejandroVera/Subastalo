@@ -1,5 +1,5 @@
-{include file="header.tpl" title="Alta de usuario"}
-<form action="alta.php?validate" method="POST">
+{include file="header.tpl" title="Alta de usuario" scripts=$scripts}
+<form id="formularioAlta">
 	<div class="entradaAlta">
 		<div class="textoEntradaAlta">Nombre usuario</div>
 		<div class="valorEntradaTabla">

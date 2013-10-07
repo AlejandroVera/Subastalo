@@ -2,9 +2,7 @@
 
 // Pear Mail Library
 require_once(IS2_ROOT_PATH . "libs/Mail/Mail.php");
-//require_once(IS2_ROOT_PATH . "libs/Mail_Mime/Mail/mime.php");
 require_once(IS2_ROOT_PATH . "libs/Mail/Mail/mime.php");
-//require_once(IS2_ROOT_PATH . "libs/Mail/Mail/mimePart.php");
 
 function sendMail($to, $subject, $body){
         

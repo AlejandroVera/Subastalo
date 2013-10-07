@@ -35,27 +35,37 @@ if(isset($_GET['validate'])){
         if($res){ //Registro correcto
             $asunto = 'Activación de cuenta';
             $msg = "Necesitarás activar tu cuenta accediendo al siguiente enlace: {$WEB_CONFIG['web_url']}";
-            $sendStatus = sendMail($datos['email'], 'Activación de cuenta', 'Necesitarás activar tu cuenta.'.$WEB_CONFIG['web_url']);
+            $sendStatus = sendMail($datos['email'], $asunto, $msg);
             if(!$sendStatus){
-                echo "No se ha podido enviar el correo de confirmación.";
+                sendAjaxData(array('msg' => "No se ha podido enviar el correo de confirmación."), 400);
             }
             
-            //TODO: mostrar mensaje indicando que se ha registrado correctamente y debe mirar el email
-            echo "El registro se ha realizado correctamente. Se le ha enviado un correo con un link de activación de cuenta.";
+            sendAjaxData(array(
+                'msg' => "El registro se ha realizado correctamente. Se le ha enviado un correo con un link de activación de cuenta.",
+                'url' => "index.php"
+            ));
                
         }else{ //Fallo en el registro
-            echo "Se ha producido un error en el registro.";
+            sendAjaxData(array('msg' => "Se ha producido un error en el registro."), 400);
         }
     }else{
+        $errorHtml = "";
         foreach ($datos['error'] as $error) {
-            echo "<div>{$error}</div>";
+            $errorHtml .= "<div>{$error}</div>";
         }
+        sendAjaxData(array('msg' => $errorHtml), 400);
     }
     
 }else{ //Mostrar el formulario
     
     //$smarty->assign('name', 'Ned');
+    $smarty->assign('scripts', array("alta.js"));
     $smarty->display('alta.tpl');
+}
+
+function sendAjaxData($data, $statusCode = 200){
+    $data['status'] = $statusCode;
+    echo json_encode($data);
 }
 
 
