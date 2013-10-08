@@ -1,6 +1,5 @@
-{include file="header.tpl" title="Edición de usuario"}
-<form action="editarPerfil.php?validate" method="POST">
-
+{include file="header.tpl" title="Edición de usuario" scripts=$scripts}
+<form id="editarPerfil">
 	<div class="entradaEdicion">
 		<div class="textoentradaEdicion">Nombre</div>
 		<div class="valorEntradaTabla">

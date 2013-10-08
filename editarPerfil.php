@@ -6,7 +6,7 @@ define('NEEDED_ACCESS_LEVEL', 0);
 //Cargamos el core
 require(IS2_ROOT_PATH . "core.php");
 
-//Cargamos la función de envío de emails
+//Cargamos las función de validaciones
 require(IS2_ROOT_PATH . "includes/validate.php");
 
 $username=secure_text_query("Wei");
@@ -24,7 +24,7 @@ if(isset($_GET['validate'])){
             if($key == 'error')
                 continue;
  
-            $fields .= $key.'='.$value.',';
+            $fields .= $key.'='."'{$value}',";
         }
         
         //Sustituir la ultima coma por un espacio
@@ -34,9 +34,10 @@ if(isset($_GET['validate'])){
         $res = doquery("UPDATE {{table}} SET {$fields} WHERE username='{$username}'", 'usuarios');
         
         if($res){ //Modificacion correcta
-        	$smarty->assign('scripts', array("alta.js"));
+        	
             sendAjaxData(array(
-                'msg' => "Se ha realizado Modificación de perfil correctamente."
+                'msg' => "Se ha realizado modificación de perfil correctamente.",
+           		'url' => "index.php"
             ));
                
         }else{ //Fallo en la edicion
@@ -65,8 +66,14 @@ else{
 		$results['telefono'] = $resultado['telefono'];
 		$results['email'] = $resultado['email'];
 	}
+	$smarty->assign('scripts', array("edicionPerfil.js"));
 	$smarty->assign('res', $results);
     $smarty->display('editarPerfil.tpl');	
+}
+
+function sendAjaxData($data, $statusCode = 200){
+    $data['status'] = $statusCode;
+    echo json_encode($data);
 }
 
 function validaEdicionPerfil(){
@@ -134,9 +141,6 @@ function validaEdicionPerfil(){
    
     return $retArray;
 }
-function sendAjaxData($data, $statusCode = 200){
-    $data['status'] = $statusCode;
-    echo json_encode($data);
-}
+
 ?>
  
