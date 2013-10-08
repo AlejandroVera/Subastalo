@@ -1,16 +1,16 @@
 function init(){
-	$("#cambiopasswd").submit(function(){
-		editProfile();
+	$("#cambiarPass").submit(function(){
+		changePass();
 		return false;
 	});
 }
 
-function editProfile() {
-	$("#cambiopasswd > :submit").prop('disabled', true);
+function changePass() {
+	$("#cambiarPass > :submit").prop('disabled', true);
 	$.ajax({
 		type: "POST",
 		url: "cambiopasswd.php?validate",
-		data : $("#cambiopasswd").serialize(),
+		data : $("#cambiarPass").serialize(),
 	})
 	.done(function(info){
 		var data = JSON.parse(info);
@@ -24,7 +24,7 @@ function editProfile() {
 		alert("Error al cambiar la contraseña. Revise su conexión a Internet.");
 	})
 	.always(function(){
-		$("#cambiopasswd > :submit").prop('disabled', false);
+		$("#cambiarPass > :submit").prop('disabled', false);
 	});
 
 }

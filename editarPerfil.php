@@ -9,15 +9,13 @@ require(IS2_ROOT_PATH . "core.php");
 //Cargamos las función de validaciones
 require(IS2_ROOT_PATH . "includes/validate.php");
 
-$username=secure_text_query("Wei");
+$id=secure_text_query("27");
 
 //Procesado del formulario
 if(isset($_GET['validate'])){
 		
 	$datos=validaEdicionPerfil();	
-	
-	
-	    if(empty($datos['error'])){
+	if(empty($datos['error'])){
         $fields = '';
         $values = '';
         foreach ($datos as $key => $value) {
@@ -26,12 +24,10 @@ if(isset($_GET['validate'])){
  
             $fields .= $key.'='."'{$value}',";
         }
-        
         //Sustituir la ultima coma por un espacio
         $fields[strlen($fields)-1] = ' ';
- 
         //Modificamos las tablas de usuario
-        $res = doquery("UPDATE {{table}} SET {$fields} WHERE username='{$username}'", 'usuarios');
+        $res = doquery("UPDATE {{table}} SET {$fields} WHERE id='{$id}'", 'usuarios');
         
         if($res){ //Modificacion correcta
         	
@@ -43,6 +39,20 @@ if(isset($_GET['validate'])){
         }else{ //Fallo en la edicion
             sendAjaxData(array('msg' => "Se ha producido un error en la edición de perfil."), 400);
         }
+		$lista=$_POST['lista'];
+        $field = '';
+        foreach ($lista as $key => $value) 
+            $field .= "`{$value}`=1,";
+
+        //Sustituir la ultima coma por un espacio
+        $field[strlen($field)-1] = ' ';
+ 
+        //Modificamos las tablas de usuario
+        $reslist = doquery("UPDATE {{table}} SET {$field} WHERE idUsuario='{$id}'", 'listaIntereses');
+        if(!$reslist)
+			 sendAjaxData(array('msg' => "Se ha producido un error en la actualización de lista de intereses."), 400);
+      
+		
     }else{
         $errorHtml = "";
         foreach ($datos['error'] as $error) {
@@ -52,10 +62,9 @@ if(isset($_GET['validate'])){
     }
 }
 else{
-	$res=doquery("SELECT * FROM {{table}} WHERE username = '{$username}' LIMIT 1",'usuarios',false);
-	$result=array();
+	//Se obtiene todos los datos del usuario creados en el alta
+	$res=doquery("SELECT * FROM {{table}} WHERE id = '{$id}' LIMIT 1",'usuarios',false);
 	while ($resultado = mysqli_fetch_assoc($res)) {
-			
 		$results['nombre'] = $resultado['nombre'];
 		$results['apellidos'] = $resultado['apellidos'];
 		$results['direccion'] = $resultado['direccion'];
@@ -66,6 +75,20 @@ else{
 		$results['telefono'] = $resultado['telefono'];
 		$results['email'] = $resultado['email'];
 	}
+	//Se obtiene todos los productos de la lista con la idUsuario
+	$listaquery=doquery("SELECT * FROM {{table}} WHERE idUsuario = '{$id}' LIMIT 1",'listaIntereses',false);
+	while($listares = mysqli_fetch_assoc($listaquery)){
+			
+		$lista['Joyeria y Belleza']=$listares['Joyeria y Belleza'];
+		$lista['Electronica']=$listares['Electronica'];
+		$lista['Hogar y Decoracion']=$listares['Hogar y Decoracion'];
+		$lista['Entretenimiento']=$listares['Entretenimiento'];
+		$lista['Deportes y Tiempo Libre']=$listares['Deportes y Tiempo Libre'];
+		$lista['Coleccionismo y Arte']=$listares['Coleccionismo y Arte'];
+		$lista['Motor']=$listares['Motor'];
+	}
+	//Se pasa la lista de checkbox, los datos de perfil, el tpl y el fichero js
+	$smarty->assign('lista',$lista);
 	$smarty->assign('scripts', array("edicionPerfil.js"));
 	$smarty->assign('res', $results);
     $smarty->display('editarPerfil.tpl');	
@@ -79,8 +102,6 @@ function sendAjaxData($data, $statusCode = 200){
 function validaEdicionPerfil(){
     $retArray = array();
     $retArray['error'] = array();
-    
-
     //Nombre
     if(isset($_POST['nombre']))
         $retArray['nombre'] = secure_text_query($_POST['nombre']);
@@ -137,10 +158,7 @@ function validaEdicionPerfil(){
                 $retArray['error'][] = 'El email no sigue un formato válido';
         }else
         $retArray['error'][] = 'Falta "Email"';
-    
-   
     return $retArray;
 }
-
 ?>
  

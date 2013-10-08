@@ -1,8 +1,8 @@
 {include file="header.tpl" title="Modificar contraseña" scripts=$scripts}
-<form id="cambiopasswd">
+<form id=cambiarPass>
 
 	<div class="entradaCambio">
-		<div class="textoEntradaAlta">Hola {$nombre}, </div>
+		<div class="textoEntradaAlta">Hola {$nombre}, para cambiar la contraseña:</div>
 		<div class="textoEntradaAlta">introduzca contraseña su antigua:</div>
 		<div class="valorEntradaTabla">
 			<input type="password" name="oldpassword">

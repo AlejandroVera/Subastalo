@@ -33,6 +33,19 @@ if(isset($_GET['validate'])){
         $res = doquery("INSERT INTO {{table}} ({$fields}) VALUES ({$values})", 'usuarios');
         
         if($res){ //Registro correcto
+        
+        	//Codigo para crear una lista de productos con el idUsuario
+			$usrname=secure_text_query($_POST['username']);
+        	$obtId=doquery("SELECT id FROM {{table}} WHERE username = '{$usrname}'", 'usuarios');
+        	if(!$obtId)
+				sendAjaxData(array('msg' => "Error al obtener id"),400);
+        	$ResId=mysqli_fetch_assoc($obtId);
+			$idUser=$ResId['id'];
+        	$addlist=doquery("INSERT INTO {{table}} (`idUsuario`) VALUES ({$idUser})", 'listaIntereses');
+      		if(!$addlist)
+				sendAjaxData(array('msg' => "Error al crear tabla de lista"),400);	
+            //Fin codigo de crear lista
+            
             $asunto = 'Activación de cuenta';
             $msg = "Necesitarás activar tu cuenta accediendo al siguiente enlace: {$WEB_CONFIG['web_url']}";
             $sendStatus = sendMail($datos['email'], $asunto, $msg);
