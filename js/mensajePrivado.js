@@ -1,6 +1,6 @@
 function init() {
 	$("#popupMsg").hide();
-	$("#buttonMsg").click(function(){
+	$("#buttonMsg").click(function() {
 		$("#popupMsg").show();
 	});
 }
