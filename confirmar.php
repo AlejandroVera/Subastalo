@@ -1,10 +1,11 @@
 <?php
 
 define('IS2_ROOT_PATH', './');
-define('NEEDED_ACCESS_LEVEL', 0);
+define('NEEDED_ACCESS_LEVEL', 3);
 
 //Cargamos el core
 require(IS2_ROOT_PATH . "core.php");
+
 
 if(isset($_GET['confirmar'])){
     
