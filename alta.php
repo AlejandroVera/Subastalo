@@ -3,7 +3,7 @@
 define('IS2_ROOT_PATH', './');
 define('NEEDED_ACCESS_LEVEL', 0);
 
-//Cargamos el core
+//Cargamos el Core
 require(IS2_ROOT_PATH . "core.php");
 
 //Cargamos la función de envío de emails
