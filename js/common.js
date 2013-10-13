@@ -17,7 +17,8 @@ function initCommonUtilities(){
 	$('body').prepend(div);
 	
 	//Inicializamos la página
-	init();
+	if(typeof init == 'function')
+		init();
 }
 
 //TODO: características propias?
@@ -41,7 +42,7 @@ function message(msg, onAccept){
 	//Cerrar si se pulsa en aceptar
 	$("#is2_utilities_msg_options_accept").click(function(){
 		$("#is2_utilities_msg").hide();
-		if(onAccept != null)
+		if(typeof onAccept == 'function')
 			onAccept();
 	});
 	

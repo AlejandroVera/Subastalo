@@ -1,5 +1,5 @@
 {include file="header.tpl" title="Confirmación de cuenta"}
-<form action="confirmar.php?confirmar" method="POST">
+<form id="formularioConfirmar">
 	<div class="entradaAlta">
 		<div class="textoEntradaAlta">Email</div>
 		<div class="valorEntradaTabla">

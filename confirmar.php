@@ -9,33 +9,43 @@ require(IS2_ROOT_PATH . "core.php");
 
 if(isset($_GET['confirmar'])){
     
+    $errorHtml = "";    
     if(!isset($_POST['email']))
-        echo "Falta el email.";
+        $errorHtml .= "<div>Falta el email.</div>";
         
     if(!isset($_POST['password']))
-        echo "Falta la contraseña.";
+        $errorHtml .= "<div>Falta la contraseña.</div>";
     
+    if($errorHtml != "")
+        sendAjaxData(array('msg' => $errorHtml), 400);
+        
+    //Filtramos los datos
     $email = secure_text_query(strtolower($_POST['email']));
-    $password = sha1($_POST['password']);
+    $password = $_POST['password'];
     
-    $em =  doquery("UPDATE {{table}} SET confirmado = '1' WHERE email LIKE '{$email}' AND password = '{$password}' LIMIT 1", 'usuarios');
+    //Lo intentamos loguear con los datos proporcionados
+    $valid = login($email, $password);
     
-    if($em){
-        //Inicializamos la gestión de sesiones
-        session_start();
+    if($valid){
+        $user_id = $_SESSION['USUARIO']['id'];
+        $em =  doquery("UPDATE {{table}} SET confirmado = '1' WHERE id = '{$user_id}' LIMIT 1", 'usuarios');
         
-        //Modificamos la sesion para indicar que está logueado
-        $_SESSION['logueado'] = true;
-        
-        //Redirigimos a la página correspondiente una vez "logueados" (index.php??)
-        header('Location: index.php');
+        //Redirigimos a la página correspondiente una vez "logueados"
+        sendAjaxData(array('msg' => "Tu cuenta ha sido confirmada correctamente.", 'url' => 'index.php'));
     }else{
-        echo "Datos incorrectos.";
+        sendAjaxData(array('msg' => "Datos incorrectos."), 400);
     }
     
     
 }else{
+    $smarty->assign('scripts', array("confirmar.js"));
     $smarty->display('confirmar.tpl');
+}
+
+function sendAjaxData($data, $statusCode = 200){
+    $data['status'] = $statusCode;
+    echo json_encode($data);
+    die();
 }
 
 
