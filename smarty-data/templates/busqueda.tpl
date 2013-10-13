@@ -12,7 +12,7 @@
 			</div> 
 			<div class="tabla">				
 				{if !empty($tabla)}
-					{html_table loop=$tabla cols=1}
+					{html_table loop=$tabla cols=5}
 				{/if}				
 			</div> 		
 		</form>
