@@ -4,10 +4,12 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<title>{$title|default:"Página de subastas"}</title>
 		<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+		<script src="./js/common.js"></script>
 		{if !empty($scripts)}
 			{foreach $scripts as $script}
 				<script src="./js/{$script}"></script>
 			{/foreach}
-		{/if}	
+		{/if}
+		<LINK href="./css/common.css" rel="stylesheet" type="text/css">
 	</head>
-	<body onload="init()">
+	<body onload="initCommonUtilities()">

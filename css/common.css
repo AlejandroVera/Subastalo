@@ -1,0 +1,31 @@
+#is2_utilities_msg {
+    border-color: #000000;
+    border-radius: 15px 15px 15px 15px;
+    border-style: solid;
+    border-width: 2px;
+    box-shadow: 0 0 20px rgba(200, 200, 200, 0.2) inset, 0 0 10px 5px rgba(0, 0, 0, 0.5);
+    left: 50%;
+    margin: 150px auto 0 -275px;
+    padding: 0 8px 5px;
+    position: fixed;
+    width: 600px;
+    z-index: 100;
+}
+#is2_utilities_msg_topvar > div {
+    border-radius: 15px 15px 0 0;
+    float: right;
+    margin-right: 7px;
+}
+#is2_utilities_msg_topvar {
+    border-radius: 15px 15px 0 0;
+    clear: both;
+    display: block;
+    margin-top: 3px;
+}
+#is2_utilities_msg_content {
+    clear: both;
+}
+#is2_utilities_msg_options {
+    margin-bottom: 2px;
+    text-align: center;
+}
