@@ -22,7 +22,14 @@ if (isset($_GET['validate'])) {
 		header('Location: login.php'); 
 		
 } else {//Mostrar el formulario
-   $smarty -> display('login.tpl');
+
+//TODO:
+//$usuarioLogueado=$_SESSION['USUARIO']['id'];
+$usuarioLogueado=2;
+
+	$smarty -> assign('scripts', array("escuchaMensajes.js"));
+	$smarty -> assign('usuarioLogueado', $usuarioLogueado);
+	$smarty -> display('login.tpl');
 }
 
 

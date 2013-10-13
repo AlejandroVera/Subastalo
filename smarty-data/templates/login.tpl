@@ -1,4 +1,4 @@
-{include file="header.tpl" title="Alta de usuario"}
+{include file="headerLogin.tpl" title="Alta de usuario"}
 <form id="login" method="POST" action="login.php?validate">
 	<div class="entradaLogin">
 		<div class="textoEntradaLogin">Email</div>
