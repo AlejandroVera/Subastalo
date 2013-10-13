@@ -15,7 +15,15 @@
 			<a href={urlCambioDePerfil}>Editar su perfil</a>
 		</div>
 		<div class="seccionControl">
-			<a href={urlContactarJdls}>Contacto con la administración</a>
+			<button title="mensaje" id="botonCont">
+				Contactar con la Administración
+			</button>
+			<div id="popuT">
+				<textarea id="cuerpoT" rows="4" cols="40">cuerpo del mensaje</textarea>
+				<button title="enviarT" id="botonEnv" onclick="contactar({$usuarioLogueado})">
+					Enviar
+				</button>
+			</div>
 		</div>
 		<div class="seccionControl">
 			<div class="texto">Mensajes privados</div>
