@@ -29,11 +29,3 @@ function editProfile() {
 
 }
 
-function error(msg){
-	alert(msg);
-}
-
-function messageAndRedirect(msg, url){
-	alert(msg);
-	location.href = url;
-}

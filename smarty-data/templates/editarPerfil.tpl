@@ -55,18 +55,30 @@
 		</div>
 	</div>
 	</div>
-		<div class="textoentradaEdicion">Elija de la lista los productos que le interesen:</div>
+		<div class="textoentradaEdicion"><br>Elija de la lista los productos que le interesen:</div>
 		<div class="entradaEdicion">
 		{foreach key=key item=item from=$lista}
-			<div class="valorEntradaTabla">
+			{if $item == 1}
+				<div class="valorEntradaTabla">
+					<input type="checkbox" name="lista[]" value="{$key}" checked> 
+					{$key}
+				</div>
+			{else}
+				<div class="valorEntradaTabla">
 				<input type="checkbox" name="lista[]" value="{$key}"> 
 				{$key}
-			</div>
+				</div>
+			{/if}
+			
 		{/foreach}
 		</div>
 	</div>
-	
-	
-	<input type="submit" value="¡Actualizar!">
+		<div class="textoentradaEdicion"><br>Escriba aquí los productos que le interesan adquirir:</div>
+		<div class="entradaEdicion">
+			<textarea name="productosInteresados" rows="10" cols="50">{$res.productosInteresados}</textarea>
+		</div>
+	</div>
+
+	<input type="submit" value="¡Actualizar!"><button type="button">Cancelar</button>
 </form>
 {include file="footer.tpl"}

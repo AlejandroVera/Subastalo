@@ -1,7 +1,7 @@
 <?php
 
 define('IS2_ROOT_PATH', './');
-define('NEEDED_ACCESS_LEVEL', 0);
+define('NEEDED_ACCESS_LEVEL', 1);
 
 //Cargamos el core
 require(IS2_ROOT_PATH . "core.php");
@@ -9,18 +9,17 @@ require(IS2_ROOT_PATH . "core.php");
 //Cargamos la función de envío de emails y validaciones
 require(IS2_ROOT_PATH . "includes/mail.php");
 require(IS2_ROOT_PATH . "includes/validate.php");
-$id='24';
+$id='31';
 
 if(isset($_GET['validate'])){
 		
-	$datos=validaContraseña();	
+	$datos=validaContraseña($id);	
 	if(empty($datos['error'])){
         $fields = 'password='."'{$datos['password']}'";
 	    $res = doquery("UPDATE {{table}} SET {$fields} WHERE id='{$id}'", 'usuarios');
         if($res){ //cambio correcto
             $asunto = 'Cambio de contraseña';
             $msg = "Se ha modificado su contraseña, si no ha sido usted quien lo ha modificado póngase en contacto con el administrador.";
-            print_r($datos['email']);
             $sendStatus = sendMail($datos['email'], $asunto, $msg);
             if(!$sendStatus){
                 sendAjaxData(array('msg' => "No se ha podido enviar el correo de confirmación."), 400);
@@ -56,7 +55,7 @@ function sendAjaxData($data, $statusCode = 200){
     echo json_encode($data);
 }
 
-function validaContraseña($id='24'){
+function validaContraseña($id){
 	
 	$retArray = array();
     $retArray['error'] = array();

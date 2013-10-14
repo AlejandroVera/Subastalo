@@ -1,7 +1,7 @@
 <?php
 
 define('IS2_ROOT_PATH', './');
-define('NEEDED_ACCESS_LEVEL', 0);
+define('NEEDED_ACCESS_LEVEL', 1);
 
 //Cargamos el core
 require(IS2_ROOT_PATH . "core.php");
@@ -13,7 +13,7 @@ $id=secure_text_query("27");
 
 //Procesado del formulario
 if(isset($_GET['validate'])){
-		
+	print_r($_POST['productosInteresados']);
 	$datos=validaEdicionPerfil();	
 	if(empty($datos['error'])){
         $fields = '';
@@ -74,8 +74,9 @@ else{
 		$results['fecha_nacimiento'] = $resultado['fecha_nacimiento'];
 		$results['telefono'] = $resultado['telefono'];
 		$results['email'] = $resultado['email'];
+		$results['productosInteresados']=$resultado['productosInteresados'];
 	}
-	//Se obtiene todos los productos de la lista con la idUsuario
+	//Se obtiene todos los productos de la lista predefinida con la idUsuario
 	$listaquery=doquery("SELECT * FROM {{table}} WHERE idUsuario = '{$id}' LIMIT 1",'listaIntereses',false);
 	while($listares = mysqli_fetch_assoc($listaquery)){
 			
@@ -88,9 +89,9 @@ else{
 		$lista['Motor']=$listares['Motor'];
 	}
 	//Se pasa la lista de checkbox, los datos de perfil, el tpl y el fichero js
-	$smarty->assign('lista',$lista);
 	$smarty->assign('scripts', array("edicionPerfil.js"));
 	$smarty->assign('res', $results);
+	$smarty->assign('lista',$lista);
     $smarty->display('editarPerfil.tpl');	
 }
 
@@ -158,6 +159,8 @@ function validaEdicionPerfil(){
                 $retArray['error'][] = 'El email no sigue un formato válido';
         }else
         $retArray['error'][] = 'Falta "Email"';
+	if(isset($_POST['productosInteresados']))
+        $retArray['productosInteresados'] = secure_text_query($_POST['productosInteresados']);
     return $retArray;
 }
 ?>
