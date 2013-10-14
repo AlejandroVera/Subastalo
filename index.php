@@ -4,9 +4,7 @@ define('IS2_ROOT_PATH', './');
 
 //Load core
 require(IS2_ROOT_PATH . "core.php");
-
-echo "Pagina principal";
-echo "<a href=\"alta.php\">Link</a>";
-
-
+$smarty -> assign('nivelAcceso', estoy_logeado());
+$smarty -> assign('scripts', array("log.js"));
+$smarty -> display('index.tpl');
 ?>
