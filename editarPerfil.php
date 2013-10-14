@@ -10,10 +10,12 @@ require(IS2_ROOT_PATH . "core.php");
 require(IS2_ROOT_PATH . "includes/validate.php");
 
 $id=secure_text_query("27");
+$listaquery=doquery("SELECT * FROM {{table}} WHERE idUsuario = '{$id}' LIMIT 1",'listaIntereses',false);
+$listares = mysqli_fetch_assoc($listaquery);
 
 //Procesado del formulario
 if(isset($_GET['validate'])){
-	print_r($_POST['productosInteresados']);
+	
 	$datos=validaEdicionPerfil();	
 	if(empty($datos['error'])){
         $fields = '';
@@ -36,23 +38,28 @@ if(isset($_GET['validate'])){
            		'url' => "index.php"
             ));
                
-        }else{ //Fallo en la edicion
+        }else //Fallo en la edicion
             sendAjaxData(array('msg' => "Se ha producido un error en la edición de perfil."), 400);
-        }
-		$lista=$_POST['lista'];
+        
+		//Codigo lista de intereses
         $field = '';
-        foreach ($lista as $key => $value) 
-            $field .= "`{$value}`=1,";
-
+		//bucle que asigna valor 1 a los campos seleccionados
+		foreach ($listares as $key => $value) {
+			if($key == 'idUsuario')
+                continue;
+			if(isset($_POST[$key]))
+				$field .= "`{$key}` = '1',";
+			else 
+				$field .= "`{$key}` = '0',";
+		}
+      
         //Sustituir la ultima coma por un espacio
         $field[strlen($field)-1] = ' ';
  
         //Modificamos las tablas de usuario
         $reslist = doquery("UPDATE {{table}} SET {$field} WHERE idUsuario='{$id}'", 'listaIntereses');
         if(!$reslist)
-			 sendAjaxData(array('msg' => "Se ha producido un error en la actualización de lista de intereses."), 400);
-      
-		
+			sendAjaxData(array('msg' => "Se ha producido un error en la actualización de lista de intereses."), 400);
     }else{
         $errorHtml = "";
         foreach ($datos['error'] as $error) {
@@ -76,18 +83,16 @@ else{
 		$results['email'] = $resultado['email'];
 		$results['productosInteresados']=$resultado['productosInteresados'];
 	}
-	//Se obtiene todos los productos de la lista predefinida con la idUsuario
-	$listaquery=doquery("SELECT * FROM {{table}} WHERE idUsuario = '{$id}' LIMIT 1",'listaIntereses',false);
-	while($listares = mysqli_fetch_assoc($listaquery)){
-			
-		$lista['Joyeria y Belleza']=$listares['Joyeria y Belleza'];
-		$lista['Electronica']=$listares['Electronica'];
-		$lista['Hogar y Decoracion']=$listares['Hogar y Decoracion'];
-		$lista['Entretenimiento']=$listares['Entretenimiento'];
-		$lista['Deportes y Tiempo Libre']=$listares['Deportes y Tiempo Libre'];
-		$lista['Coleccionismo y Arte']=$listares['Coleccionismo y Arte'];
-		$lista['Motor']=$listares['Motor'];
-	}
+	//Se crea una lista para pasarselo al template
+	$lista['Joyeria y Belleza']=$listares['Joyeria y Belleza'];
+	$lista['Electronica']=$listares['Electronica'];
+	$lista['Hogar y Decoracion']=$listares['Hogar y Decoracion'];
+	$lista['Entretenimiento']=$listares['Entretenimiento'];
+	$lista['Deportes y Tiempo Libre']=$listares['Deportes y Tiempo Libre'];
+	$lista['Coleccionismo y Arte']=$listares['Coleccionismo y Arte'];
+	$lista['Motor']=$listares['Motor'];
+	
+	
 	//Se pasa la lista de checkbox, los datos de perfil, el tpl y el fichero js
 	$smarty->assign('scripts', array("edicionPerfil.js"));
 	$smarty->assign('res', $results);

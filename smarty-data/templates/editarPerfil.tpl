@@ -60,12 +60,12 @@
 		{foreach key=key item=item from=$lista}
 			{if $item == 1}
 				<div class="valorEntradaTabla">
-					<input type="checkbox" name="lista[]" value="{$key}" checked> 
+					<input type="checkbox" name="{$key}" checked> 
 					{$key}
 				</div>
 			{else}
 				<div class="valorEntradaTabla">
-				<input type="checkbox" name="lista[]" value="{$key}"> 
+				<input type="checkbox" name="{$key}"> 
 				{$key}
 				</div>
 			{/if}
@@ -73,6 +73,8 @@
 		{/foreach}
 		</div>
 	</div>
+
+	<div>
 		<div class="textoentradaEdicion"><br>Escriba aquí los productos que le interesan adquirir:</div>
 		<div class="entradaEdicion">
 			<textarea name="productosInteresados" rows="10" cols="50">{$res.productosInteresados}</textarea>
