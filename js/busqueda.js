@@ -18,6 +18,10 @@ function realizaBusqueda() {
 		if (data.status == 200){
 			$('#tablaResultados').empty();
 			showTable(5, $('#tablaResultados'), data.msg);
+			$(document).ready(function() 
+    		{ 
+        		$("#tablaResultados").tablesorter(); 
+    		}); 
 		}else
 			error(data.msg);
 	})
@@ -33,12 +37,15 @@ function realizaBusqueda() {
 
 function showTable(columns, tableElement, data){
 	
-	var content = "<tr>";
+	var content = "<thead>";
+	content += "<tr>";	
 	content +="<th>Tipo</th>";
 	content +="<th>Nombre</th>";
 	content +="<th>Descripción</th>";
 	content +="<th>Tiempo Restante<br/>/Puntos Necesarios</th>";
 	content +="<th>Fecha de creación</th></tr>";	
+	content += "<thead>";
+	content +='<tbody>';
 	content +='<tr>';
 	for (var i = 0; i < data.length; i++){
 		if (i % columns == 0 && i !== 0){
@@ -46,6 +53,6 @@ function showTable(columns, tableElement, data){
 		}
 		content +='<td>' + data[i] + '</td>';		
 	}
-	content +='</tr>';
+	content +='</tr></tbody>';
 	tableElement.append(content);
 }

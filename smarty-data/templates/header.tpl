@@ -12,5 +12,7 @@
 			{/foreach}
 		{/if}
 		<LINK href="./css/common.css" rel="stylesheet" type="text/css">
+		<LINK href="./css/tablesorter/style.css" rel="stylesheet" type="text/css">
+		<LINK href="./css/tablesorter/jq.css" rel="stylesheet" type="text/css">
 	</head>
 	<body onload="initCommonUtilities()">

@@ -5,7 +5,7 @@
 		<input type="submit" value="Buscar">
 	</div>
 	<div class="tabla">
-		<table id=tablaResultados>			
+		<table id=tablaResultados class = "tablesorter">			
 		</table>				
 	</div>
 	<div id = casa></div>	 			
