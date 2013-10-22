@@ -1,9 +1,13 @@
 {include file="header.tpl" title="Pagina principal" scripts=$scripts}
-<p>Pagina principal</p>
-<a id="alta" href="alta.php">Alta</a>
+<div id="barra">
 {if $nivelAcceso > 0}
-	<a href="logout.php">Logout</a>
+	<div id="logoutDiv">Logout</div>
 {else}
-	<a id="login" >Login</a>
+	<div id="loginDiv">Login</div>
 {/if}
+<div id="altaDiv">alta</div>
+</div>
+<iframe src="./inicio.php" id="marco"> Lo sentimos, 
+su navegador no soporta iframe. Le recomendamos Mozilla Firefox para visualizar esta web</iframe> 
+
 {include file="footer.tpl"}

@@ -11,6 +11,7 @@
 				<script src="./js/{$script}"></script>
 			{/foreach}
 		{/if}
+		<LINK href="./css/framePrincipal.css" rel="stylesheet" type="text/css">
 		<LINK href="./css/common.css" rel="stylesheet" type="text/css">
 		<LINK href="./css/tablesorter/style.css" rel="stylesheet" type="text/css">
 		<LINK href="./css/tablesorter/jq.css" rel="stylesheet" type="text/css">
