@@ -9,6 +9,9 @@ require(IS2_ROOT_PATH . "core.php");
 //Cargamos la función de envío de emails
 require(IS2_ROOT_PATH . "includes/mail.php");
 
+//Cargamos ciertas funciones de validacion
+require(IS2_ROOT_PATH . "includes/validate.php");
+
 //Procesado del formulario
 if(isset($_GET['validate'])){
     
@@ -181,15 +184,6 @@ function validaFormularioAlta(){
     return $retArray;
     
     
-}
-
-//Contraseña debe tener al menos un número y un carácter especial y no tener menos de 6 caracteres
-function isValidPass($pass){
-    return strlen($pass) >= 6 && preg_match("#[0-9]+#", $pass) && preg_match("#\W+#", $pass);
-}
-
-function isValidEmail($email){
-    return !!filter_var($email, FILTER_VALIDATE_EMAIL); 
 }
 
 

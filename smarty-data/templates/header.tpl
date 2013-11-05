@@ -5,15 +5,15 @@
 		<title>{$title|default:"Página de subastas"}</title>
 		<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
 		<script src="http://autobahn.s3.amazonaws.com/js/autobahn.min.js"></script> 
-		<script src="./js/common.js"></script>
+		<script src="{$IS2_ROOT_PATH}js/common.js"></script>
 		{if !empty($scripts)}
 			{foreach $scripts as $script}
-				<script src="./js/{$script}"></script>
+				<script src="{$IS2_ROOT_PATH}js/{$script}"></script>
 			{/foreach}
 		{/if}
-		<LINK href="./css/framePrincipal.css" rel="stylesheet" type="text/css">
-		<LINK href="./css/common.css" rel="stylesheet" type="text/css">
-		<LINK href="./css/tablesorter/style.css" rel="stylesheet" type="text/css">
-		<LINK href="./css/tablesorter/jq.css" rel="stylesheet" type="text/css">
+		<LINK href="{$IS2_ROOT_PATH}css/framePrincipal.css" rel="stylesheet" type="text/css">
+		<LINK href="{$IS2_ROOT_PATH}css/common.css" rel="stylesheet" type="text/css">
+		<LINK href="{$IS2_ROOT_PATH}css/tablesorter/style.css" rel="stylesheet" type="text/css">
+		<LINK href="{$IS2_ROOT_PATH}css/tablesorter/jq.css" rel="stylesheet" type="text/css">
 	</head>
 	<body onload="initCommonUtilities()">

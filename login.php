@@ -17,8 +17,8 @@ if (isset($_GET['validate'])) {
 	$password=$_POST['password'];
 		
 	if (login($email,$password)){
-	}
-		header('Location: login.php'); 
+	    header('Location: inicio.php'); 
+	}	
 		
 } else {//Mostrar el formulario
 

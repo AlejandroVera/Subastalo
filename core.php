@@ -21,8 +21,9 @@ require(IS2_ROOT_PATH . 'includes/config/loadSmarty.php');
 //Cargamos las funciones de log e iniciamos session
 require(IS2_ROOT_PATH . 'login_lib.php');
 @session_start();
+
 //Comprobación del nivel de acceso
-//if (estoy_logeado()<NEEDED_ACCESS_LEVEL){
-//	header('Location: index.php'); 
-//}
+if (estoy_logeado() < NEEDED_ACCESS_LEVEL){
+	header('Location: '.IS2_ROOT_PATH.'index.php'); 
+}
 ?>
