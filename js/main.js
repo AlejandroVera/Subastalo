@@ -1,15 +1,27 @@
 /**Script principal, pertenece a la página que contiene el iframe*/
 $(document).ready(function() {
-	alert("solo se ejecuta al recargar el script");
+	$("#marco").attr("src", "./inicio.php");
+
 	$("#loginDiv").click(function() {
 		$("#marco").attr("src", "./login.php");
 	});
-	$("#logoutDiv").click(function() {
-		$("#marco").attr("src", "http://www.google.com/");
-	});
+
 	$("#altaDiv").click(function() {
 		$("#marco").attr("src", "./alta.php");
 	});
-	
 
-}); 
+});
+
+function putLogoutButton() {
+	$("#loginDiv").replaceWith("<div id=\"logoutDiv\" class=\"menu_element\" >Logout</div>");
+	$("#logoutDiv").click(function() {
+		$("#marco").attr("src", "./logout.php");
+	});
+}
+
+function putLoginButton() {
+	$("#logoutDiv").replaceWith("<div id=\"loginDiv\" class=\"menu_element\" >Login</div>");
+	$("#loginDiv").click(function() {
+		$("#marco").attr("src", "./login.php");
+	});
+}

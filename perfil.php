@@ -9,21 +9,17 @@ require (IS2_ROOT_PATH . "core.php");
 //Cargamos las función de validaciones
 require (IS2_ROOT_PATH . "includes/validate.php");
 
-if (isset($_SESSION['USUARIOS']['id']))
-	$usuarioEstePerfil = $_SESSION['USUARIOS']['id'];
-
-
-//TODO:
-//$res = doquery("SELECT aceptaMensajes FROM {{table}} WHERE id = '{$usuarioEstePerfil}'", 'usuarios');
-//$muestraBotonMsg = mysqli_fetch_assoc($res);
-$muestraBotonMsg['aceptaMensajes']=1;
-$idPerfil=2;
-//$usuarioLogueado=$_SESSION['USUARIO']['id'];
-$usuarioLogueado=1;
-
-$smarty -> assign('muestraBotonMsg', $muestraBotonMsg['aceptaMensajes']);
-$smarty -> assign('scripts', array("mensajePrivado.js"));
-$smarty -> assign('idPerfil', $idPerfil);
-$smarty -> assign('usuarioLogueado', $usuarioLogueado); 
+if(!isset($_GET['id_perfil'])){
+	$smarty -> assign('muestraBotonMsg', 0);
+	$id_perfil = userId();
+	$smarty -> assign('scripts', array("perfil.js"));
+}else{
+	$id_perfil = (double) $_GET['id_perfil'];
+		$res = doquery("SELECT aceptaMensajes FROM {{table}} WHERE id = '{$id_perfil}' LIMIT 1", 'usuarios', true);
+	$smarty -> assign('muestraBotonMsg', $res['aceptaMensajes']);
+	$smarty -> assign('scripts', array("mensajePrivado.js", "perfil.js"));
+}
+$smarty -> assign('idPerfil', $id_perfil);
+$smarty -> assign('usuarioLogueado', userId()); 
 $smarty -> display('perfil.tpl');
 ?>

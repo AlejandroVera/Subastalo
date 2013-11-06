@@ -1,6 +1,6 @@
 <?php
 /**
- * Veridica si el usuario está logeado
+ * Verifica si el usuario está logeado
  * @return bool
  */
 function estoy_logeado () {
@@ -12,6 +12,16 @@ function estoy_logeado () {
     //cumple las condiciones anteriores, entonces es un usuario validado
     return $_SESSION['USUARIO']['nivel_acceso'];
  
+}
+
+/**
+ * Devuelve el ID del usuario
+ * @return int Id del usuario. Null en caso de error
+ */
+function userId(){
+	if(!isset($_SESSION['USUARIO']) || !isset($_SESSION['USUARIO']['id']))
+		return null;
+	return $_SESSION['USUARIO']['id'];
 }
 
 ?>

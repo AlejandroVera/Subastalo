@@ -22,7 +22,7 @@
 	height: 28px;
 	text-align: center;
 	padding-top: 7px;
-	background-color: rgba(0,0,255,0.5);
+	background-color: #FFA319;
 	margin-right: 10px;
 	color: white;
 	font-family: Impact;
@@ -33,9 +33,9 @@
 .menu_element:hover{
 	box-shadow: inset 0px 0px 10px white;
 	transition: height 0.2s;
-	height: 36px;
+	height: 38px;
 	box-shadow: 2px 2px 2px #888;
-	padding-top: 10px;
+	margin-top: 2px;
 }
 
 .menu_element:active{

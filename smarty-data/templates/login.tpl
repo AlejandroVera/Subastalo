@@ -20,7 +20,7 @@
 					<input type="text" name="password">
 				</div>
 			</div>
-			<input type="submit" value="Acceder!">
+			<input id ="accederLogin" type="submit" value="Acceder!">
 			<p><a class='forgot' href="recuperacion.php">¿Has olvidado tu contraseña y/o usuario?</a></p>
 			<p><a class='reg' href="alta.php">¿Aun no estas registrado?</a></p>
 		</fieldset>
