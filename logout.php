@@ -6,7 +6,7 @@ define('NEEDED_ACCESS_LEVEL', 0);
 //Cargamos el core
 require (IS2_ROOT_PATH . "core.php");
 logout();
-header('Location: inicio.php'); 
+header('Location: inicio.php?cerrando'); 
 
 /**
  * Vacia la sesion con los datos del usuario validado
