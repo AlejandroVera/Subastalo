@@ -67,6 +67,8 @@ if(isset($_GET['validate'])){
         }
         sendAjaxData(array('msg' => $errorHtml), 400);
     }
+	
+
 }
 else{
 	//Se obtiene todos los datos del usuario creados en el alta

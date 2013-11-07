@@ -83,4 +83,6 @@
 
 	<input type="submit" value="¡Actualizar!"><button type="button">Cancelar</button>
 </form>
+
+
 {include file="footer.tpl"}

@@ -3,8 +3,8 @@ function init(){
 		editProfile();
 		return false;
 	});
+	
 }
-
 function editProfile() {
 	$("#editarPerfil > :submit").prop('disabled', true);
 	$.ajax({
