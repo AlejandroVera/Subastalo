@@ -26,18 +26,42 @@
 		</div>
 	</div>
 	<div class="entradaAlta">
-		<div class="textoEntradaAlta">Otros atributos</div>
+		<div class="textoEntradaAlta">Características</div>
 		<div class="valorEntradaTabla">
-			<input type="text" name="ciudad">
+			<div id="addCaract">Añadir característica +</div>
+			<table id="contCaract">
+				<tbody>
+					<tr>
+						<th>Nombre</th>
+						<th>Valor</th>
+					</tr>
+					<tr class="caracteristica">
+						<td><input type="text" name="nombreCaract[1]"></td>
+						<td><input type="text" name="valorCaract[1]"></td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 	</div>
 	<div class="entradaAlta">
-		<div class="textoEntradaAlta">Tipo de entrada</div>
+		<div class="textoEntradaAlta">Tipo de producto</div>
 		<div class="valorEntradaTabla">
-			<select name="tipo">
+			<select id="selectorTipo" name="tipo">
 				<option value="none">Seleccionar tipo</option>
 				<option value="subasta">Subasta</option>
 			</select>
+		</div>
+	</div>
+	<div class="entradaAlta elegible subasta" style="display: none;">
+		<div class="textoEntradaAlta">Tiempo de inicio</div>
+		<div class="valorEntradaTabla">
+			<input id="selectorInicio" type="text" name="comienzo">
+		</div>
+	</div>
+	<div class="entradaAlta elegible subasta" style="display: none;">
+		<div class="textoEntradaAlta">Duración (minutos)</div>
+		<div class="valorEntradaTabla">
+			<input type="number" name="duracion">
 		</div>
 	</div>
 	<input type="submit" value="Dar de alta">

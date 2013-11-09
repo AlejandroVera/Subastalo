@@ -16,6 +16,10 @@ function initCommonUtilities(){
 	//Añadimos todo el contenido al principio del body para que posicione correctamente
 	$('body').prepend(div);
 	
+	//Inicializamos el leftmenu
+	if(typeof initLeftmenu == 'function')
+		initLeftmenu();
+	
 	//Inicializamos la página
 	if(typeof init == 'function')
 		init();

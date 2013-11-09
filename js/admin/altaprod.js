@@ -10,6 +10,46 @@ function init(){
 	$("#selectorFotos").change(function(){
 	    handleSelectedImage(this);
 	});
+	
+	$("#selectorInicio").datetimepicker({
+		duration: '',
+		showTime: true,
+		constrainInput: false
+	});
+	
+	$("#selectorTipo").change(function(){
+		var seleccionado = this.options[this.selectedIndex].value;
+		$(".elegible").each(function(){
+			$(this).hide();
+		});
+		$("."+seleccionado).each(function(){
+			$(this).show();
+		});
+	});
+	
+	$("#addCaract").click(function(){
+		
+		var tr = document.createElement("tr");
+		tr.class = "caracteristica";
+		
+		var siguiente = new Number($("#contCaract tr").last().children().first().children().first().attr("name").split("nombreCaract[")[1].split("]")[0]).valueOf() + 1;
+		
+		var tdName = document.createElement("td");
+		var tdVal = document.createElement("td");
+		var inputName = document.createElement("input");
+		var inputName = document.createElement("input");
+		var inputVal = document.createElement("input");
+		inputName.name = "nombreCaract["+siguiente+"]";
+		inputName.type = "text";
+		inputVal.name = "valorCaract["+siguiente+"]";
+		inputVal.type = "text";
+		
+		$(tdName).append(inputName);
+		$(tdVal).append(inputVal);
+		$(tr).append(tdName);
+		$(tr).append(tdVal);
+		$("#contCaract").append(tr);
+	});
 }
 
 function sendForm(e) {
@@ -36,9 +76,15 @@ function sendForm(e) {
         processData:false,
 	    success: function(data, textStatus, jqXHR)
 	    {
+	    	var data = JSON.parse(data);
+			if (data.status == 200)
+				messageAndRedirect(data.msg, window.location.href);
+			else
+				error(data.msg);
 	    },
 		error: function(jqXHR, textStatus, errorThrown)
 	    {
+	    	error("Se ha producido un error:"+textStatus);
 	    }         
     });
     e.preventDefault(); //Prevent Default action.

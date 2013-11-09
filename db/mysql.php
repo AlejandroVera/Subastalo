@@ -57,4 +57,10 @@ function secure_text_query($text){
     return mysqli_real_escape_string($link2, $text);
 }
 
+function mysqlLastInsertedId(){
+    global $link2;
+    
+    return mysqli_insert_id($link2);
+}
+
 ?>

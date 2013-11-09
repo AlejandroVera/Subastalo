@@ -6,6 +6,9 @@
 	<div id="loginDiv" class="menu_element">Login</div>
 {/if}
 <div id="altaDiv" class="menu_element">Alta</div>
+{if $nivelAcceso > 1 && !$IN_ADMIN}
+<div id="adminDiv" class="menu_element">Admin</div>
+{/if}
 </div>
 <iframe src="./inicio.php" id="marco"> Lo sentimos, 
 su navegador no soporta iframe. Le recomendamos Mozilla Firefox para visualizar esta web</iframe> 

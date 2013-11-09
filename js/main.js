@@ -9,6 +9,10 @@ $(document).ready(function() {
 	$("#altaDiv").click(function() {
 		$("#marco").attr("src", "./alta.php");
 	});
+	
+	$("#adminDiv").click(function() {
+		$("#marco").attr("src", "./admin/index.php");
+	});
 
 });
 
