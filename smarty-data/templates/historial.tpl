@@ -1,10 +1,4 @@
-<!DOCTYPE HTML>
-<html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<title>Alta de usuario</title>
-	</head>
-	<body>
+{include file="header.tpl" title="Busqueda de producto" scripts=$scripts}
 <div class="tabla">				
 	<table id = historial>
 		<tr>
@@ -23,5 +17,5 @@
 		{/foreach}
 	</table>									
 </div>
-</body>
-</html> 		
+{include file="footer.tpl"}
+ 		
