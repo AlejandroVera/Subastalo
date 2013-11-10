@@ -17,7 +17,12 @@ function realizaBusqueda() {
 		var data = JSON.parse(info);
 		if (data.status == 200){
 			$('#tablaResultados').empty();
-			showTable(5, $('#tablaResultados'), data.msg);
+			columns = ["Tipo", 
+						"Nombre", 
+						"Descripción", 
+						"Tiempo Restante",///</br>Puntos Necesarios",
+						"Fecha de creación"];
+			showTable(columns, $('#tablaResultados'), data.msg);
 			$(document).ready(function() 
     		{ 
         		$("#tablaResultados").tablesorter(); 
@@ -35,24 +40,29 @@ function realizaBusqueda() {
 
 }
 
+/**
+ * 
+ * @param {String} columns Array de cabeceras de las columnas
+ * @param {Object} tableElement Tabla html
+ * @param {String} data los datos de la tabla en un Array contiguo
+ */
 function showTable(columns, tableElement, data){
 	
 	var content = "<thead>";
-	content += "<tr>";	
-	content +="<th>Tipo</th>";
-	content +="<th>Nombre</th>";
-	content +="<th>Descripción</th>";
-	content +="<th>Tiempo Restante<br/>/Puntos Necesarios</th>";
-	content +="<th>Fecha de creación</th></tr>";	
-	content += "<thead>";
-	content +='<tbody>';
-	content +='<tr>';
+	content += "<tr>";
+	for (var i=0; i < columns.length; i++){
+		content += "<th>" + columns[i] + "</th>";
+	}	
+	content +='</tr></thead>';
+	content += "<tbody><tr>";
 	for (var i = 0; i < data.length; i++){
-		if (i % columns == 0 && i !== 0){
+		if (i % columns.length == 0 && i !== 0){
 			content +='</tr><tr>';
 		}
 		content +='<td>' + data[i] + '</td>';		
 	}
 	content +='</tr></tbody>';
+	
 	tableElement.append(content);
+	
 }
