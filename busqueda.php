@@ -20,7 +20,7 @@ if (isset($_GET['validate'])) {
 		//$smarty -> display('busqueda.tpl');
 		sendAjaxData(array(
                 'msg' => $results
-            ));
+            ));		
 	}
 
 } else {//Mostrar el formulario
@@ -56,17 +56,18 @@ function busqueda($palabraClave) {
 		//Enlace al producto
 		$results[] = $resultado['descripcion'];
 		/*$results[] = "<img src='"$resultado['imagen'] /img>"; //Imagen*/
-		$tiempoRestante = time_elapsed(($resultado['comienzo'] + $resultado['duracion']) - time());
+		$tiempoRestante = ($resultado['comienzo'] + $resultado['duracion']) - time();
+		
 		if ($tiempoRestante < 0) {
 			$results[] = "Finalizada";
 		} else {
-			$results[] = $tiempoRestante;
+			$results[] = time_elapsed($tiempoRestante);
 		}
 		$results[] = date(" H:m:s d/m/Y", $resultado['fechaCreacion']);
 
 	}
 
-	$res = doquery("SELECT * FROM {{table}} WHERE nombre LIKE '$palabraClave'", 'ofertas', false);
+	/*$res = doquery("SELECT * FROM {{table}} WHERE nombre LIKE '$palabraClave'", 'ofertas', false);
 
 	while ($resultado = mysqli_fetch_assoc($res)) {
 
@@ -74,12 +75,12 @@ function busqueda($palabraClave) {
 		//TODO: enlace provisional, cambiar en el futuro
 		$results[] = "<a href='" . IS2_ROOT_PATH . "/ofertas/" . $resultado['id'] . "'>" . $resultado['nombre'] . "</a>";
 		$results[] = $resultado['descripcion'];
-		/*$results[] = "<img src='"$resultado['imagen'] /img>"; //Imagen*/
+		/*$results[] = "<img src='"$resultado['imagen'] /img>"; //Imagen
 		$results[] = $resultado['precio'];
 
 		$results[] = date(" H:m:s d/m/Y", $resultado['fechaCreacion']);
 
-	}
+	}*/
 	return $results;
 }
 
@@ -91,6 +92,7 @@ function sendAjaxData($data, $statusCode = 200) {
 function time_elapsed($secs) {
 	$bit = array('y' => $secs / 31556926 % 12, 'meses' => $secs / 604800 % 52, 'd' => $secs / 86400 % 7, 'h' => $secs / 3600 % 24, 'min' => $secs / 60 % 60, 's' => $secs % 60);
 
+	$ret = array();
 	foreach ($bit as $k => $v)
 		if ($v > 0)
 			$ret[] = $v . $k;
