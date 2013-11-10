@@ -17,4 +17,8 @@ $smarty->assign('IS_CONTENT', true);
 //Indica si la pagina actual requiere red administrador
 $smarty->assign('IN_ADMIN', NEEDED_ACCESS_LEVEL >= 2);
 
+//Indica si la pagina actual requiere red administrador
+$smarty->assign('USER_ACCESS_LEVEL', estoy_logeado());
+
+
 ?>

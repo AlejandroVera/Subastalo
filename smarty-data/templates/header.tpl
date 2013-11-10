@@ -27,6 +27,9 @@
 		{/if}
 	</head>
 	<body onload="initCommonUtilities()">
+		<script type="text/javascript">
+			var USER_ACCESS_LEVEL = {$USER_ACCESS_LEVEL};
+		</script>
 		{if $IS_CONTENT}
 		<div class="globalContainer">
 		{/if}

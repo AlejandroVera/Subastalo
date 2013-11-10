@@ -3,7 +3,7 @@
  * Verifica si el usuario está logeado
  * @return bool
  */
-function estoy_logeado () {
+function estoy_logeado() {
      
     if (!isset($_SESSION['USUARIO'])) return 0; //no existe la variable $_SESSION['USUARIO']. No logeado.
     if (!is_array($_SESSION['USUARIO'])) return 0; //la variable no es un array $_SESSION['USUARIO']. No logeado.

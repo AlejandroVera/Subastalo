@@ -41,27 +41,42 @@
 }
 
 
-
 /* Leftmenu de administracion */
 .leftmenu {
     position: absolute;
     top: 50px;
     left: 3px;
 	border: solid 1px;
+    border-color: rgba(128, 128, 128, 0.44);
     border-radius: 6px;
 	padding: 5px;
 	padding-bottom: 10px;
 	text-align: center;
+    background-color: rgba(0,0,0,0.05);
+    box-shadow: 0 0 5px 2px rgba(143, 141, 141, 0.33);
 }
 
 .leftmenuEntry {
-    border: solid 2px;
+    border: solid 1px;
+    color: rgba(0, 0, 0, 0.63);
+    border-color: rgba(134, 134, 134, 0.62);
     border-radius: 6px;
     padding: 3px;
     margin: 2px;
+    box-shadow: inset 0 0 5px 4px rgba(136, 136, 136, 0.16);
 }
 
 .leftmenuEntry:hover {
 	cursor: pointer;
-	background-color: #EEEEEE;
+	box-shadow: inset 0 0 5px 4px rgba(136, 136, 136, 0.36);
+}
+
+.leftmenuHeader {
+    margin-bottom: 7px;
+    border-bottom: solid 1px;
+    padding-bottom: 3px;
+    font-weight: bold;
+    font-size: 13px;
+    color: rgba(0, 0, 0, 0.66);
+    border-color: rgba(22, 22, 22, 0.33);
 }
