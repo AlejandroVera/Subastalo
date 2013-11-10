@@ -1,0 +1,25 @@
+.separador{
+	border-bottom: 1px solid;
+	margin: 10px 5px 10px 5px;
+}
+
+.prevImagen{
+	height: 100px;
+	width: 100px;
+	margin: 3px;
+	border: 1px solid;
+}
+
+#addCaract:hover{
+	cursor: pointer;
+}
+
+#addCaract{
+	border: solid 1px;
+	border-radius: 8px;
+	padding: 0px 3px 0px 3px;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}

@@ -49,6 +49,8 @@ function init(){
 		$(tr).append(tdName);
 		$(tr).append(tdVal);
 		$("#contCaract").append(tr);
+		
+		inputName.focus();
 	});
 }
 
@@ -108,10 +110,9 @@ function handleSelectedImage(input) {
             reader.onload = function (e) {
                 var imdiv = $('#imagenes');
                 var img = $('<img id="dynamic">');
+                img.addClass("prevImagen");
                 img.attr("id", "imagen"+this.x);
-                img.attr("alt", "your image");
-                img.attr("height", "100px");
-                img.attr("width", "100px");
+                img.attr("alt", file.name);
                 img.attr('src', e.target.result);
                 imdiv.append(img);
             }.bind(context);

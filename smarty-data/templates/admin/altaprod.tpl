@@ -1,5 +1,7 @@
 {include file="header.tpl" title="Alta de productos" scripts=$scripts}
 <form id="formularioAltaProducto" enctype="multipart/form-data">
+	<h1>Alta de un producto</h1>
+	<div class="separador"></div>
 	<div class="entradaAlta">
 		<div class="textoEntradaAlta">Nombre</div>
 		<div class="valorEntradaTabla">
@@ -13,22 +15,22 @@
 		</div>
 	</div>
 	<div class="entradaAlta">
-		<div class="textoEntradaAlta">Fotos</div>
-		<div class="valorEntradaTabla">
-			<input id="selectorFotos" name="fotos[]" type="file" multiple="true" accept="image/*" />
-			<div id="imagenes"></div>
-		</div>
-	</div>
-	<div class="entradaAlta">
 		<div class="textoEntradaAlta">Categoría</div>
 		<div class="valorEntradaTabla">
 			<input type="text" name="categoria">
 		</div>
 	</div>
 	<div class="entradaAlta">
+		<div class="textoEntradaAlta">Fotos</div>
+		<div class="valorEntradaTabla">
+			<input id="selectorFotos" name="fotos[]" type="file" multiple="true" accept="image/*" />
+			<div id="imagenes"></div>
+		</div>
+	</div>
+	<div class="separador"></div>
+	<div class="entradaAlta">
 		<div class="textoEntradaAlta">Características</div>
 		<div class="valorEntradaTabla">
-			<div id="addCaract">Añadir característica +</div>
 			<table id="contCaract">
 				<tbody>
 					<tr>
@@ -41,8 +43,10 @@
 					</tr>
 				</tbody>
 			</table>
+			<span id="addCaract">Añadir característica +</span>
 		</div>
 	</div>
+	<div class="separador"></div>
 	<div class="entradaAlta">
 		<div class="textoEntradaAlta">Tipo de producto</div>
 		<div class="valorEntradaTabla">

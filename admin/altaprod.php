@@ -82,7 +82,7 @@ if(isset($_GET['create'])){
     
 }else{
     $smarty->assign('scripts', array("admin/altaprod.js", "jquery-ui-timepicker-addon.js"));
-    $smarty->assign('css', array("jquery-ui-timepicker-addon.css"));
+    $smarty->assign('css', array("jquery-ui-timepicker-addon.css", "admin/altaprod.css"));
     $smarty->display('admin/altaprod.tpl');
     
 }
