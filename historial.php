@@ -21,7 +21,7 @@ function obtenerHistorial($userId){
 	
 	while ($resultado = mysqli_fetch_assoc($res)) {		
 		//TODO: Enlace temporal
-		$results[$resultado['fechaCompra']]['nombre'] = "<a href='".IS2_ROOT_PATH."visualizarProducto.php?tipo=Oferta&id=".$resultado['id']."'>".$resultado['nombre']."</a>";
+		$results[$resultado['fechaCompra']]['nombre'] = "<a href='".IS2_ROOT_PATH."visualizarProducto.php?tipo=oferta&id=".$resultado['id']."'>".$resultado['nombre']."</a>";
 		$results[$resultado['fechaCompra']]['fecha'] = date(" H:m:s d/m/Y", $resultado['fechaCompra']);
 		$results[$resultado['fechaCompra']]['puntos'] = $resultado['precio'];
 		$results[$resultado['fechaCompra']]['tipo'] = "Oferta";
@@ -34,7 +34,7 @@ function obtenerHistorial($userId){
 		//TODO: Enlace temporal
 		
 		$name = doquery("SELECT nombre FROM {{table}} WHERE id = $resultado[subasta]", 'subastas', true);	
-		$results[$resultado['fecha']]['nombre'] = "<a href='".IS2_ROOT_PATH."visualizarProducto.php?tipo=Subasta&id=".$resultado['id']."'>".$name['nombre']."</a>";
+		$results[$resultado['fecha']]['nombre'] = "<a href='".IS2_ROOT_PATH."visualizarProducto.php?tipo=subasta&id=".$resultado['id']."'>".$name['nombre']."</a>";
 		$results[$resultado['fecha']]['fecha'] = date(" H:m:s d/m/Y", $resultado['fecha']);
 		$results[$resultado['fecha']]['puntos'] = $resultado['puntos'];
 		$results[$resultado['fecha']]['tipo'] = "Subasta";
