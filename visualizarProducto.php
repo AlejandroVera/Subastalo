@@ -44,8 +44,10 @@ if(isset($_GET['tipo'])&&isset($_GET['id']) ){
 	}
 	else echo "Tipo incorrecto";
 $smarty->assign('res',$results);
-$smarty->assign('scripts', array("visualizarProducto.js"));
+$smarty->assign('scripts', array("visualizarProducto.js","jquery.nivo.slider.pack.js"));
+$smarty->assign('css', array("nivo-slider.css","themes/default/default.css"));
 $smarty->display('visualizarProducto.tpl');
+
 
 }
 else if(isset($_GET['terminado'])){
