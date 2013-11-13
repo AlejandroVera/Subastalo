@@ -76,6 +76,8 @@ if(isset($_GET['validate'])){
     
     //$smarty->assign('name', 'Ned');
     $smarty->assign('scripts', array("alta.js"));
+    $smarty -> assign('nivelAcceso', estoy_logeado());
+	$smarty -> assign('IS_CONTENT', false);
     $smarty->display('alta.tpl');
 }
 

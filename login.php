@@ -19,12 +19,14 @@ if (isset($_GET['validate'])) {
 	$password = $_POST['password'];
 
 	if (login($email, $password)) {
-		header("Location: perfil.php?inicio");
+		header("Location: inicio.php");
 	}
 
 } else {//Mostrar el formulario
 
 	$smarty -> assign('scripts', array("login.js"));
+	$smarty -> assign('IS_CONTENT', false);
+	$smarty -> assign('nivelAcceso', estoy_logeado());
 	$smarty -> display('login.tpl');
 }
 

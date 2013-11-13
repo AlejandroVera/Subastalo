@@ -1,36 +1,35 @@
 #marco {
-	border: none;
-	width: 100%;
-	height: 1000px;
-	margin-top: 15px;
 	position: absolute;
+	border:none;
+	overflow: hidden;
+	height: 100%;
+	width: 100%;
 }
 
 #barra {
 	margin-top: 1px;
 	border: 1px solid;
-	border-color:rgba(0,0,0,0.1);
+	border-color: rgba(0,0,0,0.1);
 	width: 100%;
 	height: 35px;
 	background-color: rgba(0,0,0,0.05);
 }
 
-.menu_element{
+.menu_element {
 	cursor: pointer;
-	float:right;
+	float: right;
 	width: 5%;
 	height: 28px;
 	text-align: center;
 	padding-top: 7px;
 	margin-right: 10px;
-	color:rgba(0,0,0,0.5);
-	
+	color: rgba(0,0,0,0.5);
 }
 
-.menu_element:hover{
-	color:rgba(255,0,0,0.8);
+.menu_element:hover {
+	color: rgba(255,0,0,0.8);
 	border-bottom: solid;
 	border-bottom-color: rgba(255,0,0,0.9);
-	font-weight: bold; 
+	font-weight: bold;
 }
 

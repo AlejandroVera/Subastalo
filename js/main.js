@@ -1,5 +1,4 @@
-/**Script principal, pertenece a la página que contiene el iframe*/
-$(document).ready(function() {
+/*
 	$("#marco").attr("src", "./inicio.php");
 
 	$("#loginDiv").click(function() {
@@ -29,3 +28,4 @@ function putLoginButton() {
 		$("#marco").attr("src", "./login.php");
 	});
 }
+*/

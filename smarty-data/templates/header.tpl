@@ -26,7 +26,7 @@
 			{/foreach}
 		{/if}
 	</head>
-	<body onload="initCommonUtilities()">
+	<body onload="initCommonUtilities()" style="margin:0px;padding:0px;overflow:hidden">
 		<script type="text/javascript">
 			var USER_ACCESS_LEVEL = {$USER_ACCESS_LEVEL};
 		</script>
