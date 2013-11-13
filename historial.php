@@ -10,7 +10,8 @@ require (IS2_ROOT_PATH . "core.php");
 $userId = 26; //TODO: Obtener id de usuario?????Como diferenciar de mi historial a otro???
 $results = obtenerHistorial($userId);
 $smarty -> assign('historial', $results);
-$smarty -> display('historial.tpl');	
+$smarty -> display('historial.tpl');
+	
 
 
 function obtenerHistorial($userId){	
@@ -51,5 +52,8 @@ function obtenerHistorial($userId){
 
 } 
 
-
+function sendAjaxData($data, $statusCode = 200) {
+	$data['status'] = $statusCode;
+	echo json_encode($data);
+}
 ?>

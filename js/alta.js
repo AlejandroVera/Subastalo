@@ -20,6 +20,7 @@ function init() {
 		window.parent.$("#marco").attr("src", "./admin/index.php");
 	});
 
+
 }
 
 function sendAltaForm() {

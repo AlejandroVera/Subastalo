@@ -4,6 +4,7 @@
 	height: 1000px;
 	margin-top: 15px;
 	position: absolute;
+	overflow: auto;
 }
 
 #barra {

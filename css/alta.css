@@ -1,0 +1,44 @@
+
+#divAlta{
+	margin-left: 37.5%;
+	margin-right: auto;	
+	width: 370px;
+	padding-top: 10px;	
+}
+
+
+.textoEntradaAlta{
+	font-weight: bold;
+	color: rgba(0,0,0,0.7);
+	display: inline;
+}
+
+.valorEntradaTabla{
+	margin-left: 10px;
+	display: inline;
+}
+
+.entradaAlta{
+	margin-top: 15px;
+	text-align: right;
+}
+.entradaAlta input{
+	width: 200px;
+	border-radius: 5px;
+	border: 1px solid rgba(0,0,0,0.2);
+	padding: 3px 0px; 
+}
+
+.entradaAlta input:focus{
+	outline: none;
+	transition: 0.2s;
+	border-color: #9ecaed;
+	box-shadow: 0 0 10px #9ecaed;
+}
+
+input[type="submit"] {
+	margin-top: 20px;
+	margin-right: auto;
+	margin-left: auto;
+	background-color: rgba(255,0,0,0.8);
+}
