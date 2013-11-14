@@ -9,7 +9,7 @@
 	<a href='#' class='close'>
 		<img src="images/close_pop.png" class="btn_close" title="Close_window" alt="close" />
 	</a>
-	<form id="login" method='POST' name='loginform' class='signin' action="login.php?validate">
+	<form id="login" name='loginform' class='signin'>
 		<fieldset class='box'>
 			<div class="entradaLogin">
 				<div class="textoEntradaLogin">Email</div>
@@ -20,7 +20,7 @@
 			<div class="entradaLogin">
 				<div class="textoEntradaLogin">Contraseña</div>
 				<div class="valorEntradaTabla">
-					<input type="text" name="password">
+					<input type="password" name="password">
 				</div>
 			</div>
 			<input id ="accederLogin" type="submit" value="Acceder!">

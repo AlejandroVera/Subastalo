@@ -10,8 +10,6 @@ function init() {
 }
 
 
-//Publicar un evento
-//TODO: ¿Problema de seguridad?
 function enviarMensaje(fromMsg, toMsg) {
 	var cuerpo = {
 		from : fromMsg,

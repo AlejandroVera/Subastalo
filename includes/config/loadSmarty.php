@@ -20,5 +20,9 @@ $smarty->assign('IN_ADMIN', NEEDED_ACCESS_LEVEL >= 2);
 //Indica si la pagina actual requiere red administrador
 $smarty->assign('USER_ACCESS_LEVEL', estoy_logeado());
 
+if(isset($_SESSION['USUARIO'])){
+	$smarty->assign('USUARIO_LOGUEADO', $_SESSION['USUARIO']['id']);
+}
+	
 
 ?>

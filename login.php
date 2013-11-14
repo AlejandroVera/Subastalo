@@ -8,10 +8,11 @@ require (IS2_ROOT_PATH . "core.php");
 
 if (estoy_logeado()) {// si estoy logeado
 	header('Location: perfil.php');
-	//saltamos a la página de login
+
 	die('Acceso no autorizado');
 	// por si falla el header (solo se pueden mandar las cabeceras si no se ha impreso nada)
 }
+
 //Procesado del formulario
 if (isset($_GET['validate'])) {
 
@@ -19,11 +20,12 @@ if (isset($_GET['validate'])) {
 	$password = $_POST['password'];
 
 	if (login($email, $password)) {
-		header("Location: inicio.php");
+		sendAjaxData(array('msg' => "Iniciada la Sesión", 
+		'usuario' => $_SESSION['USUARIO']['id']));
+	} else {
+		sendAjaxData(array('msg' => "Datos de acceso incorrectos"), 400);
 	}
-
 } else {//Mostrar el formulario
-
 	$smarty -> assign('scripts', array("login.js"));
 	$smarty -> assign('IS_CONTENT', false);
 	$smarty -> assign('nivelAcceso', estoy_logeado());
@@ -58,6 +60,8 @@ function login($email, $password) {
 			$_SESSION['USUARIO'] = array('username' => $row['username'], 'id' => $row['id'], 'nivel_acceso' => $row['nivel_acceso']);
 			//almacenamos en memoria el usuario
 			// en este punto puede ser interesante guardar más datos en memoria para su posterior uso, como por ejemplo un array asociativo con el id, nombre, email, preferencias, ....
+			//Ya está el usuario logueado y ya estará a la escucha de mensajes
+			$usuarioTemp = $_SESSION['USUARIO']['id'];
 			return true;
 			//usuario y contraseña validadas
 		} else {
@@ -73,8 +77,9 @@ function login($email, $password) {
 	}
 }
 
-/*if (!estoy_logeado()) { // si no estoy logeado
- header('Location: login.php'); //saltamos a la página de login
- die('Acceso no autorizado'); // por si falla el header (solo se pueden mandar las cabeceras si no se ha impreso nada)
- }*/
+function sendAjaxData($data, $statusCode = 200){
+    $data['status'] = $statusCode;
+    echo json_encode($data);
+}
+
 ?>
