@@ -26,6 +26,7 @@ if (isset($_GET['validate'])) {
 		sendAjaxData(array('msg' => "Datos de acceso incorrectos"), 400);
 	}
 } else {//Mostrar el formulario
+	$smarty -> assign('cssFiles', array("login.css"));
 	$smarty -> assign('scripts', array("login.js"));
 	$smarty -> assign('IS_CONTENT', false);
 	$smarty -> assign('nivelAcceso', estoy_logeado());
