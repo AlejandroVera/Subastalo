@@ -82,7 +82,7 @@
 			<input type="password" name="pass_check">
 		</div>
 	</div>
-	<input type="submit" value="¡Regístrame!">
+	<input type="submit" class="redButton" value="¡Regístrame!">
 </form>
 <div>
 {include file="footer.tpl"}

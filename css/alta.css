@@ -1,44 +1,65 @@
-
-#divAlta{
-	margin-left: 37.5%;
-	margin-right: auto;	
+#divAlta {
+	margin-left: 35%;
+	margin-right: auto;
 	width: 370px;
-	padding-top: 10px;	
+	padding-top: 10px;
 }
 
-
-.textoEntradaAlta{
+.textoEntradaAlta {
 	font-weight: bold;
 	color: rgba(0,0,0,0.7);
 	display: inline;
 }
 
-.valorEntradaTabla{
+.valorEntradaTabla {
 	margin-left: 10px;
 	display: inline;
 }
 
-.entradaAlta{
+.entradaAlta {
 	margin-top: 15px;
 	text-align: right;
 }
-.entradaAlta input{
+.entradaAlta input {
 	width: 200px;
 	border-radius: 5px;
 	border: 1px solid rgba(0,0,0,0.2);
-	padding: 3px 0px; 
+	padding: 3px 0px;
 }
 
-.entradaAlta input:focus{
+.entradaAlta input:focus {
 	outline: none;
 	transition: 0.2s;
 	border-color: #9ecaed;
 	box-shadow: 0 0 10px #9ecaed;
 }
 
-input[type="submit"] {
+.redButton {
+	cursor: pointer;
+	outline: none;
 	margin-top: 20px;
-	margin-right: auto;
-	margin-left: auto;
-	background-color: rgba(255,0,0,0.8);
+	margin-left: 50%;
+	text-align: center;
+	padding: 5px;
+	background-color: rgba(255, 0, 0, 0.8);
+	border: 1px solid rgba(0,0,0,0.3);
+	box-shadow: inset 0px 2px 4px rgba(255, 255, 255, 0.7);
+	border-radius: 5px;
+	color: rgba(255,255,255,1);
 }
+
+
+
+.redButton:hover{	
+	transition: 0.1s;	
+	box-shadow: inset 0px 0px 7px rgba(255, 255, 255, 0.7);
+}
+
+.redButton:active{
+
+	transition: 0s;
+	box-shadow: none;
+	margin-top: 21px;
+	background-color: rgba(255, 0, 0, 0.8);
+}
+
