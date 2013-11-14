@@ -31,9 +31,13 @@
 			{/foreach}
 		{/if}
 	</head>
-	<body onload="initCommonUtilities()" style="margin:0px;padding:0px;overflow:hidden">
+	<body onload="initCommonUtilities()" style="margin:0px;padding:0px;overflow-y:auto;overflow-x:hidden;">
 		<script type="text/javascript">
 			var USER_ACCESS_LEVEL = {$USER_ACCESS_LEVEL};
+			{if isset($USUARIO_LOGUEADO)}
+				var USUARIO_LOGUEADO = {$USUARIO_LOGUEADO};
+			{/if} 
+			
 		</script>
 		{if $IS_CONTENT}
 		<div class="globalContainer">
