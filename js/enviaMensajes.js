@@ -1,30 +1,18 @@
-var sess;
+var sessionE = null;
 var wsuri = "ws://localhost:8080";
 
-function init() {
-	$("#popupMsg").hide();
-	$("#buttonMsg").click(function() {
-		$("#popupMsg").show();
-	});
-	conectar();
-}
-
-
-function enviarMensaje(fromMsg, toMsg) {
-	var cuerpo = {
-		from : fromMsg,
-		cuerpo : $("#cuerpoMsg").val()
-	};
-	sess.publish("msg://" + toMsg, cuerpo);
-}
-
-//Conectar con el servidor de WS
-function conectar() {
+function enviarMensaje() {
+	//conectamos con el servidor y enviamos el mensaje
 	ab.connect(wsuri, function(session) {
-		sess = session;
+		sessionE = session;
+		var cuerpo = {
+			from : $("#idUsuarioOrigen").val(),
+			cuerpo : $("#cuerpoMsg").val()
+		};
+		sessionE.publish("msg://" + $("#idUsuarioDestino").val(), cuerpo);
 		console.log("Connected to " + wsuri);
 	}, function(code, reason) {
-		sess = null;
+		sessionE = null;
 		console.log("Connection lost (" + reason + ")");
 	});
 }

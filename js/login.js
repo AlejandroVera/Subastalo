@@ -32,7 +32,7 @@ function sendLoginForm() {
 	}).done(function(info) {
 		var data = JSON.parse(info);
 		if (data.status == 200) {
-			
+			parent.conectar(data.usuario);
 		} else {
 			error(data.msg);
 		}
