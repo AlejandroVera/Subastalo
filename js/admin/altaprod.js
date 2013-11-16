@@ -78,11 +78,16 @@ function sendForm(e) {
         processData:false,
 	    success: function(data, textStatus, jqXHR)
 	    {
-	    	var data = JSON.parse(data);
-			if (data.status == 200)
-				messageAndRedirect(data.msg, window.location.href);
-			else
-				error(data.msg);
+	    	try{
+		    	var data = JSON.parse(data);
+				if (data.status == 200)
+					messageAndRedirect(data.msg, window.location.href);
+				else
+					error(data.msg);
+			}catch(e){
+				alert("Error al enviar el formulario.");
+				console.log(e);
+			}
 	    },
 		error: function(jqXHR, textStatus, errorThrown)
 	    {

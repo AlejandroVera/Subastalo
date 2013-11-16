@@ -30,11 +30,16 @@ function sendLoginForm() {
 		url : "login.php?validate",
 		data : $("#login").serialize(),
 	}).done(function(info) {
-		var data = JSON.parse(info);
-		if (data.status == 200) {
-			parent.conectar(data.usuario);
-		} else {
-			error(data.msg);
+		try{
+			var data = JSON.parse(info);
+			if (data.status == 200) {
+				parent.conectar(data.usuario);
+			} else {
+				error(data.msg);
+			}
+		}catch(e){
+			alert("Error al enviar el formulario.");
+			console.log(e);
 		}
 
 	}).fail(function() {

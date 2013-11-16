@@ -27,7 +27,7 @@
 		<LINK href="{$IS2_ROOT_PATH}css/ui-lightness/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" type="text/css">
 		{if !empty($css)}
 			{foreach $css as $uncss}
-				<LINK href="{$IS2_ROOT_PATH}css/{$uncss}" rel="stylesheet" type="text/css"></script>
+				<LINK href="{$IS2_ROOT_PATH}css/{$uncss}" rel="stylesheet" type="text/css">
 			{/foreach}
 		{/if}
 	</head>
