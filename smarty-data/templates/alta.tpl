@@ -1,4 +1,4 @@
-{include file="header.tpl" title="Alta de usuario" scripts=$scripts cssFiles=$cssFiles}
+{include file="header.tpl" title="Alta de usuario" scripts=$scripts css=$css}
 
 {include file ="barra.tpl" nivelAcceso=$nivelAcceso IN_ADMIN=$IN_ADMIN}
 

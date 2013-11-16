@@ -14,12 +14,7 @@
 			{foreach $scripts as $script}
 				<script src="{$IS2_ROOT_PATH}js/{$script}"></script>
 			{/foreach}
-		{/if}
-		{if !empty($cssFiles)}
-			{foreach $cssFiles as $css}
-				<LINK href="{$IS2_ROOT_PATH}css/{$css}">
-			{/foreach}
-		{/if}
+		{/if}	
 		<LINK href="{$IS2_ROOT_PATH}css/framePrincipal2.css" rel="stylesheet" type="text/css">
 		<LINK href="{$IS2_ROOT_PATH}css/common.css" rel="stylesheet" type="text/css">
 		<LINK href="{$IS2_ROOT_PATH}css/tablesorter/style.css" rel="stylesheet" type="text/css">

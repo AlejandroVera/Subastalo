@@ -75,7 +75,7 @@ if(isset($_GET['validate'])){
 }else{ //Mostrar el formulario
     
     //$smarty->assign('name', 'Ned');
-	$smarty->assign('cssFiles',array("alta.css"));
+	$smarty->assign('css',array("alta.css"));
     $smarty->assign('scripts', array("alta.js"));
     $smarty -> assign('nivelAcceso', estoy_logeado());
 	$smarty -> assign('IS_CONTENT', false);
