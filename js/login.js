@@ -34,6 +34,7 @@ function sendLoginForm() {
 			var data = JSON.parse(info);
 			if (data.status == 200) {
 				parent.conectar(data.usuario);
+				window.parent.$("#marco").attr("src", "./inicio.php");
 			} else {
 				error(data.msg);
 			}
