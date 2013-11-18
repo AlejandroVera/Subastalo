@@ -17,4 +17,9 @@ $(document).ready(function() {
 	$("#adminDiv").click(function() {
 		$("#marco").attr("src", "./admin/index.php");
 	});
+	
+	$("#buscar").click(function() {
+		var pal = $("#palabra_clave")[0].value;		
+		window.parent.$("#marco").attr("src", "./busqueda.php?palabra_clave=" + pal);
+	});
 });

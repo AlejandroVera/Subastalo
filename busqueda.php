@@ -15,13 +15,33 @@ if (isset($_GET['validate'])) {
 		$palabraClave .= "%";
 
 		$results = busqueda($palabraClave);
+		$columns = array("Tipo", "Nombre", "Descripción", "Tiempo Restante", "Fecha de creación");
+		$tabla = createTable($columns, $results);
 
-		//$smarty -> assign('tabla', $results);
+		$smarty -> assign('tabla', $results);
 		//$smarty -> display('busqueda.tpl');
-		sendAjaxData(array(
-                'msg' => $results
-            ));		
+		//sendAjaxData(array('msg' => $results));
 	}
+
+} else if (isset($_GET['palabra_clave'])) {
+	$palabraClave = "%";
+	$palabraClave .= secure_text_query($_GET['palabra_clave']);
+	$palabraClave .= "%";
+
+	$results = busqueda($palabraClave);
+	$columns = array("Tipo", "Nombre", "Descripción", "Tiempo Restante", "Fecha de creación");
+	$tabla = createTable($columns, $results);	
+	$smarty -> assign('tabla', $tabla);
+
+	/*$smarty -> assign('tabla', sendAjaxData(array(
+	 'msg' => $results
+	 )));*/
+	$smarty -> assign('scripts', array("busqueda.js", "jquery.tablesorter.min.js"));	
+	$smarty -> display('busqueda.tpl');
+
+	//$smarty -> display('busqueda.tpl');
+
+	//sendAjaxData(array('msg' => $results));
 
 } else {//Mostrar el formulario
 
@@ -40,11 +60,11 @@ function busqueda($palabraClave) {
 	$results = array();
 
 	/*$results[] = "Tipo";
-	$results[] = "Nombre";
-	$results[] = "Descripción";
-	//$results[] = "Imagen"; ?? Esperar a poder subir imagenes
-	$results[] = "Tiempo Restante<br />/Puntos Necesarios";
-	$results[] = "Fecha de creación";*/
+	 $results[] = "Nombre";
+	 $results[] = "Descripción";
+	 //$results[] = "Imagen"; ?? Esperar a poder subir imagenes
+	 $results[] = "Tiempo Restante<br />/Puntos Necesarios";
+	 $results[] = "Fecha de creación";*/
 
 	$res = doquery("SELECT * FROM {{table}} WHERE nombre LIKE '$palabraClave'", 'subastas', false);
 
@@ -57,7 +77,7 @@ function busqueda($palabraClave) {
 		$results[] = $resultado['descripcion'];
 		/*$results[] = "<img src='"$resultado['imagen'] /img>"; //Imagen*/
 		$tiempoRestante = ($resultado['comienzo'] + $resultado['duracion']) - time();
-		
+
 		if ($tiempoRestante < 0) {
 			$results[] = "Finalizada";
 		} else {
@@ -69,18 +89,18 @@ function busqueda($palabraClave) {
 
 	/*$res = doquery("SELECT * FROM {{table}} WHERE nombre LIKE '$palabraClave'", 'ofertas', false);
 
-	while ($resultado = mysqli_fetch_assoc($res)) {
+	 while ($resultado = mysqli_fetch_assoc($res)) {
 
-		$results[] = 'Oferta';
-		//TODO: enlace provisional, cambiar en el futuro
-		$results[] = "<a href='" . IS2_ROOT_PATH . "/ofertas/" . $resultado['id'] . "'>" . $resultado['nombre'] . "</a>";
-		$results[] = $resultado['descripcion'];
-		/*$results[] = "<img src='"$resultado['imagen'] /img>"; //Imagen
-		$results[] = $resultado['precio'];
+	 $results[] = 'Oferta';
+	 //TODO: enlace provisional, cambiar en el futuro
+	 $results[] = "<a href='" . IS2_ROOT_PATH . "/ofertas/" . $resultado['id'] . "'>" . $resultado['nombre'] . "</a>";
+	 $results[] = $resultado['descripcion'];
+	 /*$results[] = "<img src='"$resultado['imagen'] /img>"; //Imagen
+	 $results[] = $resultado['precio'];
 
-		$results[] = date(" H:m:s d/m/Y", $resultado['fechaCreacion']);
+	 $results[] = date(" H:m:s d/m/Y", $resultado['fechaCreacion']);
 
-	}*/
+	 }*/
 	return $results;
 }
 
@@ -98,5 +118,27 @@ function time_elapsed($secs) {
 			$ret[] = $v . $k;
 
 	return join(' ', $ret);
+}
+
+function createTable($columns, $data) {
+
+	$nColumns = count($columns);
+	$content = "<thead>";
+	$content .= "<tr>";
+	
+	foreach ($columns as $i => $value) {
+		$content .= "<th>" . $value . "</th>";
+	}
+	$content .= '</tr></thead>';
+	$content .= "<tbody><tr>";
+
+	foreach ($data as $i => $value) {
+		if ($i % $nColumns == 0 && $i !== 0) {
+			$content .= '</tr><tr>';
+		}
+		$content .= '<td>' . $value . '</td>';
+	}
+	$content .= '</tr></tbody>';
+	return $content;
 }
 ?>

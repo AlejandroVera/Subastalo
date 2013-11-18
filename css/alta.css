@@ -20,11 +20,13 @@
 	margin-top: 15px;
 	text-align: right;
 }
+
 .entradaAlta input {
 	width: 200px;
 	border-radius: 5px;
 	border: 1px solid rgba(0,0,0,0.2);
-	padding: 3px 0px;
+	padding: 3px;
+	padding-left: 5px;
 }
 
 .entradaAlta input:focus {
