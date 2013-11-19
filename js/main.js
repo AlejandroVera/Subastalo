@@ -19,37 +19,3 @@ function conectar(usuarioLogueado) {
 		console.log("Connection lost (" + reason + ")");
 	});
 }
-
-
-
-/*
-	$("#marco").attr("src", "./inicio.php");
-
-	$("#loginDiv").click(function() {
-		$("#marco").attr("src", "./login.php");
-	});
-
-	$("#altaDiv").click(function() {
-		$("#marco").attr("src", "./alta.php");
-	});
-	
-	$("#adminDiv").click(function() {
-		$("#marco").attr("src", "./admin/index.php");
-	});
-
-});
-
-function putLogoutButton() {
-	$("#loginDiv").replaceWith("<div id=\"logoutDiv\" class=\"menu_element\" >Logout</div>");
-	$("#logoutDiv").click(function() {
-		$("#marco").attr("src", "./logout.php");
-	});
-}
-
-function putLoginButton() {
-	$("#logoutDiv").replaceWith("<div id=\"loginDiv\" class=\"menu_element\" >Login</div>");
-	$("#loginDiv").click(function() {
-		$("#marco").attr("src", "./login.php");
-	});
-}
-*/

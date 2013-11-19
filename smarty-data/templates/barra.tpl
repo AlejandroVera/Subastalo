@@ -5,11 +5,13 @@
 		</a>
 	</div>	
 {if $nivelAcceso > 0}
+	<div id="panelDiv" class="menu_element">{$nombreUsuario}</div>
 	<div id="logoutDiv" class="menu_element" >Logout</div>
 {else}
+	<div id="altaDiv" class="menu_element">Alta</div>
 	<div id="loginDiv" class="menu_element">Login</div>
 {/if}
-<div id="altaDiv" class="menu_element">Alta</div>
+
 <div class="barraBusqueda">
 		<input type="text" id="palabra_clave" name="palabra_clave">
 		<input type="button" id="buscar" value="Buscar">

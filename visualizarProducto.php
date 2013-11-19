@@ -46,6 +46,7 @@ if(isset($_GET['tipo'])&&isset($_GET['id']) ){
 $smarty->assign('res',$results);
 $smarty->assign('scripts', array("visualizarProducto.js","jquery.nivo.slider.pack.js"));
 $smarty->assign('css', array("nivo-slider.css","themes/default/default.css"));
+$smarty -> assign('nombreUsuario', userName());
 $smarty->display('visualizarProducto.tpl');
 
 

@@ -82,12 +82,6 @@ if(isset($_GET['validate'])){
     $smarty->display('alta.tpl');
 }
 
-function sendAjaxData($data, $statusCode = 200){
-    $data['status'] = $statusCode;
-    echo json_encode($data);
-}
-
-
 function validaFormularioAlta(){
     $retArray = array();
     $retArray['error'] = array();

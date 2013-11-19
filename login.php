@@ -29,6 +29,7 @@ if (isset($_GET['validate'])) {
 	$smarty -> assign('css', array("login.css"));
 	$smarty -> assign('scripts', array("login.js"));
 	$smarty -> assign('IS_CONTENT', false);
+	$smarty -> assign('nombreUsuario', userName());
 	$smarty -> assign('nivelAcceso', estoy_logeado());
 	$smarty -> display('login.tpl');
 }
@@ -76,11 +77,6 @@ function login($email, $password) {
 		//El usuario no existe
 		return false;
 	}
-}
-
-function sendAjaxData($data, $statusCode = 200){
-    $data['status'] = $statusCode;
-    echo json_encode($data);
 }
 
 ?>

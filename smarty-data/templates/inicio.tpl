@@ -1,6 +1,6 @@
 {include file="header.tpl" title="Pagina principal" scripts=$scripts}
 
-{include file ="barra.tpl" nivelAcceso=$nivelAcceso IN_ADMIN=$IN_ADMIN}
+{include file ="barra.tpl" nivelAcceso=$nivelAcceso IN_ADMIN=$IN_ADMIN nombreUsuario=$nombreUsuario}
 
 <div><p>Pagina principal</p></div>
 
