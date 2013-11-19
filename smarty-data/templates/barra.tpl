@@ -5,7 +5,11 @@
 		</a>
 	</div>	
 {if $nivelAcceso > 0}
-	<div id="panelDiv" class="menu_element">{$nombreUsuario}</div>
+	<div id="lista" class="list">
+  			<div class="listElement">Perfil</div>
+  			<div class="listElement">Caca</div>
+	</div>
+	<div id="panelDiv" class="menu_element">{$nombreUsuario} </div>	
 	<div id="logoutDiv" class="menu_element" >Logout</div>
 {else}
 	<div id="altaDiv" class="menu_element">Alta</div>
