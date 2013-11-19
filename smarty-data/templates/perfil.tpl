@@ -13,4 +13,33 @@
 </div>
 {/if}
 {/if}
+
+<div class="entradaEdicion">
+	Usuario: {$res.username} 
+</div>
+
+<div class="entradaEdicion">
+	Teléfono:{$res.telefono}
+</div>
+<div class="entradaEdicion">
+	Email:{$res.email}
+</div>
+<div class="textoentradaEdicion">
+	{if $lista!=null}
+	Lista de mis intereses:	
+		{foreach key=key item=item from=$lista}
+			{if $item == 1}
+				<div class="valorEntradaTabla">
+					{$key}
+				</div>
+			{/if}
+			
+		{/foreach}
+	{/if}
+</div>
+<div class="entradaEdicion">
+	{if $res.productosInteresados!=""}
+	 Estoy interesado en: {$res.productosInteresados}
+	{/if}
+</div>
 {include file="footer.tpl"}

@@ -5,7 +5,7 @@
 		<title>{$title|default:"Página de subastas"}</title>
 		<script src="{$IS2_ROOT_PATH}js/jquery-2.0.3.min.js"></script>
 		<script src="{$IS2_ROOT_PATH}js/jquery-ui-1.10.3.custom.min.js"></script>
-		<script src="http://autobahn.s3.amazonaws.com/js/autobahn.min.js"></script> 
+		<script src="{$IS2_ROOT_PATH}js/autobahn.min.js"></script> 
 		<script src="{$IS2_ROOT_PATH}js/common.js"></script>
 		{if $IN_ADMIN}
 			<script src="{$IS2_ROOT_PATH}js/admin/leftmenu.js"></script>
