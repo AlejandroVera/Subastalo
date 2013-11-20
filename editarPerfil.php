@@ -9,12 +9,42 @@ require(IS2_ROOT_PATH . "core.php");
 //Cargamos las función de validaciones
 require(IS2_ROOT_PATH . "includes/validate.php");
 
-$id=secure_text_query("27");
+$id=secure_text_query(userId());
 $listaquery=doquery("SELECT * FROM {{table}} WHERE idUsuario = '{$id}' LIMIT 1",'listaIntereses',false);
 $listares = mysqli_fetch_assoc($listaquery);
 
 //Procesado del formulario
 if(isset($_GET['validate'])){
+	
+	
+	$imagenes = array();
+	foreach ($_FILES as $nombre => $file) {
+            if(strpos($nombre, "imagen") === 0){ //Si empiezan por "imagen" las acepto
+                if ($file['error'] == UPLOAD_ERR_OK) {
+                    
+                    //Get extension
+                    $separado = explode(".", $file['name']);
+                    $extension = "";
+                    if(count($separado) > 1){
+                        $extension = $separado[count($separado) - 1];
+                    }
+                    
+                    //Nombre final del archivo
+                    $name = uniqid().".".$extension;
+    
+                    //La movemos al destino final
+                    move_uploaded_file($file['tmp_name'], IS2_ROOT_PATH."images/uploaded/$name");
+                    
+                    //Lo agregamos al array para porteriormente meterlo en la BD
+                    $imagenes[] = $name;
+                }
+                
+            }
+        }
+	$images=implode("|",$imagenes);
+	
+	
+	
 	
 	$datos=validaEdicionPerfil();	
 	if(empty($datos['error'])){
@@ -26,8 +56,8 @@ if(isset($_GET['validate'])){
  
             $fields .= $key.'='."'{$value}',";
         }
-        //Sustituir la ultima coma por un espacio
-        $fields[strlen($fields)-1] = ' ';
+        //Añadir la imagen a los parametros
+        $fields.= "imagenPerfil='{$images}'";
         //Modificamos las tablas de usuario
         $res = doquery("UPDATE {{table}} SET {$fields} WHERE id='{$id}'", 'usuarios');
         
@@ -70,7 +100,7 @@ if(isset($_GET['validate'])){
 	
 
 }
-else{
+else if(estoy_logeado()){
 	//Se obtiene todos los datos del usuario creados en el alta
 	$res=doquery("SELECT * FROM {{table}} WHERE id = '{$id}' LIMIT 1",'usuarios',false);
 	while ($resultado = mysqli_fetch_assoc($res)) {
@@ -93,19 +123,21 @@ else{
 	$lista['Deportes y Tiempo Libre']=$listares['Deportes y Tiempo Libre'];
 	$lista['Coleccionismo y Arte']=$listares['Coleccionismo y Arte'];
 	$lista['Motor']=$listares['Motor'];
-	
-	
+
 	//Se pasa la lista de checkbox, los datos de perfil, el tpl y el fichero js
+	
+	$smarty -> assign('IS_CONTENT', false);
 	$smarty->assign('scripts', array("edicionPerfil.js"));
 	$smarty->assign('res', $results);
 	$smarty->assign('lista',$lista);
     $smarty->display('editarPerfil.tpl');	
 }
-
-function sendAjaxData($data, $statusCode = 200){
-    $data['status'] = $statusCode;
-    echo json_encode($data);
+else{
+	sendAjaxData(array('msg' => "No está logueado.Debe loguearse para editar su perfil."), 400);
+   
 }
+
+
 
 function validaEdicionPerfil(){
     $retArray = array();

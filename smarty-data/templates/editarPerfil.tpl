@@ -1,5 +1,11 @@
 {include file="header.tpl" title="Edición de usuario" scripts=$scripts}
-<form id="editarPerfil">
+<form id="editarPerfil" enctype="multipart/form-data">
+	<div class="entradaEdicion">
+		<div class="textoEntradaEdicion">Foto de Perfil</div>
+		<div class="valorEntradaTabla">
+			<input id="selectorFotos" name="fotos[]" type="file" multiple="true" accept="image/*" />
+			<div id="imagenes"></div>
+		</div>
 	<div class="entradaEdicion">
 		<div class="textoentradaEdicion">Nombre</div>
 		<div class="valorEntradaTabla">

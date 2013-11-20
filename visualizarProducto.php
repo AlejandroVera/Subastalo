@@ -10,8 +10,42 @@ $results = array();
 if(isset($_GET['tipo'])&&isset($_GET['id']) ){
 		
 	if($_GET['tipo'] == "subasta"){
-		$res = doquery("SELECT * FROM {{table}} WHERE subasta IN (SELECT MAX({$_GET['id']}) FROM {{table}})", 'pujas', false);
-		while ($resultado = mysqli_fetch_assoc($res)) {	
+		$results=obtenerDatos($_GET['id']);
+	}
+	else if($_GET['tipo'] == "oferta"){
+		//TODO 
+	}
+	else echo "Tipo incorrecto";
+	
+		
+	$smarty -> assign('IS_CONTENT', false);
+	$smarty->assign('res',$results);
+	$smarty->assign('scripts', array("visualizarProducto.js","jquery.nivo.slider.pack.js"));
+	$smarty->assign('css', array("nivo-slider.css","themes/default/default.css"));
+	$smarty -> assign('nombreUsuario', userName());
+	$smarty->display('visualizarProducto.tpl');
+
+
+}
+else if(isset($_GET['terminado'])){
+	$results=obtenerDatos($_GET['id']);
+	$smarty -> assign('IS_CONTENT', false);
+	$smarty->assign('res',$results);
+	$smarty->assign('scripts', array("jquery.nivo.slider.pack.js"));
+	$smarty->assign('css', array("nivo-slider.css","themes/default/default.css"));
+	$smarty -> assign('nombreUsuario', userName());
+	$smarty->display('visualizarProductoTerminado.tpl');
+}
+else {
+	echo "No se pasa el tipo o id de producto";
+}
+
+function obtenerDatos($id){
+	$results=array();
+	$res = doquery("SELECT * FROM {{table}} WHERE subasta={$id} AND puntos = (SELECT MAX(puntos) FROM {{table}} WHERE subasta={$id})", 'pujas', false);
+		
+		while ($resultado = mysqli_fetch_assoc($res)) {
+		print_r($resultado);	
 		$results['usrID'] = $resultado['usuario'];
 		$results['puntos'] = $resultado['puntos'];
 		$results['ganada'] = $resultado['ganada'];
@@ -36,27 +70,9 @@ if(isset($_GET['tipo'])&&isset($_GET['id']) ){
 		//Obtencion de los nombres de las imagenes
 		$imagenes=explode("|",$results['imagen']);
 		$results['imagenes']=$imagenes;
+		$results['idProducto']=$_GET['id'];
 		
-		
-	}
-	else if($_GET['tipo'] == "oferta"){
-		//TODO 
-	}
-	else echo "Tipo incorrecto";
-$smarty->assign('res',$results);
-$smarty->assign('scripts', array("visualizarProducto.js","jquery.nivo.slider.pack.js"));
-$smarty->assign('css', array("nivo-slider.css","themes/default/default.css"));
-$smarty -> assign('nombreUsuario', userName());
-$smarty->display('visualizarProducto.tpl');
-
-
-}
-else if(isset($_GET['terminado'])){
-	
-	echo "puja terminada!!!!";
-}
-else {
-	echo "Error en el paso de parámetro.";
+		return $results;
 }
 
 ?>

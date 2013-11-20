@@ -9,7 +9,7 @@ require(IS2_ROOT_PATH . "core.php");
 //Cargamos la función de envío de emails y validaciones
 require(IS2_ROOT_PATH . "includes/mail.php");
 require(IS2_ROOT_PATH . "includes/validate.php");
-$id='31';
+$id=userId();
 
 if(isset($_GET['validate'])){
 		
@@ -50,10 +50,7 @@ else{
     $smarty->display('cambiopasswd.tpl');	
 
 }
-function sendAjaxData($data, $statusCode = 200){
-    $data['status'] = $statusCode;
-    echo json_encode($data);
-}
+
 
 function validaContraseña($id){
 	

@@ -43,23 +43,15 @@ $('#slider').nivoSlider({
 	<div id="nombre">
 		{$res.nombre}
 	</div>
-	{if $res.ganada==1}
-		<div id="pujaTerminada">Puja Terminada</div>
-	{else}
-	<div id="pujar">
-		<input type="submit" name="pujar" value="¡Pujar!">
-	</div>
+	
+	<div id="pujaTerminada">Puja Terminada</div>
+
 	<div id="dialog">
 	<div id="Popup"></div>
 	</div>
-	<div id="crono"></div>
-	<input type="hidden" value={$res.hoy} name="crono" class="countdown">
-	{/if}
 	
 	<div id="puntos">
-		Mejor puja: {$res.puntos} puntos 
-		{if $res.ganada==1}--> Ganador: {/if}
-		({$res.usuario})
+		Mejor puja: {$res.puntos} puntos --> Ganador: ({$res.usuario})
 	</div>
 </div>
 
@@ -67,9 +59,6 @@ $('#slider').nivoSlider({
 	<br>Descripción:<br>
 	{$res.descripcion}
 </div>
-
-<!--Este div solo se utiliza para obtener y pasarle el idProducto a la pagina de confirmación-->
-<div id="idProducto" style="display:none;" value={$res.idProducto}></div>
 
 
 {include file="footer.tpl"}
