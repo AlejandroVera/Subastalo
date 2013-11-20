@@ -33,15 +33,9 @@ if (isset($_GET['validate'])) {
 	$tabla = createTable($columns, $results);	
 	$smarty -> assign('tabla', $tabla);
 
-	/*$smarty -> assign('tabla', sendAjaxData(array(
-	 'msg' => $results
-	 )));*/
 	$smarty -> assign('scripts', array("busqueda.js", "jquery.tablesorter.min.js"));	
 	$smarty -> display('busqueda.tpl');
 
-	//$smarty -> display('busqueda.tpl');
-
-	//sendAjaxData(array('msg' => $results));
 
 } else {//Mostrar el formulario
 
@@ -102,11 +96,6 @@ function busqueda($palabraClave) {
 
 	 }*/
 	return $results;
-}
-
-function sendAjaxData($data, $statusCode = 200) {
-	$data['status'] = $statusCode;
-	echo json_encode($data);
 }
 
 function time_elapsed($secs) {
