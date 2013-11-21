@@ -32,7 +32,8 @@ if (isset($_GET['validate'])) {
 	$columns = array("Tipo", "Nombre", "Descripción", "Tiempo Restante", "Fecha de creación");
 	$tabla = createTable($columns, $results);	
 	$smarty -> assign('tabla', $tabla);
-
+	$smarty -> assign('nivelAcceso', estoy_logeado());
+	$smarty -> assign('css', array("busqueda.css"));
 	$smarty -> assign('scripts', array("busqueda.js", "jquery.tablesorter.min.js"));	
 	$smarty -> display('busqueda.tpl');
 
@@ -43,6 +44,7 @@ if (isset($_GET['validate'])) {
 	$results = array();
 	$smarty -> assign('tabla', $results);
 	$smarty -> assign('scripts', array("busqueda.js", "jquery.tablesorter.min.js"));
+	$smarty -> assign('css', array("busqueda.css"));
 	$smarty -> display('busqueda.tpl');
 }
 

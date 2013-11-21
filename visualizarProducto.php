@@ -21,7 +21,7 @@ if(isset($_GET['tipo'])&&isset($_GET['id']) ){
 	$smarty -> assign('IS_CONTENT', false);
 	$smarty->assign('res',$results);
 	$smarty->assign('scripts', array("visualizarProducto.js","jquery.nivo.slider.pack.js"));
-	$smarty->assign('css', array("nivo-slider.css","themes/default/default.css"));
+	$smarty->assign('css', array("nivo-slider.css","themes/default/default.css", "subasta.css"));
 	$smarty -> assign('nombreUsuario', userName());
 	$smarty->display('visualizarProducto.tpl');
 
@@ -32,7 +32,7 @@ else if(isset($_GET['terminado'])){
 	$smarty -> assign('IS_CONTENT', false);
 	$smarty->assign('res',$results);
 	$smarty->assign('scripts', array("jquery.nivo.slider.pack.js"));
-	$smarty->assign('css', array("nivo-slider.css","themes/default/default.css"));
+	$smarty->assign('css', array("nivo-slider.css","themes/default/default.css", "subasta.css"));
 	$smarty -> assign('nombreUsuario', userName());
 	$smarty->display('visualizarProductoTerminado.tpl');
 }

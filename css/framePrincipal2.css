@@ -71,9 +71,10 @@
 	text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
 }
 .barraBusqueda {
-	margin-top: 12px;
-	margin-right: 65%;
-	text-align: right;
+	margin-top: 12px;	
+	margin-left: 15%;
+	display: block;
+	text-align: left;	
 }
 
 .list {

@@ -26,7 +26,7 @@
 			{/foreach}
 		{/if}
 	</head>
-	<body onload="initCommonUtilities()" style="margin:0px;padding:0px;overflow-y:auto;overflow-x:hidden;">
+	<body onload="initCommonUtilities()" style="margin:0px;padding:0px;overflow-y:auto;overflow-x:hidden;min-width:600px">
 		<script type="text/javascript">
 			var USER_ACCESS_LEVEL = {$USER_ACCESS_LEVEL};
 			{if isset($USUARIO_LOGUEADO)}
