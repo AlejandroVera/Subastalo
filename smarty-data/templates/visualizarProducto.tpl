@@ -1,6 +1,6 @@
 {include file="header.tpl" title="Visualizar producto" scripts=$scripts}
 
-
+{if $res.imagenes!=null}
 <div class="slider-wrapper theme-default">
 	<div class="ribbon"></div>
 	<div id="slider" class="nivoSlider">
@@ -9,36 +9,7 @@
 	   {/foreach}
 	</div>
 </div>	
-
-<script type="text/javascript">
-
-$('#slider').nivoSlider({
-    effect: 'random',               // Specify sets like: 'fold,fade,sliceDown'
-    slices: 15,                     // For slice animations
-    boxCols: 8,                     // For box animations
-    boxRows: 4,                     // For box animations
-    animSpeed: 500,                 // Slide transition speed
-    pauseTime: 8000,                // How long each slide will show
-    startSlide: 0,                  // Set starting Slide (0 index)
-    directionNav: true,             // Next & Prev navigation
-    controlNav: true,               // 1,2,3... navigation
-    controlNavThumbs: false,        // Use thumbnails for Control Nav
-    pauseOnHover: true,             // Stop animation while hovering
-    manualAdvance: false,           // Force manual transitions
-    prevText: 'Prev',               // Prev directionNav text
-    nextText: 'Next',               // Next directionNav text
-    randomStart: false,             // Start on a random slide
-    beforeChange: function(){},     // Triggers before a slide transition
-    afterChange: function(){},      // Triggers after a slide transition
-    slideshowEnd: function(){},     // Triggers after all slides have been shown
-    lastSlide: function(){},        // Triggers when last slide is shown
-    afterLoad: function(){}         // Triggers when slider has loaded
-});
-
-
-</script>
-	
-
+{/if}
 <div id="Datos">
 	<div id="nombre">
 		{$res.nombre}
@@ -49,8 +20,15 @@ $('#slider').nivoSlider({
 	<div id="pujar">
 		<input type="submit" name="pujar" value="¡Pujar!">
 	</div>
-	<div id="dialog">
-	<div id="Popup"></div>
+	<div id="dialog-form" title="Crear nueva puja">
+		<p class="validateTips">Introduzca su puja:</p>
+		<form id="datosPuja">
+			<div id="idProducto" style="display:none;">
+			<input type="text" name="idProducto" value={$res.idProducto}>
+			</div>
+			<input type="text" name="puja" id="puja" class="text ui-widget-content ui-corner-all" />
+		</form>
+		</div>
 	</div>
 	<div id="crono"></div>
 	<input type="hidden" value={$res.hoy} name="crono" class="countdown">
@@ -68,8 +46,6 @@ $('#slider').nivoSlider({
 	{$res.descripcion}
 </div>
 
-<!--Este div solo se utiliza para obtener y pasarle el idProducto a la pagina de confirmación-->
-<div id="idProducto" style="display:none;" value={$res.idProducto}></div>
 
 
 {include file="footer.tpl"}

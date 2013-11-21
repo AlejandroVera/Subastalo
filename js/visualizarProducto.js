@@ -2,14 +2,92 @@ function init(){
 	var id=getParameterByName("id");
 	countdown(1,"visualizarProducto.php?terminado&id="+id);
 	$("#pujar").click(function(){
-		$(function() {
-			$( "#dialog" ).dialog();
-			$("#Popup").load('confirmarPuja.php?idProducto='+id);
-		});
-		
-		return false;
+		 $( "#dialog-form" ).dialog( "open" );
 	});
+	$( "#dialog-form" ).dialog({
+		 autoOpen: false,
+		 height: 200,
+		 width: 300,
+		 modal: true,
+		 buttons: {
+		 "¡Pujar!": function() {
+		 var bValid = true;
+		 
+		 bValid = bValid && !isNaN($("#puja").val());
+		 if ( bValid ) {
+			 pujar();
+			 $( this ).dialog( "close" );
+		 }
+		 else{
+			 alert("¡Sólo se aceptan números!");
+			 location.href = "visualizarProducto.php?tipo=subasta&id="+id;
+			 $( this ).dialog( "close" );
+		 }
+		 },
+		 Cancelar: function() {
+		 $( this ).dialog( "close" );
+		 }
+		 },
+		 close: function() {
+		 allFields.val( "" ).removeClass( "ui-state-error" );
+		 }
+	});
+	
+	$('#slider').nivoSlider({
+	    effect: 'random',               // Specify sets like: 'fold,fade,sliceDown'
+	    slices: 15,                     // For slice animations
+	    boxCols: 8,                     // For box animations
+	    boxRows: 4,                     // For box animations
+	    animSpeed: 500,                 // Slide transition speed
+	    pauseTime: 8000,                // How long each slide will show
+	    startSlide: 0,                  // Set starting Slide (0 index)
+	    directionNav: true,             // Next & Prev navigation
+	    controlNav: true,               // 1,2,3... navigation
+	    controlNavThumbs: false,        // Use thumbnails for Control Nav
+	    pauseOnHover: true,             // Stop animation while hovering
+	    manualAdvance: false,           // Force manual transitions
+	    prevText: 'Prev',               // Prev directionNav text
+	    nextText: 'Next',               // Next directionNav text
+	    randomStart: false,             // Start on a random slide
+	    beforeChange: function(){},     // Triggers before a slide transition
+	    afterChange: function(){},      // Triggers after a slide transition
+	    slideshowEnd: function(){},     // Triggers after all slides have been shown
+	    lastSlide: function(){},        // Triggers when last slide is shown
+	    afterLoad: function(){}         // Triggers when slider has loaded
+	
+	 });
+	return false;
+
+	
 }
+
+function pujar() {
+	$.ajax({
+		type: "POST",
+		url: "visualizarProducto.php",
+		data : $("#datosPuja").serialize(),
+	})
+	.done(function(info){
+		try{
+			var data = JSON.parse(info);
+			if (data.status == 200){
+				messageAndRedirect(data.msg,data.url);
+			}
+			else
+				error(data.msg);
+		}catch(e){
+			alert("Error al enviar la puja.");
+			console.log(e);
+		}
+	})
+
+	.fail(function(){
+		alert("Error al pujar. Revise su conexión a Internet.");
+	});
+
+
+}
+
 
 
 function getParameterByName(name) {
@@ -102,3 +180,11 @@ function countdown(showDays,red,redTime){
 	}
 	ssid = window.setTimeout("countdown(conDias,redirect,timeRed)", 1000);
 }
+
+
+
+
+
+
+
+

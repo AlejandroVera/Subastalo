@@ -36,8 +36,53 @@ else if(isset($_GET['terminado'])){
 	$smarty -> assign('nombreUsuario', userName());
 	$smarty->display('visualizarProductoTerminado.tpl');
 }
+else if(isset($_POST['idProducto'])&&isset($_POST['puja'])){
+	if(isset($_SESSION['USUARIO'])){
+		$userID=userId();
+		$idProducto=$_POST['idProducto'];
+		$puja=$_POST['puja'];
+		$fields = '`id`, `subasta`, `puntos`, `usuario`, `fecha`, `ganada`';
+	 	$hoy=time();
+	 	$values = "NULL, ".$idProducto.", ".$puja. ",". $userID."," .$hoy. ", '0'";
+	    $UsrP = doquery("SELECT PuntosSubasta FROM {{table}} WHERE id = {$userID}", 'usuarios', false);	
+		$UsrPoints=mysqli_fetch_assoc($UsrP);
+		$PuntoSubasta=(double)$UsrPoints['PuntosSubasta'];
+		if($puja>$PuntoSubasta){
+			sendAjaxData(array(
+	            'msg' => "No tiene puntos suficientes, por favor recargue más puntos.",
+	            'url' => "RecargaPuntos.php"));	 
+		}
+		else {
+			$mPuja = doquery("SELECT max(`puntos`) FROM {{table}} WHERE `subasta` = '{$idProducto}'", 'pujas', false);
+			$mayorPuja=mysqli_fetch_assoc($mPuja);
+			$mayorPuj=$mayorPuja['max(`puntos`)'];
+			if($puja<=$mayorPuj){
+				sendAjaxData(array(
+	                'msg' => "Debe pujar más puntos que la mayor puja: {$mayorPuj}.",
+					'url' => "visualizarProducto.php?tipo=subasta&id={$idProducto}"));	
+			}
+			else{
+				$res = doquery("INSERT INTO {{table}} ({$fields}) VALUES ({$values})", 'pujas');
+	        	if($res){ //Registro correcto
+	        		$PuntoSubasta=$PuntoSubasta-$puja;
+	        		$puntos = doquery("UPDATE {{table}} SET `PuntosSubasta`='{$PuntoSubasta}' WHERE id={$userID}", 'usuarios');
+	    			if($puntos){
+	    				sendAjaxData(array(
+	             	   'msg' => "Puja realizado correctamente.",
+					   'url' => "visualizarProducto.php?tipo=subasta&id={$idProducto}"));	
+	    			}
+				}
+			}
+		}
+	}else{
+		sendAjaxData(array(
+	             	   'msg' => "Inicie sesión para poder pujar.",
+					   'url' => "index.php"));	
+	}
+}
+
 else {
-	echo "No se pasa el tipo o id de producto";
+	echo "Los parámetros son incorrectos.";
 }
 
 function obtenerDatos($id){
@@ -45,7 +90,7 @@ function obtenerDatos($id){
 	$res = doquery("SELECT * FROM {{table}} WHERE subasta={$id} AND puntos = (SELECT MAX(puntos) FROM {{table}} WHERE subasta={$id})", 'pujas', false);
 		
 		while ($resultado = mysqli_fetch_assoc($res)) {
-		print_r($resultado);	
+		
 		$results['usrID'] = $resultado['usuario'];
 		$results['puntos'] = $resultado['puntos'];
 		$results['ganada'] = $resultado['ganada'];
