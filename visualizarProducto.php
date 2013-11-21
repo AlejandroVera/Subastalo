@@ -87,8 +87,17 @@ else {
 
 function obtenerDatos($id){
 	$results=array();
-	$res = doquery("SELECT * FROM {{table}} WHERE subasta={$id} AND puntos = (SELECT MAX(puntos) FROM {{table}} WHERE subasta={$id})", 'pujas', false);
-		
+	$DatSub = doquery("SELECT * FROM {{table}} WHERE id = {$id}", 'subastas', false);	
+	while ($datosProd = mysqli_fetch_assoc($DatSub)){
+	$results['nombre'] = $datosProd['nombre'];
+	$results['descripcion'] = $datosProd['descripcion'];
+	$results['comienzo'] = $datosProd['comienzo'];
+	$results['duracion'] = $datosProd['duracion'];
+	$results['imagen'] = $datosProd['imagen'];
+	$results['pujado'] = $datosProd['pujado'];
+	}
+	if($results['pujado']==1){
+		$res = doquery("SELECT max(`puntos`) FROM {{table}} WHERE `subasta` = '{$id}'", 'pujas', false);	
 		while ($resultado = mysqli_fetch_assoc($res)) {
 		
 		$results['usrID'] = $resultado['usuario'];
@@ -96,27 +105,20 @@ function obtenerDatos($id){
 		$results['ganada'] = $resultado['ganada'];
 		$results['subasta'] = $resultado['subasta'];
 		}
-		
-		$DatSub = doquery("SELECT * FROM {{table}} WHERE id = {$results['subasta']}", 'subastas', false);	
-		while ($datosProd = mysqli_fetch_assoc($DatSub)){
-		$results['nombre'] = $datosProd['nombre'];
-		$results['descripcion'] = $datosProd['descripcion'];
-		$results['comienzo'] = $datosProd['comienzo'];
-		$results['duracion'] = $datosProd['duracion'];
-		$results['imagen'] = $datosProd['imagen'];
-		}
+
 		$nomUsr = doquery("SELECT username FROM {{table}} WHERE id = {$results['usrID']}", 'usuarios', false);	
 		$nameUsr=mysqli_fetch_assoc($nomUsr);
 		$results['usuario'] = $nameUsr['username'];
 		
-		//Calculo de la finalizacion de producto
+	}
+	//Calculo de la finalizacion de producto
 		$fin = $results['comienzo']+$results['duracion'];
 		$results['hoy'] = $fin - time();
 		//Obtencion de los nombres de las imagenes
 		$imagenes=explode("|",$results['imagen']);
 		$results['imagenes']=$imagenes;
-		$results['idProducto']=$_GET['id'];
-		
+		$results['idProducto']=$id;
+
 		return $results;
 }
 
