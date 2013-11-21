@@ -53,9 +53,11 @@ else if(isset($_POST['idProducto'])&&isset($_POST['puja'])){
 	            'url' => "RecargaPuntos.php"));	 
 		}
 		else {
-			$mPuja = doquery("SELECT max(`puntos`) FROM {{table}} WHERE `subasta` = '{$idProducto}'", 'pujas', false);
+			//$mPuja = doquery("SELECT max(`puntos`) FROM {{table}} WHERE `subasta` = '{$idProducto}'", 'pujas', false);
+			$mPuja = doquery("SELECT puntos FROM {{table}} WHERE subasta={$id} AND puntos = (SELECT MAX(puntos) FROM {{table}} WHERE subasta={$id})", 'pujas', false);
 			$mayorPuja=mysqli_fetch_assoc($mPuja);
-			$mayorPuj=$mayorPuja['max(`puntos`)'];
+			//$mayorPuj=$mayorPuja['max(`puntos`)'];
+			$mayorPuj=$mayorPuja['puntos'];
 			if($puja<=$mayorPuj){
 				sendAjaxData(array(
 	                'msg' => "Debe pujar más puntos que la mayor puja: {$mayorPuj}.",
@@ -97,7 +99,8 @@ function obtenerDatos($id){
 	$results['pujado'] = $datosProd['pujado'];
 	}
 	if($results['pujado']==1){
-		$res = doquery("SELECT max(`puntos`) FROM {{table}} WHERE `subasta` = '{$id}'", 'pujas', false);	
+		//$res = doquery("SELECT max(puntos) FROM {{table}} WHERE 'subasta' = {$id}", 'pujas', false);	
+		$res = doquery("SELECT * FROM {{table}} WHERE subasta={$id} AND puntos = (SELECT MAX(puntos) FROM {{table}} WHERE subasta={$id})", 'pujas', false);
 		while ($resultado = mysqli_fetch_assoc($res)) {
 		
 		$results['usrID'] = $resultado['usuario'];
@@ -114,6 +117,7 @@ function obtenerDatos($id){
 	//Calculo de la finalizacion de producto
 		$fin = $results['comienzo']+$results['duracion'];
 		$results['hoy'] = $fin - time();
+		
 		//Obtencion de los nombres de las imagenes
 		$imagenes=explode("|",$results['imagen']);
 		$results['imagenes']=$imagenes;
