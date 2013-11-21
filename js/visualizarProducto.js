@@ -1,6 +1,6 @@
 function init(){
 	var id=getParameterByName("id");
-	countdown(1,"visualizarProducto.php?terminado&id="+id);z
+	countdown(1,"visualizarProducto.php?terminado&id="+id);
 	$("#pujar").click(function(){
 		 $( "#dialog-form" ).dialog( "open" );
 	});
