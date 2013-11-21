@@ -54,7 +54,7 @@ else if(isset($_POST['idProducto'])&&isset($_POST['puja'])){
 		}
 		else {
 			//$mPuja = doquery("SELECT max(`puntos`) FROM {{table}} WHERE `subasta` = '{$idProducto}'", 'pujas', false);
-			$mPuja = doquery("SELECT puntos FROM {{table}} WHERE subasta={$id} AND puntos = (SELECT MAX(puntos) FROM {{table}} WHERE subasta={$id})", 'pujas', false);
+			$mPuja = doquery("SELECT puntos FROM {{table}} WHERE subasta={$idProducto} AND puntos = (SELECT MAX(puntos) FROM {{table}} WHERE subasta={$idProducto})", 'pujas', false);
 			$mayorPuja=mysqli_fetch_assoc($mPuja);
 			//$mayorPuj=$mayorPuja['max(`puntos`)'];
 			$mayorPuj=$mayorPuja['puntos'];
@@ -116,7 +116,7 @@ function obtenerDatos($id){
 	}
 	//Calculo de la finalizacion de producto
 		$fin = $results['comienzo']+$results['duracion'];
-		$results['hoy'] = $fin - time();
+		$results['hoy'] = $fin;
 		
 		//Obtencion de los nombres de las imagenes
 		$imagenes=explode("|",$results['imagen']);
