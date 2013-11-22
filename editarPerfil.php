@@ -133,7 +133,8 @@ else if(estoy_logeado()){
     $smarty->display('editarPerfil.tpl');	
 }
 else{
-	sendAjaxData(array('msg' => "No está logueado.Debe loguearse para editar su perfil."), 400);
+	sendAjaxData(array('msg' => "No está logueado.Debe loguearse para editar su perfil.",
+	'url' => "index.php"), 400);
    
 }
 

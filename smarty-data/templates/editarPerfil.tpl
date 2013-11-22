@@ -87,7 +87,7 @@
 		</div>
 	</div>
 
-	<input type="submit" value="¡Actualizar!"><button type="button">Cancelar</button>
+	<input type="submit" value="¡Actualizar!"><button type="button" id="cancelar">Cancelar</button>
 </form>
 
 

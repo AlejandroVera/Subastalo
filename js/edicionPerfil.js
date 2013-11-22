@@ -11,6 +11,10 @@ function init(){
 		return false;
 	});
 	
+	$("#cancelar").click(function(){
+		window.location.href ="index.php";
+	});
+	
 }
 
 
@@ -41,7 +45,7 @@ function editProfile(e) {
 	    	try{
 		    	var data = JSON.parse(data);
 				if (data.status == 200)
-					messageAndRedirect(data.msg, window.location.href);
+					messageAndRedirect(data.msg, data.url);
 				else
 					error(data.msg);
 			}catch(e){
@@ -56,38 +60,6 @@ function editProfile(e) {
     });
     e.preventDefault(); //Prevent Default action.
 }
-
-
-
-
-//function editProfile() {
-//	$("#editarPerfil > :submit").prop('disabled', true);
-//	$.ajax({
-//		type: "POST",
-//		url: "editarPerfil.php?validate",
-//		data : $("#editarPerfil").serialize(),
-//	})
-//	.done(function(info){
-//		try{
-//			var data = JSON.parse(info);
-//			if (data.status == 200)
-//				messageAndRedirect(data.msg, data.url);
-//			else
-//				error(data.msg);
-//		}catch(e){
-//			alert("Error al enviar el formulario.");
-//			console.log(e);
-//		}
-//	})
-//
-//	.fail(function(){
-//		alert("Error al actualizar el perfil. Revise su conexión a Internet.");
-//	})
-//	.always(function(){
-//		$("#editarPerfil > :submit").prop('disabled', false);
-//	});
-//
-//}
 
 
 function handleSelectedImage(input) {
