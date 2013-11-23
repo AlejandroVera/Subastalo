@@ -69,10 +69,17 @@ else if(isset($_POST['idProducto'])&&isset($_POST['puja'])){
 	        		$PuntoSubasta=$PuntoSubasta-$puja;
 	        		$puntos = doquery("UPDATE {{table}} SET `PuntosSubasta`='{$PuntoSubasta}' WHERE id={$userID}", 'usuarios');
 	    			if($puntos){
-	    				sendAjaxData(array(
-	             	   'msg' => "Puja realizado correctamente.",
-					   'url' => "visualizarProducto.php?tipo=subasta&id={$idProducto}"));	
-	    			}
+	    				$durac = doquery("SELECT duracion FROM {{table}} WHERE id = {$idProducto}", 'subastas', false);
+	    				$duracion=mysqli_fetch_assoc($durac);
+						
+						$newDurac=$duracion['duracion']+60;
+						$upDurac= doquery("UPDATE {{table}} SET `duracion`='{$newDurac}' WHERE id={$idProducto}", 'subastas');
+	    				if($upDurac){
+		    				sendAjaxData(array(
+		             	   'msg' => "Puja realizado correctamente.",
+						   'url' => "visualizarProducto.php?tipo=subasta&id={$idProducto}"));	
+		    			}
+					}
 				}
 			}
 		}
