@@ -7,6 +7,7 @@
 		<script src="{$IS2_ROOT_PATH}js/jquery-ui-1.10.3.custom.min.js"></script>
 		<script src="{$IS2_ROOT_PATH}js/autobahn.min.js"></script> 
 		<script src="{$IS2_ROOT_PATH}js/common.js"></script>
+		<script src="{$IS2_ROOT_PATH}js/barra.js"></script>
 		{if $IN_ADMIN}
 			<script src="{$IS2_ROOT_PATH}js/admin/leftmenu.js"></script>
 		{/if}
