@@ -1,16 +1,20 @@
 {include file="header.tpl" title="Visualizar producto" scripts=$scripts}
 
 {if $res.pujado==1}
-	{if $res.imagenes!=null}
-	<div class="slider-wrapper theme-default">
-		<div class="ribbon"></div>
-		<div id="slider" class="nivoSlider">
-		   {foreach from=$res.imagenes item=imagen}
-		    <img src="images/{$imagen}" alt="" data-transition="slideInLeft"/>
-		   {/foreach}
-		</div>
-	</div>	
-	{/if}
+	<div id="contenedorImagen">
+		{if !empty($res.imagenes)}
+			<div class="slider-wrapper theme-default">
+				<div class="ribbon"></div>
+				<div id="slider" class="nivoSlider">
+				   {foreach from=$res.imagenes item=imagen}
+				    <img src="images/{$imagen}" alt="" data-transition="slideInLeft"/>
+				   {/foreach}
+				</div>
+			</div>
+		{else}
+			<img src="images/noImage.jpg">	
+		{/if}
+	</div>
 	<div id="Datos">
 		<div id="nombre">
 			{$res.nombre}
