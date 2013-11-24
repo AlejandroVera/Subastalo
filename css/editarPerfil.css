@@ -1,0 +1,71 @@
+#divEdicion {
+	margin-left: 35%;
+	margin-right: auto;
+	width: 370px;
+	padding-top: 10px;
+}
+
+.textoEntradaEdicion {
+	font-weight: bold;
+	color: rgba(0,0,0,0.5);
+	display: inline;
+}
+
+.valorEntradaTabla {
+	margin-left: 10px;
+	display: inline;
+}
+
+.entradaEdicion {
+	margin-top: 15px;
+	text-align: right;
+}
+
+.campoTexto {
+	width: 200px;
+	border-radius: 5px;
+	border: 1px solid rgba(0,0,0,0.2);
+	padding: 3px;
+	padding-left: 5px;
+}
+
+.campoTexto:focus {
+	outline: none;
+	transition: 0.2s;
+	border-color: #9ecaed;
+	box-shadow: 0 0 10px #9ecaed;
+}
+
+.redButton:hover {
+	transition: 0.1s;
+	box-shadow: inset 0px 0px 7px rgba(255, 255, 255, 0.9);
+}
+
+.redButton:active {
+	transition: 0s;
+	background-color: rgba(255, 0, 0, 0.8);
+	box-shadow: inset 0px 3px 5px rgba(0, 0, 0, 0.6);
+}
+
+.redButton {
+	cursor: pointer;
+	outline: none;
+	margin-top: 20px;
+	margin-left: 50%;
+	text-align: center;
+	padding: 5px;
+	background-color: rgba(255, 0, 0, 0.8);
+	border: 1px solid rgba(0,0,0,0.3);
+	border-radius: 5px;
+	color: rgba(255,255,255,1);
+	font-weight: bold;
+	text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+}
+
+.checkBox {
+	width: 200px;
+	border-radius: 5px;
+	border: 1px solid rgba(0,0,0,0.2);
+	padding: 3px;
+	padding-left: 5px;
+}

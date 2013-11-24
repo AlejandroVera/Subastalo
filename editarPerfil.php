@@ -130,6 +130,7 @@ else if(estoy_logeado()){
 	$smarty->assign('scripts', array("edicionPerfil.js"));
 	$smarty->assign('res', $results);
 	$smarty->assign('lista',$lista);
+	$smarty->assign('css',array("editarPerfil.css"));
     $smarty->display('editarPerfil.tpl');	
 }
 else{

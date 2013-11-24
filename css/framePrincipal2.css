@@ -79,12 +79,12 @@
 
 .list {
 	position: absolute;
-	margin-top: 3.8%;
-	margin-left: 93%;
+	margin-top: 3.3%;
+	margin-left: 90%;
 	padding: 3px;
-	width: 90px;
+	width: 140px;
 	border-radius: 3px;
-	background-color: rgba(0,0,0,0.05);
+	background-color: rgba(255,255,255,0.9);
 	border: 1px solid;
 	border-top: none;
 	border-color: rgba(0,0,0,0.1);

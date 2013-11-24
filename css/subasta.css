@@ -1,10 +1,82 @@
-#contenedorImagen{
-	width: 400px;	
+#contenedorImagen {
+	width: 300px;
+	display: inline;
 }
 
-#container{
+#container {
 	width: 60%;
-	margin-left: auto;
-	margin-right: auto;	
+	margin-left: 25%;
+	margin-right: auto;
 	margin-top: 20px;
+}
+
+img {
+	width: inherit;
+	height: inherit;
+}
+
+#dataContainer {
+	width: 50%;
+	padding: 10px;
+	position: absolute;
+	display: inline;
+}
+#nombre {
+	font-weight: bold;
+	color: rgba(0,0,0,0.6);
+	font-size: 30px;
+	margin-left: 20px;
+}
+
+#pujar {
+	margin-left: 30px;
+	margin-top: 10px;
+}
+
+#pujar input[type="submit"] {
+	width: 200px;
+	font-size: 20px;
+	padding: 10px;
+}
+
+.redButton:hover {
+	transition: 0.1s;
+	box-shadow: inset 0px 0px 7px rgba(255, 255, 255, 0.9);
+}
+
+.redButton:active {
+	transition: 0s;
+	background-color: rgba(255, 0, 0, 0.8);
+	box-shadow: inset 0px 3px 5px rgba(0, 0, 0, 0.6);
+}
+
+.redButton {
+	width: 200px;
+	font-size: 20px;
+	padding: 10px;
+	cursor: pointer;
+	outline: none;
+	background-color: rgba(255, 0, 0, 0.8);
+	border: 1px solid rgba(0,0,0,0.3);
+	border-radius: 5px;
+	color: rgba(255,255,255,1);
+	text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+}
+
+#crono {
+	margin-left: 90px;
+	font-size: 30px;
+	font-family: fantasy;
+	margin-top: 10px;
+}
+
+#pujar {
+	margin-left: 30px;
+	margin-top: 20px;
+}
+
+#puntos {
+	margin-left: 35px;
+	font-size: 15px;
+	margin-top: 15px;
 }
