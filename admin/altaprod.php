@@ -87,10 +87,10 @@ if(isset($_GET['create'])){
     
 }
 
-function sendAjaxData($data, $statusCode = 200){
+/*function sendAjaxData($data, $statusCode = 200){
     $data['status'] = $statusCode;
     echo json_encode($data);
-}
+}*/
 
 function parseRequest(){
     

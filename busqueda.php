@@ -29,14 +29,20 @@ if (isset($_GET['validate'])) {
 	$palabraClave .= "%";
 
 	$results = busqueda($palabraClave);
-	$columns = array("Tipo", "Nombre", "Descripción", "Tiempo Restante", "Fecha de creación");
-	$tabla = createTable($columns, $results);	
+	if (!empty($results)){
+		$columns = array("Tipo", "Nombre", "Descripción", "Tiempo Restante", "Fecha de creación");
+		$tabla = createTable($columns, $results);
+	}else{
+		$tabla = "Lo sentimos pero no hay resultados para su término de búsqueda.";
+	}
+			
 	$smarty -> assign('tabla', $tabla);
 	$smarty -> assign('nivelAcceso', estoy_logeado());
 	$smarty -> assign('css', array("busqueda.css"));
 	$smarty -> assign('scripts', array("busqueda.js", "jquery.tablesorter.min.js"));	
+	$smarty -> assign('nombreUsuario', userName());	
 	$smarty -> display('busqueda.tpl');
-
+	
 
 } else {//Mostrar el formulario
 

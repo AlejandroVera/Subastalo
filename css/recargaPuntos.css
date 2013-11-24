@@ -1,0 +1,66 @@
+#recargaPuntos {
+	width: 250px;
+}
+
+#titulo {
+	text-align: center;
+	font-size: 16px;
+	font-weight: bold;
+	color: rgba(0,0,0,0.4);
+	margin-bottom: 12px;
+}
+
+#coin {
+	display: inline;
+	width: 40px;
+	height: 50px;
+	float: left;
+}
+
+#description {
+	width: 200px;
+	float: right;
+}
+
+#pointsPakagesList {
+	text-align: center;
+	padding: 10px;
+	margin-left: 15%;
+}
+
+img {
+	width: 45px;
+	display: inline;
+}
+
+.redButton:hover {
+	transition: 0.1s;
+	box-shadow: inset 0px 0px 7px rgba(255, 255, 255, 0.9);
+}
+
+.redButton:active {
+	transition: 0s;
+	background-color: rgba(255, 0, 0, 0.8);
+	box-shadow: inset 0px 3px 5px rgba(0, 0, 0, 0.6);
+}
+
+.redButton {
+	cursor: pointer;
+	outline: none;
+	text-align: center;
+	padding: 5px;
+	background-color: rgba(255, 0, 0, 0.8);
+	border: 1px solid rgba(0,0,0,0.3);
+	border-radius: 5px;
+	color: rgba(255,255,255,1);
+	font-weight: bold;
+	text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+}
+
+.priceDiv {
+	font-size: 16px;
+	font-weight: bold;
+	color: rgba(255,210,0,1);
+	text-shadow: 0px 1px 0 rgba(0,0,0,1);
+	margin-left: 10px;
+}
