@@ -47,6 +47,7 @@ else{
 	$nombre=$res['nombre'];
 	$smarty->assign('nombre',$nombre);
 	$smarty->assign('scripts', array("cambiopasswd.js"));
+	$smarty->assign('css', array("cambiopasswd.css"));
     $smarty->display('cambiopasswd.tpl');	
 
 }
