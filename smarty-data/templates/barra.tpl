@@ -9,9 +9,11 @@
   			<div class="listElement" id="edperfil">Editar Perfil</div>
   			<div class="listElement" id="cambiarC">Cambiar Contraseña</div>
   			{if $aceptaMsg==1}
-  				<div class="listElement" id="recibirMsg">Deshabilitar Mensajes Privados</div>
+  				<div class="listElement" id="NoRecibirMsg">Deshabilitar Mensajes Privados</div>
+  				<div class="listElement" id="recibirMsg" hidden >Habilitar Mensajes Privados</div>
   			{else}
-  						<div class="listElement" id="recibirMsg">Habilitar Mensajes Privados</div>
+  				<div class="listElement" id="recibirMsg">Habilitar Mensajes Privados</div>
+  				<div class="listElement" id="NoRecibirMsg" hidden >Deshabilitar Mensajes Privados</div>
   			{/if}
 	</div>
 	<div id="panelDiv" class="menu_element">{$nombreUsuario} </div>	

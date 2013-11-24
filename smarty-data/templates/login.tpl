@@ -1,6 +1,6 @@
 {include file="header.tpl" title="Alta de usuario" scripts=$scripts css=$css}
 
-{include file ="barra.tpl" nivelAcceso=$nivelAcceso IN_ADMIN=$IN_ADMIN aceptaMsg=$aceptaMsg}
+{include file ="barra.tpl" nivelAcceso=$nivelAcceso IN_ADMIN=$IN_ADMIN}
 
 <div id='login-box' class='login-popup'>
 	<form id="login" name='loginform' class='signin'>

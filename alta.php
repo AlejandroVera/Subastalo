@@ -79,6 +79,7 @@ if(isset($_GET['validate'])){
     $smarty->assign('scripts', array("alta.js"));
     $smarty -> assign('nivelAcceso', estoy_logeado());
 	$smarty -> assign('IS_CONTENT', false);
+	$smarty -> assign('aceptaMsg', aceptaMensajes(userId()));
     $smarty->display('alta.tpl');
 }
 

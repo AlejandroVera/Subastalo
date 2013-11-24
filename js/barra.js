@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
 	$("#loginDiv").click(function() {
 
 		window.parent.$("#marco").attr("src", "./login.php");
@@ -33,6 +32,18 @@ $(document).ready(function() {
 
 	$("#cambiarC").click(function() {
 		window.parent.$("#marco").attr("src", "./cambiopasswd.php");
+	});
+
+	$("#recibirMsg").click(function() {
+		sendEstadoMensajes("a");
+		$("#recibirMsg").hide();
+		$("#NoRecibirMsg").show();
+	});
+
+	$("#NoRecibirMsg").click(function() {
+		sendEstadoMensajes("d");
+		$("#NoRecibirMsg").hide();
+		$("#recibirMsg").show();
 	});
 
 	$("#formularioAlta").submit(function() {
@@ -81,3 +92,14 @@ function sendAltaForm() {
 	});
 
 }
+
+function sendEstadoMensajes(estado) {
+
+	$.post("estadoMensajes.php", {
+		usuario : USUARIO_LOGUEADO.toString(),
+		estado : estado.toString()
+	}, function(respuesta) {
+
+	});
+}
+
