@@ -78,8 +78,12 @@
 			<input type="hidden" value={$res.hoy} name="crono" class="countdown">
 			
 			<div id="puntos">
-				Producto sin pujar. Mínima puja: 1 punto.
+				Mínima puja: 1 punto.
 			</div>
+			<div id="ganador">
+				Ganador provisional: {$ownerPuja}
+			</div>
+			
 		</div>
 		</div>
 		<div id="Descripcion">

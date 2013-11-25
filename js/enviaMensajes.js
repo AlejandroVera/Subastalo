@@ -1,4 +1,3 @@
-var sessionE = null;
 var wsuri = "ws://localhost:8080";
 
 function enviarMensaje() {

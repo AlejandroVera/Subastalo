@@ -12,7 +12,7 @@ function conectar(usuarioLogueado) {
 	ab.connect(wsuri, function(session) {
 		sess = session;
 		//Subscribirme a mis mensajes.
-		sess.subscribe("msg://" + usuarioLogueado, procesarMensaje);
+		sess.subscribe("msg:" + usuarioLogueado, procesarMensaje);
 		console.log("Connected to " + wsuri);
 	}, function(code, reason) {
 		sess = null;
