@@ -10,7 +10,7 @@ $results = array();
 if (isset($_GET['tipo']) && isset($_GET['id'])) {
 
 	if ($_GET['tipo'] == "subasta") {
-		$results = obtenerDatos($_GET['id']);
+		$results = obtenerDatosSubastas($_GET['id']);
 	} else if ($_GET['tipo'] == "oferta") {
 		//TODO
 	} else
@@ -24,7 +24,7 @@ if (isset($_GET['tipo']) && isset($_GET['id'])) {
 	$smarty -> display('visualizarProducto.tpl');
 
 } else if (isset($_GET['terminado'])) {
-	$results = obtenerDatos($_GET['id']);
+	$results = obtenerDatosSubastas($_GET['id']);
 	$smarty -> assign('IS_CONTENT', false);
 	$smarty -> assign('res', $results);
 	$smarty -> assign('scripts', array("jquery.nivo.slider.pack.js"));
@@ -77,7 +77,7 @@ if (isset($_GET['tipo']) && isset($_GET['id'])) {
 	echo "Los parámetros son incorrectos.";
 }
 
-function obtenerDatos($id) {
+function obtenerDatosSubastas($id) {
 	$results = array();
 	$DatSub = doquery("SELECT * FROM {{table}} WHERE id = {$id}", 'subastas', false);
 	while ($datosProd = mysqli_fetch_assoc($DatSub)) {
