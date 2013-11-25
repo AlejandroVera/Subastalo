@@ -22,6 +22,12 @@ $(document).ready(function() {
 		window.parent.$("#marco").attr("src", "./busqueda.php?palabra_clave=" + pal);
 	});
 
+	$("#palabra_clave").keyup(function(event) {
+		if (event.keyCode == 13) {
+			$("#buscar").click();
+		}
+	});
+
 	$("#adminDiv").click(function() {
 		window.parent.$("#marco").attr("src", "./admin/index.php");
 	});

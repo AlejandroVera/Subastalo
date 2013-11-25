@@ -30,7 +30,7 @@ if (isset($_GET['validate'])) {
 
 	$results = busqueda($palabraClave);
 	if (!empty($results)){
-		$columns = array("Tipo", "Nombre", "Descripción", "Tiempo Restante", "Fecha de creación");
+		$columns = array("Imagen","Tipo", "Nombre", "Descripción", "Tiempo Restante", "Fecha de creación");
 		$tabla = createTable($columns, $results);
 	}else{
 		$tabla = "Lo sentimos pero no hay resultados para su término de búsqueda.";
@@ -40,8 +40,8 @@ if (isset($_GET['validate'])) {
 	$smarty -> assign('nivelAcceso', estoy_logeado());
 	$smarty -> assign('css', array("busqueda.css"));
 	$smarty -> assign('scripts', array("busqueda.js", "jquery.tablesorter.min.js"));	
-	$smarty -> assign('nombreUsuario', userName());	
-	$smarty -> assign('aceptaMsg', aceptaMensajes(userId()));
+	$smarty -> assign('nombreUsuario', userName());
+	$smarty -> assign('aceptaMsg', aceptaMensajes(userId()));	
 	$smarty -> display('busqueda.tpl');
 	
 
@@ -52,7 +52,6 @@ if (isset($_GET['validate'])) {
 	$smarty -> assign('tabla', $results);
 	$smarty -> assign('scripts', array("busqueda.js", "jquery.tablesorter.min.js"));
 	$smarty -> assign('css', array("busqueda.css"));
-	$smarty -> assign('aceptaMsg', aceptaMensajes(userId()));
 	$smarty -> display('busqueda.tpl');
 }
 
@@ -73,13 +72,18 @@ function busqueda($palabraClave) {
 	$res = doquery("SELECT * FROM {{table}} WHERE nombre LIKE '$palabraClave'", 'subastas', false);
 
 	while ($resultado = mysqli_fetch_assoc($res)) {
-
+			
+		if ($resultado['imagen'] !==""){	
+			$results[] = "<img src=".$resultado['imagen']. ">"; //Imagen*/
+		}else{
+			$results[] = "<img src= images/noImage.jpg>";
+		}
 		$results[] = 'Subasta';
 		//TODO: enlace provisional, cambiar en el futuro
-		$results[] = "<a href='".IS2_ROOT_PATH."visualizarProducto.php?tipo=subasta&id=".$resultado['id'] . "'>" . $resultado['nombre'] . "</a>";
+		$results[] = "<a href='" . IS2_ROOT_PATH . "/visualizarProducto.php?tipo=subasta&id=" . $resultado['id'] . "'>" . $resultado['nombre'] . "</a>";
 		//Enlace al producto
 		$results[] = $resultado['descripcion'];
-		/*$results[] = "<img src='"$resultado['imagen'] /img>"; //Imagen*/
+		
 		$tiempoRestante = ($resultado['comienzo'] + $resultado['duracion']) - time();
 
 		if ($tiempoRestante < 0) {
@@ -91,6 +95,20 @@ function busqueda($palabraClave) {
 
 	}
 
+	/*$res = doquery("SELECT * FROM {{table}} WHERE nombre LIKE '$palabraClave'", 'ofertas', false);
+
+	 while ($resultado = mysqli_fetch_assoc($res)) {
+
+	 $results[] = 'Oferta';
+	 //TODO: enlace provisional, cambiar en el futuro
+	 $results[] = "<a href='" . IS2_ROOT_PATH . "/ofertas/" . $resultado['id'] . "'>" . $resultado['nombre'] . "</a>";
+	 $results[] = $resultado['descripcion'];
+	 /*$results[] = "<img src='"$resultado['imagen'] /img>"; //Imagen
+	 $results[] = $resultado['precio'];
+
+	 $results[] = date(" H:m:s d/m/Y", $resultado['fechaCreacion']);
+
+	 }*/
 	return $results;
 }
 
