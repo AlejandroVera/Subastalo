@@ -45,8 +45,8 @@ if(isset($_GET['create'])){
             }
         }
         
-        doquery("INSERT INTO {{table}} (nombre, imagen, descripcion, comienzo, duracion) VALUES (
-            '{$parsed['nombre']}', '".implode("|",$imagenes)."', '{$parsed['descripcion']}', '{$parsed['comienzo']}', '{$parsed['duracion']}'
+        doquery("INSERT INTO {{table}} (nombre, imagen, descripcion, comienzo, duracion, fechaCreacion) VALUES (
+            '{$parsed['nombre']}', '".implode("|",$imagenes)."', '{$parsed['descripcion']}', '{$parsed['comienzo']}', '{$parsed['duracion']}', '".time()."'
         )", "subastas");
         
         //Obtener el ultimo id insertado y añadir todas las caracteristicas a la BD para ese ID.
