@@ -25,7 +25,7 @@ if(isset($_GET['validate'])){
                 sendAjaxData(array('msg' => "No se ha podido enviar el correo de confirmación."), 400);
             }
             sendAjaxData(array(
-                'msg' => "El cambio de contraseña se ha realizado correctamente.",
+                'msg' => "El cambio de contraseña se ha realizado correctamente. Se le ha enviado un correo de confirmación.",
                 'url' => "index.php"
             ));
                
