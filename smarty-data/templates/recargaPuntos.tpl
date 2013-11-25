@@ -6,14 +6,14 @@
 		<div id='titulo'> 
 			Recarga de puntos de puja
 		</div>
+		<div class='separador'></div>
 		<div id='coin'>
 			<img src="images/spinningCoin.gif" alt='coin' />
 		</div>
 		<div id='description'>
 			Con los puntos de subasta puedes pujar de forma activa en subastas
-		</div>
-		<div id='separador'></div>
-		<table id='pointsPakagesList'>
+		</div>		
+		<table id='pointsPakagesList'>		
 			<tbody>
 				<tr class='points'>
 					<td class='purchasePoints'>

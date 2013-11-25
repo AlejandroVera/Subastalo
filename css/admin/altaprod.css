@@ -1,25 +1,97 @@
-.separador{
-	border-bottom: 1px solid;
-	margin: 10px 5px 10px 5px;
-}
 
-.prevImagen{
+h1{
+	font-weight: bold;
+	color: rgba(0,0,0,0.6);
+}
+.prevImagen {
 	height: 100px;
 	width: 100px;
 	margin: 3px;
 	border: 1px solid;
 }
 
-#addCaract:hover{
-	cursor: pointer;
+.centered{
+	margin-left: 22%;
 }
 
-#addCaract{
-	border: solid 1px;
-	border-radius: 8px;
-	padding: 0px 3px 0px 3px;
-	-moz-user-select: none;
-	-webkit-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
+#addCaract {
+	padding: 0 7px;
+}
+
+.textoEntradaAlta {
+	font-weight: bold;
+	color: rgba(0,0,0,0.5);
+	display: inline-block;
+	width: 85px;
+	vertical-align: top;
+	margin-bottom: 10px;	
+}
+
+.valorEntradaTabla {
+	display: inline;
+}
+
+.entradaAlta {
+	margin-top: 15px;
+	text-align: left;
+}
+
+.entradaAlta input {
+	width: 200px;
+	border-radius: 5px;
+	border: 1px solid rgba(0,0,0,0.2);
+	padding: 3px;
+	padding-left: 5px;
+}
+
+.entradaAlta input:focus {
+	outline: none;
+	transition: 0.2s;
+	border-color: #9ecaed;
+	box-shadow: 0 0 10px #9ecaed;
+}
+
+.entradaAlta textarea {
+	width: 200px;
+	border-radius: 5px;
+	border: 1px solid rgba(0,0,0,0.2);
+	padding: 3px;
+	padding-left: 5px;
+}
+
+.entradaAlta textarea:focus {
+	outline: none;
+	transition: 0.2s;
+	border-color: #9ecaed;
+	box-shadow: 0 0 10px #9ecaed;
+}
+
+.redButton:hover {
+	transition: 0.1s;
+	box-shadow: inset 0px 0px 7px rgba(255, 255, 255, 0.9);
+}
+
+.redButton:active {
+	transition: 0s;
+	background-color: rgba(255, 0, 0, 0.8);
+	box-shadow: inset 0px 3px 5px rgba(0, 0, 0, 0.6);
+}
+
+.redButton {
+	cursor: pointer;
+	outline: none;
+	margin-top: 20px;
+	text-align: center;
+	padding: 5px;
+	background-color: rgba(255, 0, 0, 0.8);
+	border: 1px solid rgba(0,0,0,0.3);
+	border-radius: 5px;
+	color: rgba(255,255,255,1);
+	font-weight: bold;
+	text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+}
+
+.fotos{
+	margin-top: 10px;
+	text-align: left;
 }
