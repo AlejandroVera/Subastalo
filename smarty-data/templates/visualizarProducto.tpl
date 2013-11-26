@@ -8,7 +8,7 @@
 					<div class="ribbon"></div>
 					<div id="slider" class="nivoSlider">
 					   {foreach from=$res.imagenes item=imagen}
-					    <img src="images/{$imagen}" alt="" data-transition="slideInLeft"/>
+					    <img src="images/uploaded/{$imagen}" alt="" data-transition="slideInLeft"/>
 					   {/foreach}
 					</div>
 				</div>
