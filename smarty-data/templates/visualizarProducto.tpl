@@ -23,17 +23,18 @@
 			<div id="nombre">
 				{$res.nombre}
 			</div>
-			{if $res.ganada==1}
+			{if $res.terminado==1}
 				<div id="pujaTerminada">Puja Terminada</div>
 			{else}
 			<div id="pujar">
 				<input type="submit" class="redButton" name="pujar" value="¡Pujar!">
 			</div>
 			<div id="dialog-form" title="Crear nueva puja">
+				<div id="saldo"> Su saldo actual es: {$res.saldo}</div>
 				<p class="validateTips">Introduzca su puja:</p>
 				<form id="datosPuja">
 					<div id="idProducto" style="display:none;">
-					<input type="text" name="idProducto" value={$res.idProducto}>
+					<input type="text" name="id" value={$res.id}>
 					</div>
 					<input type="text" name="puja" id="puja" class="text ui-widget-content ui-corner-all" />
 				</form>
@@ -52,12 +53,14 @@
 				{else}
 					Mínima puja: 1 punto.
 				{/if}
-				{if $res.ganada==1}--> 
-					Ganador: 
-				{else}
-					Ganando:
+				{if $res.terminado==1 && $res.pujado==1}
+					--> Ganador: 
+				{else if $res.pujado==1 && $res.terminado==0}
+					--> Ganando:
 				{/if}
+				{if $res.pujado==1}
 				({$res.usuario})
+				{/if}
 			</div>
 		</div>	
 			
@@ -71,6 +74,6 @@
 			{$res.descripcion}
 		</div>
 	
-	{/if}
+	
 </div>
 {include file="footer.tpl"}

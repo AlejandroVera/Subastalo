@@ -1,7 +1,7 @@
 sess = "null";
 var wsuri = "ws://localhost:8080";
 
-
+alert("hola");
 //Acción al recibir un evento
 function procesarMensaje(topic, event) {
 	alert("un mensaje nuevo de "+topic+" contiene: "+event.cuerpo);

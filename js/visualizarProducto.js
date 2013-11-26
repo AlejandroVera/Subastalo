@@ -3,7 +3,7 @@ var wsuri = "ws://localhost:8080";
 function init() {
 	conectar();
 	var id = getParameterByName("id");
-	countdown(1, "visualizarProducto.php?terminado&id=" + id);
+	countdown(1, "visualizarProducto.php?id=" + id);
 	$("#pujar").click(function() {
 		$("#dialog-form").dialog("open");
 	});
@@ -22,7 +22,7 @@ function init() {
 					$(this).dialog("close");
 				} else {
 					alert("¡Sólo se aceptan números!");
-					location.href = "visualizarProducto.php?tipo=subasta&id=" + id;
+					location.href = "visualizarProducto.php?id=" + id;
 					$(this).dialog("close");
 				}
 			},
@@ -30,9 +30,9 @@ function init() {
 				$(this).dialog("close");
 			}
 		},
-		close : function() {
+	/*	close : function() {
 			allFields.val("").removeClass("ui-state-error");
-		}
+		}*/
 	});
 
 	$('#slider').nivoSlider({
@@ -139,6 +139,7 @@ function countdown(showDays, red, redTime) {
 		id = todos[i].name;
 		sobran = Math.ceil((endTime - seconds));
 		if (sobran <= 0) {
+			
 			$('#'+id)[0].innerHTML = "0:00:00";
 			if (redirect) {
 				window.setTimeout('document.location.href="' + redirect + '";', timeRed);
@@ -197,7 +198,7 @@ function conectar() {
 
 //Acción al recibir un evento
 function procesarMensaje(topic, event) {
-	$("#marco").reload(true);
+	location.reload(true);
 }
 
 function enviarNotificacionPuja() {
@@ -205,7 +206,6 @@ function enviarNotificacionPuja() {
 	ab.connect(wsuri, function(session) {
 		sessionE = session;
 		var cuerpo = {
-			usuario : NOMBRE_USUARIO.toString()
 		};
 		sessionE.publish("puja:" + getParameterByName("id"), cuerpo);
 		console.log("Connected to " + wsuri);
