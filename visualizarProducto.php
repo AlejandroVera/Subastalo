@@ -22,11 +22,6 @@ if (isset($_GET['tipo']) && isset($_GET['id'])) {
 	$smarty -> assign('css', array("nivo-slider.css", "themes/default/default.css", "subasta.css"));
 	$smarty -> assign('nombreUsuario', userName());
 	
-
-	if(isset($results['usuario']))
-		$smarty -> assign('ownerPuja',$a['username']);
-	else
-		$smarty -> assign('ownerPuja',"Sin Pujar");
 	$smarty -> display('visualizarProducto.tpl');
 
 } else if (isset($_GET['terminado'])) {
@@ -68,7 +63,7 @@ if (isset($_GET['tipo']) && isset($_GET['id'])) {
 						$duracion = mysqli_fetch_assoc($durac);
 
 						$newDurac = $duracion['duracion'] + 60;
-						$upDurac = doquery("UPDATE {{table}} SET `duracion`='{$newDurac}' WHERE id={$idProducto}", 'subastas');
+						$upDurac = doquery("UPDATE {{table}} SET `duracion`='{$newDurac}',`pujado`='1' WHERE id={$idProducto}", 'subastas');
 						if ($upDurac) {
 							sendAjaxData(array('msg' => "Puja realizado correctamente.", 'url' => "visualizarProducto.php?tipo=subasta&id={$idProducto}"));
 						}

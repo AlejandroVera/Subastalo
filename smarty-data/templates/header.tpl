@@ -34,7 +34,7 @@
 				var USUARIO_LOGUEADO = {$USUARIO_LOGUEADO};
 			{/if} 
 			{if isset($nombreUsuario)}
-				var NOMBRE_USUARIO = {$nombreUsuario};
+				var NOMBRE_USUARIO = "{$nombreUsuario}";
 			{/if} 
 			
 		</script>

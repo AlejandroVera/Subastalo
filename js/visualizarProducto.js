@@ -75,8 +75,11 @@ function pujar() {
 		try {
 			var data = JSON.parse(info);
 			if (data.status == 200) {
-				enviarNotificacionPuja();
-				messageAndRedirect(data.msg, data.url);
+				if(data.msg=="Puja realizado correctamente.")
+					enviarNotificacionPuja();
+				if(data.msg=="Puja realizado correctamente.")
+					enviarNotificacionPuja();
+				message(data.msg);
 			} else
 				error(data.msg);
 		} catch(e) {
@@ -194,8 +197,7 @@ function conectar() {
 
 //Acción al recibir un evento
 function procesarMensaje(topic, event) {
-	
-	alert("Nueva puja en producto: " + topic + " contiene: " + event.cuerpo);
+	$("#marco").reload(true);
 }
 
 function enviarNotificacionPuja() {
@@ -205,7 +207,7 @@ function enviarNotificacionPuja() {
 		var cuerpo = {
 			usuario : NOMBRE_USUARIO.toString()
 		};
-		sessionE.publish("puja:" + parametroGet("id"), cuerpo);
+		sessionE.publish("puja:" + getParameterByName("id"), cuerpo);
 		console.log("Connected to " + wsuri);
 	}, function(code, reason) {
 		sessionE = null;

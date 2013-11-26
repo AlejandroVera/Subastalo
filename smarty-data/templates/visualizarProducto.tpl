@@ -22,9 +22,7 @@
 			<div id="nombre">
 				{$res.nombre}
 			</div>
-			{if $res.ganada==1}
-				<div id="pujaTerminada">Puja Terminada</div>
-			{else}
+			
 			<div id="pujar">
 				<input type="submit" class="redButton" name="pujar" value="¡Pujar!">
 			</div>
@@ -38,15 +36,13 @@
 				</form>
 				</div>
 			</div>
-			
+
 			<div id="crono"></div>
 			<input type="hidden" value={$res.hoy} name="crono" class="countdown">
-			{/if}
+			
 			
 			<div id="puntos">
-				Mejor puja: {$res.puntos} puntos 
-				{if $res.ganada==1}--> Ganador: {/if}
-				({$res.usuario})
+				Mejor puja: {$res.puntos} puntos --> Ganando: ({$res.usuario})
 			</div>
 		</div>		
 		<div id="Descripcion">
@@ -80,9 +76,7 @@
 			<div id="puntos">
 				Mínima puja: 1 punto.
 			</div>
-			<div id="ganador">
-				Ganador provisional: {$ownerPuja}
-			</div>
+
 			
 		</div>
 		</div>
