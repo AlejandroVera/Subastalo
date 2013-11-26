@@ -15,30 +15,32 @@ if (isset($_GET['id'])) {
 	$id = $_GET['id'];
 	$results = obtenerDatosSubastas($id);
 	$resp = doquery("SELECT * FROM {{table}} WHERE subasta={$id}", 'pujas', false);
-	$a= mysqli_fetch_assoc($resp);
-	
-	if(!isset($a['id']) && $results['terminado']==1)
-		$tsinpujar=1;
-	else 
-		$tsinpujar=0;
-	$results['logueado']=0;
-	if(estoy_logeado())
-		$results['logueado']=1;
-	
-	
+	$a = mysqli_fetch_assoc($resp);
+
+	if (!isset($a['id']) && $results['terminado'] == 1)
+		$tsinpujar = 1;
+	else
+		$tsinpujar = 0;
+	$results['logueado'] = 0;
+	if (estoy_logeado())
+		$results['logueado'] = 1;
+
 	$smarty -> assign('IS_CONTENT', false);
-	$smarty ->assign('terminadosinpujar', $tsinpujar);
+	$smarty -> assign('terminadosinpujar', $tsinpujar);
 	$smarty -> assign('res', $results);
 	$smarty -> assign('scripts', array("visualizarProducto.js", "jquery.nivo.slider.pack.js"));
 	$smarty -> assign('css', array("nivo-slider.css", "themes/default/default.css", "subasta.css"));
+	$smarty -> assign('nivelAcceso', estoy_logeado());
+	$smarty -> assign('nombreUsuario', userName());
+	$smarty -> assign('aceptaMsg', aceptaMensajes(userId()));
 	$smarty -> display('visualizarProducto.tpl');
 
-/*Caso en que se ha realizado una puja
- * parámentros: 
- * id = id del producto
- * puja = cantidad de puja
- * 
- */
+	/*Caso en que se ha realizado una puja
+	 * parámentros:
+	 * id = id del producto
+	 * puja = cantidad de puja
+	 *
+	 */
 } else if (isset($_POST['id']) && isset($_POST['puja'])) {
 	if (isset($_SESSION['USUARIO'])) {
 		$userID = userId();
@@ -46,7 +48,7 @@ if (isset($_GET['id'])) {
 		$puja = $_POST['puja'];
 		$fields = '`id`, `subasta`, `puntos`, `usuario`, `fecha`';
 		$hoy = time();
-		$values = "NULL, " . $id . ", " . $puja . "," . $userID . "," . $hoy ;
+		$values = "NULL, " . $id . ", " . $puja . "," . $userID . "," . $hoy;
 		$UsrP = doquery("SELECT PuntosSubasta FROM {{table}} WHERE id = {$userID}", 'usuarios', false);
 		$UsrPoints = mysqli_fetch_assoc($UsrP);
 		$PuntoSubasta = (double)$UsrPoints['PuntosSubasta'];
@@ -112,11 +114,11 @@ function obtenerDatosSubastas($id) {
 		$nomUsr = doquery("SELECT username FROM {{table}} WHERE id = {$results['usrID']}", 'usuarios', false);
 		$nameUsr = mysqli_fetch_assoc($nomUsr);
 		$results['usuario'] = $nameUsr['username'];
-		
-		$saldoMio = doquery("SELECT PuntosSubasta FROM {{table}} WHERE id = ".userId(), 'usuarios', false);
+
+		$saldoMio = doquery("SELECT PuntosSubasta FROM {{table}} WHERE id = " . userId(), 'usuarios', false);
 		$saldo = mysqli_fetch_assoc($saldoMio);
 		$results['saldo'] = $saldo['PuntosSubasta'];
-		
+
 	}
 	//Calculo de la finalizacion de producto
 	$fin = $results['comienzo'] + $results['duracion'];
@@ -124,11 +126,11 @@ function obtenerDatosSubastas($id) {
 
 	//Obtencion de los nombres de las imagenes
 	$imagenes = array();
-	
+
 	if ($results['imagen'] != "") {
 		$imagenes = explode("|", $results['imagen']);
 	}
-	
+
 	$results['imagenes'] = $imagenes;
 	$results['id'] = $id;
 

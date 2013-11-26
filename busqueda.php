@@ -37,9 +37,10 @@ if (isset($_GET['validate'])) {
 	}
 			
 	$smarty -> assign('tabla', $tabla);
-	$smarty -> assign('nivelAcceso', estoy_logeado());
+	;
 	$smarty -> assign('css', array("busqueda.css"));
-	$smarty -> assign('scripts', array("busqueda.js", "jquery.tablesorter.min.js"));	
+	$smarty -> assign('scripts', array("busqueda.js", "jquery.tablesorter.min.js"));
+	$smarty -> assign('nivelAcceso', estoy_logeado());	
 	$smarty -> assign('nombreUsuario', userName());
 	$smarty -> assign('aceptaMsg', aceptaMensajes(userId()));	
 	$smarty -> display('busqueda.tpl');

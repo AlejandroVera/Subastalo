@@ -1,7 +1,8 @@
 {include file="header.tpl" title="Edición de usuario" scripts=$scripts}
+{include file ="barra.tpl" nivelAcceso=$nivelAcceso IN_ADMIN=$IN_ADMIN aceptaMsg=$aceptaMsg}
 <div id="divEdicion">
 <form id="editarPerfil" enctype="multipart/form-data">
-	<div class="entradaEdicion">
+	<div class="fotos">
 		<div class="textoEntradaEdicion">Foto de Perfil</div>
 		<div class="valorEntradaTabla">
 			<input id="selectorFotos" name="fotos[]" type="file" multiple="true" accept="image/*" />
@@ -84,11 +85,12 @@
 	<div>
 		<div class="textoEntradaEdicion"><br>Escriba aquí los productos que le interesan adquirir:</div>
 		<div class="entradaEdicion">
-			<textarea name="productosInteresados" rows="10" cols="50">{$res.productosInteresados}</textarea>
+			<textarea name="productosInteresados" rows="10" cols="50" class="textArea">{$res.productosInteresados}</textarea>
 		</div>
 	</div>
-
-	<input type="submit" value="¡Actualizar!"><button type="button" id="cancelar">Cancelar</button>
+	<div style="text-align:center">
+		<input type="submit" value="¡Actualizar!" class="redButton"><button class="redButton" type="button" id="cancelar">Cancelar</button>
+	</div>
 </form>
 </div>
 

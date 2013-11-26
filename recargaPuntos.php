@@ -30,10 +30,13 @@ if (isset($_GET['validate'])) {
 
 
 } else {//Mostrar el formulario
+	
 	$smarty -> assign('scripts', array("recargaPuntos.js"));
 	$smarty -> assign('css', array("recargaPuntos.css"));
 	$smarty -> assign('IS_CONTENT', false);
-	$smarty -> assign('nivelAcceso', estoy_logeado());
+	$smarty -> assign('nivelAcceso', estoy_logeado());	
+	$smarty -> assign('nombreUsuario', userName());
+	$smarty -> assign('aceptaMsg', aceptaMensajes(userId()));
 	$smarty -> display('recargaPuntos.tpl');
 }
 ?>

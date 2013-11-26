@@ -1,4 +1,6 @@
 {include file="header.tpl" title="Modificar contraseña" scripts=$scripts IS_CONTENT=false}
+
+{include file ="barra.tpl" nivelAcceso=$nivelAcceso IN_ADMIN=$IN_ADMIN aceptaMsg=$aceptaMsg}
 <div id="divCambio">
 <form id=cambiarPass>
 

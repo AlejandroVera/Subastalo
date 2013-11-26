@@ -1,5 +1,5 @@
 {include file="header.tpl" title="Visualizar producto" scripts=$scripts}
-
+{include file ="barra.tpl" nivelAcceso=$nivelAcceso IN_ADMIN=$IN_ADMIN aceptaMsg=$aceptaMsg}
 <div id="container">	
 	
 		<div id="contenedorImagen">

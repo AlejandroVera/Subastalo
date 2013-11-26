@@ -131,6 +131,9 @@ else if(estoy_logeado()){
 	$smarty->assign('res', $results);
 	$smarty->assign('lista',$lista);
 	$smarty->assign('css',array("editarPerfil.css"));
+	$smarty -> assign('nivelAcceso', estoy_logeado());	
+	$smarty -> assign('nombreUsuario', userName());
+	$smarty -> assign('aceptaMsg', aceptaMensajes(userId()));	
     $smarty->display('editarPerfil.tpl');	
 }
 else{

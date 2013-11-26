@@ -1,5 +1,5 @@
 {include file="header.tpl" title="Recarga de puntos de puja" scripts=$scripts IS_CONTENT=false}
-
+{include file ="barra.tpl" nivelAcceso=$nivelAcceso IN_ADMIN=$IN_ADMIN aceptaMsg=$aceptaMsg}
 
 <form id='recargaPuntos' method='POST' action="recargaPuntos.php?validate">
 	<div>
