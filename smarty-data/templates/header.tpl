@@ -33,6 +33,9 @@
 			{if isset($USUARIO_LOGUEADO)}
 				var USUARIO_LOGUEADO = {$USUARIO_LOGUEADO};
 			{/if} 
+			{if isset($nombreUsuario)}
+				var NOMBRE_USUARIO = {$nombreUsuario};
+			{/if} 
 			
 		</script>
 		{if $IS_CONTENT}

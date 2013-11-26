@@ -179,18 +179,12 @@ function countdown(showDays, red, redTime) {
 	ssid = window.setTimeout("countdown(conDias,redirect,timeRed)", 1000);
 }
 
-function parametroGet(name) {
-	name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
-	var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"), results = regex.exec(location.search);
-	return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-}
-
 //Conectar con el servidor de WS
 function conectar() {
 	ab.connect(wsuri, function(session) {
 		sess = session;
 		//Subscribirme a mis mensajes.
-		sess.subscribe("puja:" + parametroGet("id"), procesarMensaje);
+		sess.subscribe("puja:" + getParameterByName("id"), procesarMensaje);
 		console.log("Connected to " + wsuri);
 	}, function(code, reason) {
 		sess = null;
@@ -200,6 +194,7 @@ function conectar() {
 
 //Acción al recibir un evento
 function procesarMensaje(topic, event) {
+	
 	alert("Nueva puja en producto: " + topic + " contiene: " + event.cuerpo);
 }
 
@@ -208,7 +203,7 @@ function enviarNotificacionPuja() {
 	ab.connect(wsuri, function(session) {
 		sessionE = session;
 		var cuerpo = {
-			usuario : "pepe"
+			usuario : NOMBRE_USUARIO.toString()
 		};
 		sessionE.publish("puja:" + parametroGet("id"), cuerpo);
 		console.log("Connected to " + wsuri);

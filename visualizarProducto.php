@@ -22,10 +22,8 @@ if (isset($_GET['tipo']) && isset($_GET['id'])) {
 	$smarty -> assign('css', array("nivo-slider.css", "themes/default/default.css", "subasta.css"));
 	$smarty -> assign('nombreUsuario', userName());
 	
-	$q = doquery("SELECT {{table}}usuarios.username FROM {{table}}usuarios, {{table}}pujas WHERE {{table}}usuarios.id = {{table}}pujas.usuario AND 
-	{{table}}pujas.subasta ={$_GET['id']} ORDER BY {{table}}pujas.fecha DESC LIMIT 1", '', false);
-	$a = mysqli_fetch_assoc($q);
-	if(isset($a['username']))
+
+	if(isset($results['usuario']))
 		$smarty -> assign('ownerPuja',$a['username']);
 	else
 		$smarty -> assign('ownerPuja',"Sin Pujar");

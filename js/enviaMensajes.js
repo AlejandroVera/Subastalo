@@ -8,7 +8,8 @@ function enviarMensaje() {
 			from : $("#idUsuarioOrigen").val(),
 			cuerpo : $("#cuerpoMsg").val()
 		};
-		sessionE.publish("msg://" + $("#idUsuarioDestino").val(), cuerpo);
+		alert($("#idUsuarioDestino").val());
+		sessionE.publish("msg:"+$("#idUsuarioDestino").val(), cuerpo);
 		console.log("Connected to " + wsuri);
 	}, function(code, reason) {
 		sessionE = null;
