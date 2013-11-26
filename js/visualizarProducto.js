@@ -30,9 +30,9 @@ function init() {
 				$(this).dialog("close");
 			}
 		},
-	/*	close : function() {
+		close : function() {
 			allFields.val("").removeClass("ui-state-error");
-		}*/
+		}
 	});
 
 	$('#slider').nivoSlider({
@@ -77,9 +77,7 @@ function pujar() {
 			if (data.status == 200) {
 				if(data.msg=="Puja realizado correctamente.")
 					enviarNotificacionPuja();
-				if(data.msg=="Puja realizado correctamente.")
-					enviarNotificacionPuja();
-				message(data.msg);
+				messageAndRedirect(data.msg,data.url);
 			} else
 				error(data.msg);
 		} catch(e) {

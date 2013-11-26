@@ -21,7 +21,10 @@ if (isset($_GET['id'])) {
 		$tsinpujar=1;
 	else 
 		$tsinpujar=0;
-		
+	$results['logueado']=0;
+	if(estoy_logeado())
+		$results['logueado']=1;
+	
 	
 	$smarty -> assign('IS_CONTENT', false);
 	$smarty ->assign('terminadosinpujar', $tsinpujar);
@@ -110,9 +113,10 @@ function obtenerDatosSubastas($id) {
 		$nameUsr = mysqli_fetch_assoc($nomUsr);
 		$results['usuario'] = $nameUsr['username'];
 		
-		$saldoMio = doquery("SELECT username FROM {{table}} WHERE id = ".userId(), 'usuarios', false);
+		$saldoMio = doquery("SELECT PuntosSubasta FROM {{table}} WHERE id = ".userId(), 'usuarios', false);
 		$saldo = mysqli_fetch_assoc($saldoMio);
-		$results['saldo'] = $saldo;
+		$results['saldo'] = $saldo['PuntosSubasta'];
+		
 	}
 	//Calculo de la finalizacion de producto
 	$fin = $results['comienzo'] + $results['duracion'];

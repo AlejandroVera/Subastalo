@@ -30,7 +30,9 @@
 				<input type="submit" class="redButton" name="pujar" value="¡Pujar!">
 			</div>
 			<div id="dialog-form" title="Crear nueva puja">
-				<div id="saldo"> Su saldo actual es: {$res.saldo}</div>
+				{if $res.logueado}
+				<div id="saldo"> Su saldo actual es: {$res.saldo} puntos</div>
+				{/if}
 				<p class="validateTips">Introduzca su puja:</p>
 				<form id="datosPuja">
 					<div id="idProducto" style="display:none;">
