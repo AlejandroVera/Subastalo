@@ -1,7 +1,6 @@
 {include file="header.tpl" title="Visualizar producto" scripts=$scripts}
 
 <div id="container">	
-	{if $res.pujado==1}
 	
 		<div id="contenedorImagen">
 			{if !empty($res.imagenes)}
@@ -17,7 +16,9 @@
 				<img src="images/noImage.jpg">	
 			{/if}
 		</div>
-		<div id="dataContainer">
+		
+		
+	<div id="dataContainer">
 		<div id="Datos">
 			<div id="nombre">
 				{$res.nombre}
@@ -44,48 +45,27 @@
 			{/if}
 			
 			<div id="puntos">
-				Mejor puja: {$res.puntos} puntos 
-				{if $res.ganada==1}--> Ganador: {/if}
+				{if $res.pujado==1 && $terminadosinpujar==0}
+					Mejor puja: {$res.puntos} puntos 
+				{else if $terminadosinpujar==1}
+					No se realizó ninguna puja por este producto T_T...
+				{else}
+					Mínima puja: 1 punto.
+				{/if}
+				{if $res.ganada==1}--> 
+					Ganador: 
+				{else}
+					Ganando:
+				{/if}
 				({$res.usuario})
 			</div>
-		</div>		
+		</div>	
+			
 		<div id="Descripcion">
 			<br>Descripción:<br>
 			{$res.descripcion}
-		</div>
-	{else}
-		<div id="dataContainer">
-		<div id="Datos">
-			<div id="nombre">
-				{$res.nombre}
-			</div>
-			
-			<div id="pujar">
-				<input type="submit" class="redButton" name="pujar" value="¡Pujar!">
-			</div>
-			<div id="dialog-form" title="Crear nueva puja">
-				<p class="validateTips">Introduzca su puja:</p>
-				<form id="datosPuja">
-					<div id="idProducto" style="display:none;">
-					<input type="text" name="idProducto" value={$res.idProducto}>
-					</div>
-					<input type="text" name="puja" id="puja" class="text ui-widget-content ui-corner-all" />
-				</form>
-				</div>
-			</div>
-			
-			<div id="crono"></div>
-			<input type="hidden" value={$res.hoy} name="crono" class="countdown">
-			
-			<div id="puntos">
-				Mínima puja: 1 punto.
-			</div>
-			<div id="ganador">
-				Ganador provisional: {$ownerPuja}
-			</div>
-			
-		</div>
-		</div>
+		</div>	
+	</div>
 		<div id="Descripcion">
 			<br>Descripción:<br>
 			{$res.descripcion}

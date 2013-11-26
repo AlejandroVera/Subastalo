@@ -7,31 +7,39 @@ require (IS2_ROOT_PATH . "core.php");
 
 $results = array();
 
+/*Caso en que se quiere visualizar un producto.
+ * Parametros:
+ * Tipo=subasta(Solo implementamos la de subastas)
+ * id=id del producto
+ */
 if (isset($_GET['tipo']) && isset($_GET['id'])) {
-
+	$id = $_GET['id'];
 	if ($_GET['tipo'] == "subasta") {
-		$results = obtenerDatosSubastas($_GET['id']);
-	} else if ($_GET['tipo'] == "oferta") {
-		//TODO
+		$results = obtenerDatosSubastas($id);
+	
 	} else
 		echo "Tipo incorrecto";
 
+	$resp = doquery("SELECT * FROM {{table}} WHERE subasta={$id}", 'pujas', false);
+	$a= mysqli_fetch_assoc($resp);
+	if(isset($a['id']))
+		$tsinpujar=0;
+	else $tsinpujar=1;
+		
+	
 	$smarty -> assign('IS_CONTENT', false);
+	$smarty ->assign('terminadosinpujar', $tsinpujar);
 	$smarty -> assign('res', $results);
 	$smarty -> assign('scripts', array("visualizarProducto.js", "jquery.nivo.slider.pack.js"));
 	$smarty -> assign('css', array("nivo-slider.css", "themes/default/default.css", "subasta.css"));
-	$smarty -> assign('nombreUsuario', userName());
-	
 	$smarty -> display('visualizarProducto.tpl');
 
-} else if (isset($_GET['terminado'])) {
-	$results = obtenerDatosSubastas($_GET['id']);
-	$smarty -> assign('IS_CONTENT', false);
-	$smarty -> assign('res', $results);
-	$smarty -> assign('scripts', array("jquery.nivo.slider.pack.js"));
-	$smarty -> assign('css', array("nivo-slider.css", "themes/default/default.css", "subasta.css"));
-	$smarty -> assign('nombreUsuario', userName());
-	$smarty -> display('visualizarProductoTerminado.tpl');
+/*Caso en que se ha realizado una puja
+ * parámentros: 
+ * idProducto = id del producto
+ * puja = cantidad de puja
+ * 
+ */
 } else if (isset($_POST['idProducto']) && isset($_POST['puja'])) {
 	if (isset($_SESSION['USUARIO'])) {
 		$userID = userId();
@@ -77,7 +85,9 @@ if (isset($_GET['tipo']) && isset($_GET['id'])) {
 } else {
 	echo "Los parámetros son incorrectos.";
 }
-
+/*
+ * Función que obtiene los datos necesarios para visualizar un producto
+ */
 function obtenerDatosSubastas($id) {
 	$results = array();
 	$DatSub = doquery("SELECT * FROM {{table}} WHERE id = {$id}", 'subastas', false);
