@@ -75,9 +75,9 @@ function pujar() {
 		try {
 			var data = JSON.parse(info);
 			if (data.status == 200) {
-				if(data.msg=="Puja realizado correctamente.")
+				if (data.msg == "Puja realizado correctamente.")
 					enviarNotificacionPuja();
-				messageAndRedirect(data.msg,data.url);
+				messageAndRedirect(data.msg, data.url);
 			} else
 				error(data.msg);
 		} catch(e) {
@@ -137,11 +137,12 @@ function countdown(showDays, red, redTime) {
 		id = todos[i].name;
 		sobran = Math.ceil((endTime - seconds));
 		if (sobran <= 0) {
-			
 			$('#'+id)[0].innerHTML = "0:00:00";
+			finalizarSubasta();/*
 			if (redirect) {
 				window.setTimeout('document.location.href="' + redirect + '";', timeRed);
-			}
+			}*/
+			return 0;
 		} else {
 			if (sobran > 59) {
 				mins = Math.floor(sobran / 60);
@@ -213,3 +214,12 @@ function enviarNotificacionPuja() {
 	});
 }
 
+function finalizarSubasta() {
+	if (SUBASTA_ACABADA == 0) {
+		$.post("finalizarSubasta.php", {
+			idF : getParameterByName("id")
+		}, function(respuesta) {
+		});
+		enviarNotificacionPuja();
+	}
+}

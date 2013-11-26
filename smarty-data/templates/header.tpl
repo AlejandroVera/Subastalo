@@ -33,8 +33,8 @@
 			{if isset($USUARIO_LOGUEADO)}
 				var USUARIO_LOGUEADO = {$USUARIO_LOGUEADO};
 			{/if} 
-			{if isset($nombreUsuario)}
-				var NOMBRE_USUARIO = "{$nombreUsuario}";
+			{if isset($subastaAcabada)}
+				var SUBASTA_ACABADA = {$subastaAcabada};
 			{/if} 
 			
 		</script>
