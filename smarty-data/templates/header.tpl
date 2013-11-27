@@ -36,7 +36,10 @@
 			{if isset($subastaAcabada)}
 				var SUBASTA_ACABADA = {$subastaAcabada};
 			{/if} 
-			
+			{if isset($ganador) && isset($numPujas)}
+				var GANADOR = "{$ganador}";
+				var NUM_PUJAS = {$numPujas};
+			{/if} 
 		</script>
 		{if $IS_CONTENT}
 		<div class="globalContainer">

@@ -1,5 +1,7 @@
-{include file="header.tpl" title="Visualizar producto" scripts=$scripts subastaAcabada=$res.terminado}
+{include file="header.tpl" title="Visualizar producto" scripts=$scripts subastaAcabada=$res.terminado ganador=$ganador numPujas=$numPujas }
+
 {include file ="barra.tpl" nivelAcceso=$nivelAcceso IN_ADMIN=$IN_ADMIN aceptaMsg=$aceptaMsg}
+
 <div id="container">	
 	
 		<div id="contenedorImagen">
@@ -73,4 +75,5 @@
 	</div>
 		
 </div>
+
 {include file="footer.tpl"}

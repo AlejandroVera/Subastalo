@@ -32,7 +32,23 @@ if (isset($_GET['id'])) {
 	$smarty -> assign('css', array("nivo-slider.css", "themes/default/default.css", "subasta.css"));
 	$smarty -> assign('nivelAcceso', estoy_logeado());
 	$smarty -> assign('nombreUsuario', userName());
-	$smarty -> assign('aceptaMsg', aceptaMensajes(userId()));
+	$smarty -> assign('aceptaMsg', aceptaMensajes(userId()));		
+	
+	if($results['terminado']==1){
+		if($results['pujado']==1){
+			$smarty -> assign('ganador', $results['usuario']);
+			$pujas = doquery("SELECT count(*) as total FROM {{table}} WHERE subasta='{$id}'", 'pujas', true);	
+			$smarty -> assign('numPujas', $pujas['total']);
+		}else{
+			$smarty -> assign('ganador', "Nadie ha ganado la subasta");
+			$smarty -> assign('numPujas', 0);
+		}
+		
+	}
+	else{
+		$smarty -> assign('ganador',"nadie");
+		$smarty -> assign('numPujas', -1);
+	}
 	$smarty -> display('visualizarProducto.tpl');
 
 	/*Caso en que se ha realizado una puja

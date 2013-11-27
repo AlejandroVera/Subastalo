@@ -9,6 +9,10 @@ $(document).ready(function() {
 		window.parent.$("#marco").attr("src", "./logout.php");
 	});
 
+	$("#homeButton").click(function() {
+		window.parent.$("#marco").attr("src", "./inicio.php");
+	});
+	
 	$("#altaDiv").click(function() {
 		window.parent.$("#marco").attr("src", "./alta.php");
 	});

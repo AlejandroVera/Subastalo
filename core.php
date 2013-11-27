@@ -29,5 +29,7 @@ if (estoy_logeado() < NEEDED_ACCESS_LEVEL){
 	header('Location: '.IS2_ROOT_PATH.'index.php'); 
 }
 
+doquery("UPDATE {{table}} SET terminado='1' WHERE comienzo+duracion <= UNIX_TIMESTAMP() AND terminado='0'", "subastas");
+
 
 ?>

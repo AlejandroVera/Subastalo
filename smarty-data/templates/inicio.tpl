@@ -10,7 +10,7 @@
 				{if !empty($elem['imagen']) }
 					<img src="images/uploaded/{$elem['imagen']}" alt="" data-transition="slideInLeft">
 				{else}
-					<img src="images/noImage.jpg">	
+					<img src="images/noImage.jpg">
 				{/if}
 	   		{/foreach}
 		</div>

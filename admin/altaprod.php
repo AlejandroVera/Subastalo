@@ -122,7 +122,7 @@ function parseRequest(){
             
         //Duracion
         if(isset($_POST['duracion']) && $_POST['duracion'] != "")
-            $retArray['duracion'] =  (double)$_POST['duracion'] * 60; //Pasa de minutos a segundos
+            $retArray['duracion'] =  (int)$_POST['duracion'] * 60; //Pasa de minutos a segundos
         else
             $retArray['error'][] = 'Falta "Duracion"';
     }else

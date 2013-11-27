@@ -59,6 +59,12 @@ function init() {
 		afterLoad : function() {
 		} // Triggers when slider has loaded
 	});
+	
+	if(GANADOR != "nadie" && NUM_PUJAS != -1 && document.location.href.indexOf("acabaDeTerminar") != -1)
+		message("La puja ha finalizado. Ganador: "+ GANADOR+" Nº pujas: "+NUM_PUJAS);
+	else
+		console.log(document.location.href);
+		
 	return false;
 
 }
@@ -73,7 +79,7 @@ function pujar() {
 			var data = JSON.parse(info);
 			if (data.status == 200) {
 				if (data.msg == "Puja realizado correctamente.")
-					enviarNotificacionPuja();
+					enviarNotificacionPuja(false);
 				messageAndRedirect(data.msg, data.url);
 			} else
 				error(data.msg);
@@ -139,7 +145,7 @@ function countdown(showDays, red, redTime) {
 			if (redirect) {
 				window.setTimeout('document.location.href="' + redirect + '";', timeRed);
 			}*/
-			return 0;
+			return;
 		} else {
 			if (sobran > 59) {
 				mins = Math.floor(sobran / 60);
@@ -194,16 +200,14 @@ function conectar() {
 
 //Acción al recibir un evento
 function procesarMensaje(topic, event) {
-	location.reload(true);
+	window.parent.$("#marco").attr("src", "./visualizarProducto.php?id="+getParameterByName("id") + (event ? "&acabaDeTerminar": ""));	
 }
 
-function enviarNotificacionPuja() {
+function enviarNotificacionPuja(fin) {
 	//conectamos con el servidor y enviamos el mensaje
 	ab.connect(wsuri, function(session) {
 		sessionE = session;
-		var cuerpo = {
-		};
-		sessionE.publish("puja:" + getParameterByName("id"), cuerpo);
+		sessionE.publish("puja:" + getParameterByName("id"), fin);
 		console.log("Connected to " + wsuri);
 	}, function(code, reason) {
 		sessionE = null;
@@ -216,7 +220,7 @@ function finalizarSubasta() {
 		$.post("finalizarSubasta.php", {
 			idF : getParameterByName("id")
 		}, function(respuesta) {
-		});
-		enviarNotificacionPuja();
+			enviarNotificacionPuja(true);
+		});	
 	}
 }

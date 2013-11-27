@@ -1,8 +1,6 @@
 <div id="barra">
 	<div id="homeButton">
-		<a href=index.php>
 			<img src=images/subastalo.png>
-		</a>
 	</div>	
 {if $nivelAcceso > 0}
 	<div id="lista" class="list" >
