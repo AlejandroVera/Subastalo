@@ -8,16 +8,12 @@
 }
 
 #random img {
+	max-height: 200px;
+	max-width:	80%;
+	margin-left: auto;
+	margin-right: auto;
 }
 
-.theme-default .nivoSlider img {
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	display: none;
-	width: 556px;
-	height: 183px !important;
-}
 .titulo {
 	font-size: 15px;
 	font-weight: bold;
@@ -26,41 +22,54 @@
 	margin-bottom: 10px;
 	margin-left: 15px;
 }
-.nivoSlider {
-	height: 200px;
-}
 
 .nombreResultado {
 	font-weight: bold;
-	color: rgba(0,0,0,0.3);
+	color: rgba(0,0,0,0.5);
 	margin-top: 10px;
 	margin-bottom: 5px;
 	text-align: center;
 }
 
 .resultadoInicio img {
-	width: 90%;
-	height: auto;
-	margin-top:5%;
-	margin-left: 5%;
+	max-width: 90%;
+	max-height: 75%;
+	margin-top: 5%;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .resultadoInicio {
+	cursor: pointer;
 	background-color: #FFFFFF;
 	border: solid 1px rgba(0,0,0,0.2);
 	border-radius: 5px;
 	width: 280px;
 	height: 280px;
-	margin-top:10px;
+	margin-top: 10px;
 	display: inline;
 	float: left;
 	margin-left: 20px;
+	text-align:center;
+}
+
+.resultadoInicio:hover {
+	transition: 0.2s;
+	box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+	margin-top: 5px;
+	margin-right: 2px;
+	margin-left: 18px;
+	color: rgba(255,0,0,0.8);
 }
 
 .container {
 	display: block;
-	height: 320px;
+	height: 350px;
 	width: 90%;
+	border: solid 1px rgba(0,0,0,0.2);
+	border-radius: 5px;
+	background: linear-gradient( 0deg, #FFF, rgba(0,0,0,0.05) );
 	margin-left: auto;
 	margin-right: auto;
+	margin-top: 20px;
 }
