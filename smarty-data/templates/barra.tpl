@@ -1,6 +1,10 @@
 <div id="barra">
 	<div id="homeButton">
-			<img src=images/subastalo.png>
+	{if !$IN_ADMIN}
+		<img src=images/subastalo.png>
+	{else}
+		<img src=../images/subastalo.png>
+	{/if}
 	</div>	
 {if $nivelAcceso > 0}
 	<div id="lista" class="list" >
