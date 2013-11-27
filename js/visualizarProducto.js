@@ -30,9 +30,6 @@ function init() {
 				$(this).dialog("close");
 			}
 		},
-		close : function() {
-			allFields.val("").removeClass("ui-state-error");
-		}
 	});
 
 	$('#slider').nivoSlider({

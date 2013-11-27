@@ -71,11 +71,6 @@
 			{$res.descripcion}
 		</div>	
 	</div>
-		<div id="Descripcion">
-			<br>Descripción:<br>
-			{$res.descripcion}
-		</div>
-	
-	
+		
 </div>
 {include file="footer.tpl"}
