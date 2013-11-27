@@ -1,11 +1,20 @@
 function init(){
+
+	$(".resultadoInicio").each(function(){
+		var url = $(this).data("url");
+		$(this).click(function(){
+			document.location.href = url;
+		});
+	});
+
+	//Inicializar slider
 	$('#slider').nivoSlider({
 	    effect: 'random',               // Specify sets like: 'fold,fade,sliceDown'
 	    slices: 15,                     // For slice animations
 	    boxCols: 8,                     // For box animations
 	    boxRows: 4,                     // For box animations
 	    animSpeed: 500,                 // Slide transition speed
-	    pauseTime: 8000,                // How long each slide will show
+	    pauseTime: 1000,                // How long each slide will show
 	    startSlide: 0,                  // Set starting Slide (0 index)
 	    directionNav: true,             // Next & Prev navigation
 	    controlNav: true,               // 1,2,3... navigation
@@ -20,6 +29,5 @@ function init(){
 	    slideshowEnd: function(){},     // Triggers after all slides have been shown
 	    lastSlide: function(){},        // Triggers when last slide is shown
 	    afterLoad: function(){}         // Triggers when slider has loaded
-	
 	 });	 
 }

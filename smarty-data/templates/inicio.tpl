@@ -6,7 +6,7 @@
 	<div class="slider-wrapper theme-default">
 		<div class="ribbon"></div>
 		<div id="slider" class="nivoSlider">
-			{foreach from=random item=elem}
+			{foreach from=$random item=elem}
 				{if !empty($elem['imagen']) }
 					<img src="images/uploaded/{$elem['imagen']}" alt="" data-transition="slideInLeft">
 				{else}
@@ -21,10 +21,10 @@
 	<div class="titulo">A punto de terminar</div>
 	
 	{foreach from=$acabanAntes item=elem}
-		<div class="resultadoInicio">
+		<div class="resultadoInicio" data-url="visualizarProducto.php?tipo=subasta&id={$elem['id']}">
 			<div class="nombreResultado">{$elem['nombre']}</div>
 			{if !empty($elem['imagen']) }
-				<img class="imagenResultado" src={$elem['imagen']} >
+				<img class="imagenResultado" src="images/uploaded/{$elem['imagen']}" >
 			{else}
 				<img src="images/noImage.jpg">	
 			{/if}			
@@ -37,10 +37,10 @@
 	<div class="titulo">Nuevos productos en subasta</div>
 	
 	{foreach from=$nuevas item=elem}
-		<div class="resultadoInicio">
+		<div class="resultadoInicio" data-url="visualizarProducto.php?tipo=subasta&id={$elem['id']}">
 			<div class="nombreResultado">{$elem['nombre']}</div>
 			{if !empty($elem['imagen']) }
-				<img class="imagenResultado" src={$elem['imagen']} />
+				<img class="imagenResultado" src="images/uploaded/{$elem['imagen']}" />
 			{else}
 				<img src="images/noImage.jpg">	
 			{/if}
