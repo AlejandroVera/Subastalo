@@ -16,7 +16,7 @@
 		</div>
 	</div>
 </div>
-<div class="separador"></div>
+
 <div id="acabanAntes" class="container">
 	<div class="titulo">A punto de terminar</div>
 	
@@ -32,7 +32,7 @@
 	{/foreach}	
 	
 </div>
-<div class="separador"></div>
+
 <div id="nuevas" class="container">
 	<div class="titulo">Nuevos productos en subasta</div>
 	
