@@ -74,8 +74,9 @@ function busqueda($palabraClave) {
 
 	while ($resultado = mysqli_fetch_assoc($res)) {
 			
-		if ($resultado['imagen'] !==""){	
-			$results[] = "<img src=".$resultado['imagen']. ">"; //Imagen*/
+		if ($resultado['imagen'] !==""){
+			$imagenes = explode("|", $resultado['imagen']);	
+			$results[] = "<img src=images/uploaded/".$imagenes[0]. ">"; //Imagen*/
 		}else{
 			$results[] = "<img src= images/noImage.jpg>";
 		}
