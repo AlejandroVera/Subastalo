@@ -1,4 +1,5 @@
 {include file="header.tpl" title="Alta de productos" scripts=$scripts IS_CONTENT=false}
+{include file ="barra.tpl" nivelAcceso=$nivelAcceso IN_ADMIN=$IN_ADMIN aceptaMsg=$aceptaMsg}
 <div class="globalContainer">
 <form id="formularioAltaProducto" enctype="multipart/form-data">
 	<h1>Alta de un producto</h1>

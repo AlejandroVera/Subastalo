@@ -83,6 +83,9 @@ if(isset($_GET['create'])){
 }else{
     $smarty->assign('scripts', array("admin/altaprod.js", "jquery-ui-timepicker-addon.js"));
     $smarty->assign('css', array("jquery-ui-timepicker-addon.css", "admin/altaprod.css"));
+	$smarty -> assign('aceptaMsg', aceptaMensajes(userId()));
+	$smarty -> assign('nombreUsuario', userName());
+	$smarty -> assign('nivelAcceso', estoy_logeado());
     $smarty->display('admin/altaprod.tpl');
     
 }
