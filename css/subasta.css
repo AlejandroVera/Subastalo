@@ -1,6 +1,6 @@
 #contenedorImagen {
 	width: 300px;
-	display: inline;
+	display: inline-block;
 }
 
 #container {

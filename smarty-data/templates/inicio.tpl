@@ -8,7 +8,7 @@
 		<div id="slider" class="nivoSlider">
 			{foreach from=$random item=elem}
 				{if !empty($elem['imagen']) }
-					<img src="images/uploaded/{$elem['imagen']}" alt="" data-transition="slideInLeft">
+					<img src="images/uploaded/{$elem['imagen']}" alt="" data-transition="fade">
 				{else}
 					<img src="images/noImage.jpg">
 				{/if}

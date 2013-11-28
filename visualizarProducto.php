@@ -129,14 +129,16 @@ function obtenerDatosSubastas($id) {
 
 		$nomUsr = doquery("SELECT username FROM {{table}} WHERE id = {$results['usrID']}", 'usuarios', false);
 		$nameUsr = mysqli_fetch_assoc($nomUsr);
-		$results['usuario'] = $nameUsr['username'];
-
+		$results['usuario'] = "<a href='Perfil.php?id_Perfil=".$results['usrID']."'>".$nameUsr['username']."</a>";
+		
 		
 	}
 
+	if (estoy_logeado()){
 	$saldoMio = doquery("SELECT PuntosSubasta FROM {{table}} WHERE id = " . userId(), 'usuarios', false);
 	$saldo = mysqli_fetch_assoc($saldoMio);
 	$results['saldo'] = $saldo['PuntosSubasta'];
+	}
 	
 	//Calculo de la finalizacion de producto
 	$fin = $results['comienzo'] + $results['duracion'];
