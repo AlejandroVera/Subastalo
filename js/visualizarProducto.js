@@ -7,12 +7,12 @@ function init() {
 	$("#pujar").click(function() {
 		$("#dialog-form").dialog("open");
 	});
-	
+
 	$("#loguear").click(function() {
 		var url = encodeURIComponent(window.location.href);
-		location.href = "login.php?origen="+url;
+		location.href = "login.php?origen=" + url;
 	});
-	
+
 	$("#dialog-form").dialog({
 		autoOpen : false,
 		height : 200,
@@ -32,6 +32,18 @@ function init() {
 					$(this).dialog("close");
 				}
 			},
+			Cancelar : function() {
+				$(this).dialog("close");
+			}
+		},
+	});
+
+	$("#dialog-recarga").dialog({
+		autoOpen : false,
+		height : 400,
+		width : 400,
+		modal : true,
+		buttons : {
 			Cancelar : function() {
 				$(this).dialog("close");
 			}
@@ -65,12 +77,12 @@ function init() {
 		afterLoad : function() {
 		} // Triggers when slider has loaded
 	});
-	
-	if(GANADOR != "nadie" && NUM_PUJAS != -1 && document.location.href.indexOf("acabaDeTerminar") != -1)
-		message("La puja ha finalizado. Ganador: "+ GANADOR+" Nº pujas: "+NUM_PUJAS);
+
+	if (GANADOR != "nadie" && NUM_PUJAS != -1 && document.location.href.indexOf("acabaDeTerminar") != -1)
+		message("La puja ha finalizado. Ganador: " + GANADOR + " Nº pujas: " + NUM_PUJAS);
 	else
 		console.log(document.location.href);
-		
+
 	return false;
 
 }
@@ -84,9 +96,13 @@ function pujar() {
 		try {
 			var data = JSON.parse(info);
 			if (data.status == 200) {
-				if (data.msg == "Puja realizado correctamente.")
+				if (data.msg == "Puja realizado correctamente.") {
 					enviarNotificacionPuja(false);
-				messageAndRedirect(data.msg, data.url);
+					messageAndRedirect(data.msg, data.url);
+				} else if (data.msg == "No tiene puntos suficientes, por favor recargue más puntos.") {
+					mostrarRecarga();
+				} else
+					messageAndRedirect(data.msg, data.url);
 			} else
 				error(data.msg);
 		} catch(e) {
@@ -147,10 +163,11 @@ function countdown(showDays, red, redTime) {
 		sobran = Math.ceil((endTime - seconds));
 		if (sobran <= 0) {
 			$('#'+id)[0].innerHTML = "0:00:00";
-			finalizarSubasta();/*
-			if (redirect) {
-				window.setTimeout('document.location.href="' + redirect + '";', timeRed);
-			}*/
+			finalizarSubasta();
+			/*
+			 if (redirect) {
+			 window.setTimeout('document.location.href="' + redirect + '";', timeRed);
+			 }*/
 			return;
 		} else {
 			if (sobran > 59) {
@@ -206,7 +223,7 @@ function conectar() {
 
 //Acción al recibir un evento
 function procesarMensaje(topic, event) {
-	window.parent.$("#marco").attr("src", "./visualizarProducto.php?id="+getParameterByName("id") + (event ? "&acabaDeTerminar": ""));	
+	window.parent.$("#marco").attr("src", "./visualizarProducto.php?id=" + getParameterByName("id") + ( event ? "&acabaDeTerminar" : ""));
 }
 
 function enviarNotificacionPuja(fin) {
@@ -227,6 +244,37 @@ function finalizarSubasta() {
 			idF : getParameterByName("id")
 		}, function(respuesta) {
 			enviarNotificacionPuja(true);
-		});	
+		});
 	}
+}
+
+function recargar(id, valor) {
+	$.ajax({
+		type : "POST",
+		url : "visualizarProducto.php?id=" + id + "&valor=" + valor
+	}).done(function(info) {
+		try {
+			$("#dialog-recarga").dialog("close");
+			messageAndRedirect("Muchas gracias, has recargado correctamente tus puntos.", window.location.href);
+		} catch(e) {
+			alert("Error al enviar la recarga.");
+			console.log(e);
+		}
+	}).fail(function() {
+		alert("Error al recargar. Revise su conexión a Internet.");
+	});
+
+}
+
+function mostrarRecarga() {
+	$("#dialog-recarga").dialog("open");
+	var id = $("#idProduct :input").val();
+	$(".purchasePoints :button").each(function() {
+		$(this).click(function() {
+			recargar(id, $(this).val());
+
+		});
+
+	});
+
 }

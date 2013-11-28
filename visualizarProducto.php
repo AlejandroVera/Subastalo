@@ -11,7 +11,7 @@ $results = array();
  * Parametros:
  * id=id del producto
  */
-if (isset($_GET['id'])) {
+if (isset($_GET['id']) && !isset($_GET['valor'])) {
 	$id = $_GET['id'];
 	$results = obtenerDatosSubastas($id);
 	$resp = doquery("SELECT * FROM {{table}} WHERE subasta={$id}", 'pujas', false);
@@ -29,35 +29,54 @@ if (isset($_GET['id'])) {
 	$smarty -> assign('terminadosinpujar', $tsinpujar);
 	$smarty -> assign('res', $results);
 	$smarty -> assign('scripts', array("visualizarProducto.js", "jquery.nivo.slider.pack.js"));
-	$smarty -> assign('css', array("nivo-slider.css", "themes/default/default.css", "subasta.css"));
+	$smarty -> assign('css', array("nivo-slider.css", "themes/default/default.css", "subasta.css", "recargaPuntos.css"));
 	$smarty -> assign('nivelAcceso', estoy_logeado());
 	$smarty -> assign('nombreUsuario', userName());
-	$smarty -> assign('aceptaMsg', aceptaMensajes(userId()));		
-	
-	if($results['terminado']==1){
-		if($results['pujado']==1){
+	$smarty -> assign('aceptaMsg', aceptaMensajes(userId()));
+
+	if ($results['terminado'] == 1) {
+		if ($results['pujado'] == 1) {
 			$smarty -> assign('ganador', $results['usuario']);
-			$pujas = doquery("SELECT count(*) as total FROM {{table}} WHERE subasta='{$id}'", 'pujas', true);	
+			$pujas = doquery("SELECT count(*) as total FROM {{table}} WHERE subasta='{$id}'", 'pujas', true);
 			$smarty -> assign('numPujas', $pujas['total']);
-		}else{
+		} else {
 			$smarty -> assign('ganador', "Nadie ha ganado la subasta");
 			$smarty -> assign('numPujas', 0);
 		}
-		
-	}
-	else{
-		$smarty -> assign('ganador',"nadie");
+
+	} else {
+		$smarty -> assign('ganador', "nadie");
 		$smarty -> assign('numPujas', -1);
 	}
 	$smarty -> display('visualizarProducto.tpl');
 
+} else if (isset($_GET['valor']) && isset($_GET['id'])) {
+	//query que devuelve Puntos de Subasta asociado al user logueado
+	$res = doquery("SELECT PuntosSubasta FROM {{table}} WHERE id = '" . userId() . "' LIMIT 1", 'usuarios', FALSE);
+
+	//extraemos el registro de este usuario
+	$row = mysqli_fetch_assoc($res);
+
+	if ($row) {
+		//se obtiene el valor resultante tras recargar los puntos
+		$valor = $row['PuntosSubasta'] + (int)$_GET['valor'];
+		//se actualiza la base de datos con la nueva cantidad de puntos
+		$fields = 'PuntosSubasta=' . "'{$valor}'";
+		$res = doquery("UPDATE {{table}} SET {$fields} WHERE id='" . userId() . "'", 'usuarios');
+
+	} else {
+		//El usuario no existe
+		return false;
+	}
+
+}
+else if (isset($_POST['id']) && isset($_POST['puja'])) {
 	/*Caso en que se ha realizado una puja
-	 * parámentros:
-	 * id = id del producto
-	 * puja = cantidad de puja
-	 *
-	 */
-} else if (isset($_POST['id']) && isset($_POST['puja'])) {
+ * parámentros:
+ * id = id del producto
+ * puja = cantidad de puja
+ *
+ */
 	if (isset($_SESSION['USUARIO'])) {
 		$userID = userId();
 		$id = $_POST['id'];
@@ -129,17 +148,16 @@ function obtenerDatosSubastas($id) {
 
 		$nomUsr = doquery("SELECT username FROM {{table}} WHERE id = {$results['usrID']}", 'usuarios', false);
 		$nameUsr = mysqli_fetch_assoc($nomUsr);
-		$results['usuario'] = "<a href='Perfil.php?id_Perfil=".$results['usrID']."'>".$nameUsr['username']."</a>";
-		
-		
+		$results['usuario'] = "<a href='Perfil.php?id_Perfil=" . $results['usrID'] . "'>" . $nameUsr['username'] . "</a>";
+
 	}
 
-	if (estoy_logeado()){
-	$saldoMio = doquery("SELECT PuntosSubasta FROM {{table}} WHERE id = " . userId(), 'usuarios', false);
-	$saldo = mysqli_fetch_assoc($saldoMio);
-	$results['saldo'] = $saldo['PuntosSubasta'];
+	if (estoy_logeado()) {
+		$saldoMio = doquery("SELECT PuntosSubasta FROM {{table}} WHERE id = " . userId(), 'usuarios', false);
+		$saldo = mysqli_fetch_assoc($saldoMio);
+		$results['saldo'] = $saldo['PuntosSubasta'];
 	}
-	
+
 	//Calculo de la finalizacion de producto
 	$fin = $results['comienzo'] + $results['duracion'];
 	$results['hoy'] = $fin;
