@@ -9,7 +9,7 @@ function init() {
 	});
 	
 	$("#loguear").click(function() {
-		location.href = "index.php";
+		location.href = "login.php";
 	});
 	
 	$("#dialog-form").dialog({
