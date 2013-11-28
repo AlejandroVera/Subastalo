@@ -1,10 +1,10 @@
-$(document).ready(function() {
+function init(){
 	$("#accederLogin").click(function() {
 		sendLoginForm();
 		return false;
 	});
 
-});
+}
 
 function sendLoginForm() {
 	$("#login > :submit").prop('disabled', true);
@@ -17,7 +17,9 @@ function sendLoginForm() {
 			var data = JSON.parse(info);
 			if (data.status == 200) {
 				parent.conectar(data.usuario);
-				window.parent.$("#marco").attr("src", "./inicio.php");
+				var origen=getParameterByName("origen");
+				console.log(origen);
+				window.parent.$("#marco").attr("src", origen);
 			} else {
 				error(data.msg);
 			}
@@ -33,3 +35,10 @@ function sendLoginForm() {
 	});
 
 }
+
+function getParameterByName(name) {
+	name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+	var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"), results = regex.exec(location.search);
+	return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+

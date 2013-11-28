@@ -82,7 +82,7 @@ function busqueda($palabraClave) {
 		}
 		$results[] = 'Subasta';
 		//TODO: enlace provisional, cambiar en el futuro
-		$results[] = "<a href='" . IS2_ROOT_PATH . "visualizarProducto.php?tipo=subasta&id=" . $resultado['id'] . "'>" . $resultado['nombre'] . "</a>";
+		$results[] = "<a href='" . IS2_ROOT_PATH . "visualizarProducto.php?&id=" . $resultado['id'] . "'>" . $resultado['nombre'] . "</a>";
 		//Enlace al producto
 		$results[] = $resultado['descripcion'];
 		

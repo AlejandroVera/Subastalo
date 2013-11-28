@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	$("#loginDiv").click(function() {
-
-		window.parent.$("#marco").attr("src", "./login.php");
+		var url = encodeURIComponent(window.location.href);
+		window.parent.$("#marco").attr("src", "./login.php?origen="+url);
 	});
 
 	$("#logoutDiv").click(function() {
