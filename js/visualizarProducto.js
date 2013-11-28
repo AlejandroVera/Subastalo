@@ -7,6 +7,11 @@ function init() {
 	$("#pujar").click(function() {
 		$("#dialog-form").dialog("open");
 	});
+	
+	$("#loguear").click(function() {
+		location.href = "index.php";
+	});
+	
 	$("#dialog-form").dialog({
 		autoOpen : false,
 		height : 200,

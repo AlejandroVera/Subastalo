@@ -26,11 +26,17 @@
 				{$res.nombre}
 			</div>
 			{if $res.terminado==1}
-				<div id="pujaTerminada">Puja Terminada</div>
+				<div class="greyButton" id="pujaTerminada">Puja Terminada</div>
 			{else}
-			<div id="pujar">
-				<input type="submit" class="redButton" name="pujar" value="¡Pujar!">
-			</div>
+				{if $nivelAcceso==0}
+					<div id="loguear">
+						<input type="submit" class="greyButton" name="pujar" value="¡Loguéate!">
+					</div>
+				{else}
+					<div id="pujar">
+						<input type="submit" class="redButton" name="pujar" value="¡Pujar!">
+					</div>
+				{/if}
 			<div id="dialog-form" title="Crear nueva puja">
 				{if $res.logueado}
 				<div id="saldo"> Su saldo actual es: {$res.saldo} puntos</div>
@@ -40,7 +46,7 @@
 					<div id="idProducto" style="display:none;">
 					<input type="text" name="id" value={$res.id}>
 					</div>
-					<input type="text" name="puja" id="puja" class="text ui-widget-content ui-corner-all" />
+					<input type="text" name="puja" id="puja"/>
 				</form>
 				</div>
 			</div>

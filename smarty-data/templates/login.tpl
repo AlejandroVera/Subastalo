@@ -19,7 +19,7 @@
 			</div>
 			<input id ="accederLogin" type="submit" value="Acceder" class="redButton">
 			<p><a class="link" href="recuperacion.php">¿Has olvidado tu contraseña y/o usuario?</a></p>
-			<p><a class="link" href="alta.php">¿Aun no estas registrado?</a></p>
+			<p><a class="link" href="alta.php">¿Aún no estas registrado?</a></p>
 		</fieldset>
 	</form>
 </div>
