@@ -18,7 +18,8 @@ function sendLoginForm() {
 			if (data.status == 200) {
 				parent.conectar(data.usuario);
 				var origen=getParameterByName("origen");
-				console.log(origen);
+				if(origen == null || origen=="")
+					origen="inicio.php";
 				window.parent.$("#marco").attr("src", origen);
 			} else {
 				error(data.msg);
