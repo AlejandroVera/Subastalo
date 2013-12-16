@@ -11,17 +11,25 @@ require (IS2_ROOT_PATH . "includes/validate.php");
 
 $datos = array();
 $lista = array();
-
+$id = userId();
+//id usuario logueado
 $id_perfil = (double)$_GET['id_perfil'];
 $datos = obtenerDatos($id_perfil);
-$smarty -> assign('muestraBotonMsg', $datos['aceptaMensajes']);
-$smarty -> assign('scripts', array("mensajePrivado.js", "perfil.js"));
-$smarty -> assign('IS_CONTENT', false);
+$dat = doquery("SELECT count(*) as total FROM {{table}} WHERE idTo='{$id}' AND leido=0", 'mensajes', true);
+$numMsg = $dat['total'];
 $lista = obtenerLista($id_perfil);
+
+$smarty -> assign('scripts', array("perfil.js"));
+$smarty -> assign('IS_CONTENT', false);
 $smarty -> assign('lista', $lista);
 $smarty -> assign('res', $datos);
 $smarty -> assign('idPerfil', $id_perfil);
-$smarty -> assign('usuarioLogueado', userId());
+if ($id != null)
+	$smarty -> assign('usuarioLogueado', $id);
+$smarty -> assign('nivelAcceso', estoy_logeado());
+$smarty -> assign('nombreUsuario', userName());
+$smarty -> assign('aceptaMsg', aceptaMensajes(userId()));
+$smarty -> assign('numMensajes', $numMsg);
 $smarty -> display('perfil.tpl');
 
 function obtenerLista($id_perfil) {

@@ -76,6 +76,11 @@ $(document).ready(function() {
 	$('html').click(function() {
 		$(".list").hide();
 	});
+	
+	$("#bandeja").click(function() {
+		window.parent.$("#marco").attr("src", "./bandejaEntrada.php");
+	});
+	
 });
 
 function sendAltaForm() {
@@ -104,7 +109,6 @@ function sendAltaForm() {
 }
 
 function sendEstadoMensajes(estado) {
-
 	$.post("estadoMensajes.php", {
 		usuario : USUARIO_LOGUEADO.toString(),
 		estado : estado.toString()

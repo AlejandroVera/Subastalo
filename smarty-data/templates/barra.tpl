@@ -7,6 +7,7 @@
 	{/if}
 	</div>	
 {if $nivelAcceso > 0}
+		
 	<div id="lista" class="list" >
   			<div class="listElement" id="edperfil">Editar Perfil</div>
   			<div class="listElement" id="cambiarC">Cambiar Contraseña</div>
@@ -20,6 +21,16 @@
 	</div>
 	<div id="panelDiv" class="menu_element">{$nombreUsuario} </div>	
 	<div id="logoutDiv" class="menu_element" >Logout</div>
+
+	<div id="bandeja" class="menu_element"><img src="images/msg.jpg" /> <div id="numerito" style="
+	position: absolute;
+	top: 18px;
+	margin-left: 45px;
+	color: red;
+	font-weight: bold;
+	background-color: white;
+	border: 1px solid rgba(0,0,0,0.2);
+	border-radius: 2px; ">  {$numMensajes}  </div></div>
 {else}
 	<div id="altaDiv" class="menu_element">Alta</div>
 	<div id="loginDiv" class="menu_element">Login</div>

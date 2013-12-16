@@ -25,6 +25,10 @@ if (isset($_GET['id']) && !isset($_GET['valor'])) {
 	if (estoy_logeado())
 		$results['logueado'] = 1;
 
+	$id = userId();
+	$dat = doquery("SELECT count(*) as total FROM {{table}} WHERE idTo='{$id}' AND leido=0", 'mensajes', true);
+	$numMsg = $dat['total'];
+	
 	$smarty -> assign('IS_CONTENT', false);
 	$smarty -> assign('terminadosinpujar', $tsinpujar);
 	$smarty -> assign('res', $results);
@@ -32,6 +36,7 @@ if (isset($_GET['id']) && !isset($_GET['valor'])) {
 	$smarty -> assign('css', array("nivo-slider.css", "themes/default/default.css", "subasta.css", "recargaPuntos.css"));
 	$smarty -> assign('nivelAcceso', estoy_logeado());
 	$smarty -> assign('nombreUsuario', userName());
+	$smarty -> assign('numMensajes', $numMsg);
 	$smarty -> assign('aceptaMsg', aceptaMensajes(userId()));
 
 	if ($results['terminado'] == 1) {
@@ -148,7 +153,7 @@ function obtenerDatosSubastas($id) {
 
 		$nomUsr = doquery("SELECT username FROM {{table}} WHERE id = {$results['usrID']}", 'usuarios', false);
 		$nameUsr = mysqli_fetch_assoc($nomUsr);
-		$results['usuario'] = "<a href='Perfil.php?id_Perfil=" . $results['usrID'] . "'>" . $nameUsr['username'] . "</a>";
+		$results['usuario'] = "<a href='Perfil.php?id_perfil=" . $results['usrID'] . "'>" . $nameUsr['username'] . "</a>";
 
 	}
 

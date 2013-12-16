@@ -1,12 +1,16 @@
-{include file="header.tpl" title="Edición de usuario" scripts=$scripts}
+{include file="header.tpl" title="Pagina principal" USUARIO_LOGUEADO=$USUARIO_LOGUEADO numMensajes=$numMensajes}
+
+{include file ="barra.tpl" nivelAcceso=$nivelAcceso IN_ADMIN=$IN_ADMIN nombreUsuario=$nombreUsuario aceptaMsg=$aceptaMsg}
+
 <p>Perfil de Usuario</p>
-{if $muestraBotonMsg==1}
+{if $aceptaMsg==1 && $idPerfil != $usuarioLogueado && isset($USUARIO_LOGUEADO)}
 <button title="mensaje" id="buttonMsg">
 	Mensaje Privado
 </button>
-<div id="popupMsg">
-	<textarea id="cuerpoMsg" rows="4" cols="40">cuerpo del mensaje</textarea>
-	<button title="enviar" id="buttonEnv" onclick="enviarMensaje({$usuarioLogueado},{$idPerfil})">
+<div id="popupMsg" style="display:none">
+	<textarea id="asuntoMsg" rows="1" cols="40">asunto</textarea>
+	<textarea id="cuerpoMsg" rows="4" cols="40">cuerpo</textarea>
+	<button title="enviar" id="buttonEnv">
 		Enviar
 	</button>
 </div>

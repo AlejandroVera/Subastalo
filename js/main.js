@@ -2,8 +2,9 @@ sess = "null";
 var wsuri = "ws://localhost:8080";
 
 //Acción al recibir un evento
-function procesarMensaje(topic, event) {
-	alert("un mensaje nuevo de "+topic+" contiene: "+event.cuerpo);
+function procesarMensaje(topic, event) { 
+	var nu=	parseInt($('#marco').contents().find('#numerito').html())+1;
+	$('#marco').contents().find('#numerito').html(nu);
 }
 
 //Conectar con el servidor de WS

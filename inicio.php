@@ -34,7 +34,9 @@ for($x = 0; $x < count($nuevas); $x++){
         $nuevas[$x]["imagen"] = $imagenes[0];
     }
 }
-
+$id=userId();
+$dat = doquery("SELECT count(*) as total FROM {{table}} WHERE idTo='{$id}' AND leido=0", 'mensajes', true);
+$numMsg= $dat['total'];
 $smarty -> assign('random', $random);
 $smarty -> assign('acabanAntes', $acabanAntes);
 $smarty -> assign('nuevas', $nuevas);
@@ -43,8 +45,9 @@ $smarty -> assign('scripts', array("inicio.js", "jquery.nivo.slider.pack.js"));
 $smarty -> assign('css', array("nivo-slider.css", "inicio.css", "themes/default/default.css"));
 $smarty -> assign('nivelAcceso', estoy_logeado());
 $smarty -> assign('nombreUsuario', userName());
-$smarty -> assign('USUARIO_LOGUEADO', userId());
+$smarty -> assign('USUARIO_LOGUEADO', $id);
 $smarty -> assign('IS_CONTENT', false);
 $smarty -> assign('aceptaMsg', aceptaMensajes(userId()));
+$smarty -> assign('numMensajes', $numMsg);
 $smarty -> display('inicio.tpl');
 ?>

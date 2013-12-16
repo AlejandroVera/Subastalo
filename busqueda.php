@@ -29,22 +29,25 @@ if (isset($_GET['validate'])) {
 	$palabraClave .= "%";
 
 	$results = busqueda($palabraClave);
-	if (!empty($results)){
-		$columns = array("Imagen","Tipo", "Nombre", "Descripción", "Tiempo Restante", "Fecha de creación");
+	if (!empty($results)) {
+		$columns = array("Imagen", "Tipo", "Nombre", "Descripción", "Tiempo Restante", "Fecha de creación");
 		$tabla = createTable($columns, $results);
-	}else{
+	} else {
 		$tabla = "Lo sentimos pero no hay resultados para su término de búsqueda.";
 	}
-			
-	$smarty -> assign('tabla', $tabla);
-	;
+
+	$id = userId();
+	$dat = doquery("SELECT count(*) as total FROM {{table}} WHERE idTo='{$id}' AND leido=0", 'mensajes', true);
+	$numMsg = $dat['total'];
+
+	$smarty -> assign('tabla', $tabla); ;
 	$smarty -> assign('css', array("busqueda.css"));
 	$smarty -> assign('scripts', array("busqueda.js", "jquery.tablesorter.min.js"));
-	$smarty -> assign('nivelAcceso', estoy_logeado());	
+	$smarty -> assign('nivelAcceso', estoy_logeado());
 	$smarty -> assign('nombreUsuario', userName());
-	$smarty -> assign('aceptaMsg', aceptaMensajes(userId()));	
+	$smarty -> assign('aceptaMsg', aceptaMensajes(userId()));
+	$smarty -> assign('numMensajes', $numMsg);
 	$smarty -> display('busqueda.tpl');
-	
 
 } else {//Mostrar el formulario
 
@@ -71,13 +74,13 @@ function busqueda($palabraClave) {
 	 $results[] = "Fecha de creación";*/
 
 	$res = doquery("SELECT * FROM {{table}} WHERE nombre LIKE '$palabraClave'", 'subastas', false);
-
 	while ($resultado = mysqli_fetch_assoc($res)) {
-			
-		if ($resultado['imagen'] !==""){
-			$imagenes = explode("|", $resultado['imagen']);	
-			$results[] = "<img src=images/uploaded/".$imagenes[0]. ">"; //Imagen*/
-		}else{
+
+		if ($resultado['imagen'] !== "") {
+			$imagenes = explode("|", $resultado['imagen']);
+			$results[] = "<img src=images/uploaded/" . $imagenes[0] . ">";
+			//Imagen*/
+		} else {
 			$results[] = "<img src= images/noImage.jpg>";
 		}
 		$results[] = 'Subasta';
@@ -85,7 +88,7 @@ function busqueda($palabraClave) {
 		$results[] = "<a href='" . IS2_ROOT_PATH . "visualizarProducto.php?&id=" . $resultado['id'] . "'>" . $resultado['nombre'] . "</a>";
 		//Enlace al producto
 		$results[] = $resultado['descripcion'];
-		
+
 		$tiempoRestante = ($resultado['comienzo'] + $resultado['duracion']) - time();
 
 		if ($tiempoRestante < 0) {
@@ -130,7 +133,7 @@ function createTable($columns, $data) {
 	$nColumns = count($columns);
 	$content = "<thead>";
 	$content .= "<tr>";
-	
+
 	foreach ($columns as $i => $value) {
 		$content .= "<th>" . $value . "</th>";
 	}
