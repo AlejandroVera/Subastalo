@@ -65,7 +65,7 @@
 	</div>
 
 		<div class="textoEntradaEdicion"><br>Elija de la lista los productos que le interesen:</div>
-		<div>
+		<div class="listaProductos">
 		{foreach key=key item=item from=$lista}
 			{if $item == 1}
 				<div>

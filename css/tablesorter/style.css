@@ -24,6 +24,7 @@ table.tablesorter thead tr .header {
 	cursor: pointer;
 	border-radius: 5px;
 	border: 1px solid rgba(0,0,0,0.3);
+	min-width: 65px;
 }
 table.tablesorter tbody td {
 	/*color: #3D3D3D;*/

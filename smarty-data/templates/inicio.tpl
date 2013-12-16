@@ -2,20 +2,19 @@
 
 {include file ="barra.tpl" nivelAcceso=$nivelAcceso IN_ADMIN=$IN_ADMIN nombreUsuario=$nombreUsuario aceptaMsg=$aceptaMsg numMensajes=$numMensajes}
 
-<div id="random">
-	<div class="slider-wrapper theme-default">
-		<div class="ribbon"></div>
-		<div id="slider" class="nivoSlider">
-			{foreach from=$random item=elem}
-				{if !empty($elem['imagen']) }
-					<img src="images/uploaded/{$elem['imagen']}" alt="" data-transition="fade">
-				{else}
-					<img src="images/noImage.jpg">
-				{/if}
-	   		{/foreach}
-		</div>
+
+	<div id="slider" class="banner">
+	<ul>
+		{foreach from=$random item=elem}
+			{if !empty($elem['imagen']) }
+				<li><img src="images/uploaded/{$elem['imagen']}"</li>
+			{else}
+				<li><img src="images/noImage.jpg"></li>
+			{/if}
+		{/foreach}
+		</ul>		
 	</div>
-</div>
+
 
 <div id="acabanAntes" class="container">
 	<div class="titulo">A punto de terminar</div>

@@ -24,8 +24,9 @@
 	color: rgba(0,0,0,0.5);
 }
 
-.menu_element img{
+.menu_element img {
 	height: 35px;
+	width: auto;
 }
 .menu_element:hover {
 	color: rgba(255,0,0,0.8);

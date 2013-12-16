@@ -84,10 +84,16 @@ function busqueda($palabraClave) {
 			$results[] = "<img src= images/noImage.jpg>";
 		}
 		$results[] = 'Subasta';
-		//TODO: enlace provisional, cambiar en el futuro
+				
 		$results[] = "<a href='" . IS2_ROOT_PATH . "visualizarProducto.php?&id=" . $resultado['id'] . "'>" . $resultado['nombre'] . "</a>";
 		//Enlace al producto
-		$results[] = $resultado['descripcion'];
+		if (strlen($resultado['descripcion'])>200){
+			$results[] = substr($resultado['descripcion'], 0, 200) . "...";						
+		}
+		else{
+			$results[] = $resultado['descripcion'];
+		}
+		
 
 		$tiempoRestante = ($resultado['comienzo'] + $resultado['duracion']) - time();
 
@@ -100,20 +106,8 @@ function busqueda($palabraClave) {
 
 	}
 
-	/*$res = doquery("SELECT * FROM {{table}} WHERE nombre LIKE '$palabraClave'", 'ofertas', false);
 
-	 while ($resultado = mysqli_fetch_assoc($res)) {
-
-	 $results[] = 'Oferta';
-	 //TODO: enlace provisional, cambiar en el futuro
-	 $results[] = "<a href='" . IS2_ROOT_PATH . "/ofertas/" . $resultado['id'] . "'>" . $resultado['nombre'] . "</a>";
-	 $results[] = $resultado['descripcion'];
-	 /*$results[] = "<img src='"$resultado['imagen'] /img>"; //Imagen
-	 $results[] = $resultado['precio'];
-
-	 $results[] = date(" H:m:s d/m/Y", $resultado['fechaCreacion']);
-
-	 }*/
+	 
 	return $results;
 }
 

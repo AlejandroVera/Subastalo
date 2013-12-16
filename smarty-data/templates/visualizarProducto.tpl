@@ -8,10 +8,12 @@
 		{if !empty($res.imagenes)}
 		<div class="slider-wrapper theme-default">
 			<div class="ribbon"></div>
-			<div id="slider" class="nivoSlider">
+			<div id="slider" class="banner">
+			<ul>
 				{foreach from=$res.imagenes item=imagen}
-				<img src="images/uploaded/{$imagen}" alt="" data-transition="slideInLeft"/>
+				<li><img src="images/uploaded/{$imagen}"></li>
 				{/foreach}
+				</ul>
 			</div>
 		</div>
 		{else}
@@ -19,8 +21,7 @@
 		{/if}
 	</div>
 
-	<div id="dataContainer">
-		<div id="Datos">
+	<div id="dataContainer">		
 			<div id="nombre">
 				{$res.nombre}
 			</div>
@@ -134,13 +135,11 @@
 				{/if}
 			</div>
 		</div>
-	</div>
+	
 
 	<div id="Descripcion">
-		<br>
-		Descripción:
-		<br>
-		{$res.descripcion}
+		<h1>Descripción</h1>
+		<p>{$res.descripcion}</p>
 	</div>
 
 </div>

@@ -32,7 +32,7 @@ if (isset($_GET['id']) && !isset($_GET['valor'])) {
 	$smarty -> assign('IS_CONTENT', false);
 	$smarty -> assign('terminadosinpujar', $tsinpujar);
 	$smarty -> assign('res', $results);
-	$smarty -> assign('scripts', array("visualizarProducto.js", "jquery.nivo.slider.pack.js"));
+	$smarty -> assign('scripts', array("visualizarProducto.js", "jquery.nivo.slider.pack.js", "unslider.js"));
 	$smarty -> assign('css', array("nivo-slider.css", "themes/default/default.css", "subasta.css", "recargaPuntos.css"));
 	$smarty -> assign('nivelAcceso', estoy_logeado());
 	$smarty -> assign('nombreUsuario', userName());

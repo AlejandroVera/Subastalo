@@ -39,12 +39,13 @@
 	margin-top: 30px;
 	padding: 7px;
 	text-align: center;
+	box-shadow: 2px 2px 15px rgba(0,0,0,0.5);
 }
 
 /* Leftmenu de administracion */
 .leftmenu {
 	position: absolute;
-	top: 51px;
+	top: 70px;
 	left: 3px;
 	border: solid 1px;
 	border-color: rgba(128, 128, 128, 0.44);
@@ -53,19 +54,17 @@
 	padding-bottom: 10px;
 	text-align: center;
 	box-shadow: 1px 2px 5px rgba(0,0,0,0.2);
-	background-color: rgba(0,0,0,0.02);
+	background-color: rgba(0,0,0,0.02);	
 }
 
 .leftmenuEntry {
-	color:rgba(0,0,0,0.5);
-	
+	color: rgba(0,0,0,0.5);
 }
 
 .leftmenuEntry:hover {
 	cursor: pointer;
-	font-weight: bold;	
+	font-weight: bold;
 	color: rgba(255,0,0,0.8);
-	
 }
 
 .leftmenuHeader {
@@ -81,4 +80,16 @@
 .separador {
 	border-bottom: 1px solid rgba(0,0,0,0.2);
 	margin: 15px 5px 20px 5px;
+}
+
+a:hover{
+	color: rgba(0,150,255,0.7);
+}
+
+a {
+	cursor: pointer;
+	color: rgba(0,150,255,1);
+	font-weight: bold;
+	display: inline-block;
+	text-decoration: none;
 }

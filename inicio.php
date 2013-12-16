@@ -41,7 +41,7 @@ $smarty -> assign('random', $random);
 $smarty -> assign('acabanAntes', $acabanAntes);
 $smarty -> assign('nuevas', $nuevas);
 
-$smarty -> assign('scripts', array("inicio.js", "jquery.nivo.slider.pack.js"));
+$smarty -> assign('scripts', array("inicio.js", "jquery.nivo.slider.pack.js" ,"unslider.js"));
 $smarty -> assign('css', array("nivo-slider.css", "inicio.css", "themes/default/default.css"));
 $smarty -> assign('nivelAcceso', estoy_logeado());
 $smarty -> assign('nombreUsuario', userName());

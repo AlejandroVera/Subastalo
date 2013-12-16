@@ -1,32 +1,25 @@
 #random {
 	height: 250px;
-	text-align:center;
+	text-align: center;
 	overflow: hidden;
 	margin-top: 20px;
 	margin-left: auto;
 	margin-right: auto;
-	
 }
 
-.slider-wrapper{
-	display:inline-block;
+.slider-wrapper {
+	display: inline-block;
 	transition: 0.2s;
 }
 #slider img {
-	height: 200px !important;
-	
+	max-height: 200px !important;
 	width: auto !important;
-	margin-left: auto;
-	margin-right: auto;
+	max-width: 500px;
+	margin-top: auto;
+	margin-bottom: auto;
 }
 
-.nivoSlider img {
-    position:absolute;
-    top:0px;
-    left:0px;
-    display:none;
 
-}
 .titulo {
 	font-size: 15px;
 	font-weight: bold;
@@ -46,8 +39,10 @@
 
 .resultadoInicio img {
 	max-width: 90%;
-	max-height: 75%;
-	margin-top: 5%;
+	max-height: 70%;
+	margin-bottom: 3%;
+	margin-top: 3%;
+	vertical-align: sub;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -63,7 +58,7 @@
 	display: inline-block;
 	float: left;
 	margin-left: 2%;
-	text-align:center;
+	text-align: center;
 }
 
 .resultadoInicio:hover {
@@ -76,7 +71,7 @@
 	color: rgba(255,0,0,0.8);
 }
 
-.subContainer:{
+.subContainer {
 	height: 350px;
 	width: 100%;
 	margin-bottom: 10px;
@@ -92,6 +87,71 @@
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 20px;
-	text-align:center;
-	
+	text-align: center;
+}
+
+.banner {
+	position: relative;
+	overflow: auto;
+	width: 500px !important;
+	height: 250px !important;
+	border: 1px solid rgba(0,0,0,0.2);
+	border-radius: 10px;
+	padding:10px !important;
+	margin-top:20px;
+	text-align: center;
+	padding: 0px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.banner li {
+	list-style: none;
+	padding: 0;
+	margin: 0;background
+	}
+	.banner ul li {
+	margin-top:auto;
+	margin-bottom:auto;
+	float: left;
+	padding-left: 0 !important;
+	margin-top:auto;
+	margin-bottom:auto;
+}
+
+ul {
+	margin-top:auto;
+	margin-bottom:auto;
+	float: left;
+	padding: 0 !important;
+	margin-top:auto;
+	margin-bottom:auto;
+}
+ol {
+	padding: 0px !important;
+}
+.dots {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0px;
+}
+.dots li {
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	margin: 0 4px;
+	text-indent: -999em;
+	border: 2px solid black;
+	border-radius: 6px;
+	cursor: pointer;
+	opacity: .4;
+	-webkit-transition: background .5s, opacity .5s;
+	-moz-transition: background .5s, opacity .5s;
+	transition: background .5s, opacity .5s;
+}
+.dots li.active {
+	background: rgba(0,0,0,0.5);
+	border: 2px solid rgba(0,0,0,0.1);
+	opacity: 1;
 }

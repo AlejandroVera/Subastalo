@@ -1,8 +1,14 @@
 #divEdicion {
-	margin-left: 35%;
+	margin-left: auto;
 	margin-right: auto;
-	width: 370px;
+	width: 410px;
 	padding-top: 10px;
+	border: 1px solid rgba(0,0,0,0.2);
+	border-radius: 6px;
+	padding: 20px;
+	margin-top: 30px;
+	margin-bottom: 20px;
+	box-shadow: 2px 2px 15px rgba(0,0,0,0.5);
 }
 
 .textoEntradaEdicion {
@@ -19,6 +25,7 @@
 .entradaEdicion {
 	margin-top: 15px;
 	text-align: right;
+	margin-right: 50px;
 }
 
 .campoTexto {
@@ -37,11 +44,12 @@
 }
 
 .textArea {
-	
+
 	border-radius: 5px;
 	border: 1px solid rgba(0,0,0,0.2);
 	padding: 3px;
 	padding-left: 5px;
+	width: 380px;
 }
 
 .textArea:focus {
@@ -85,12 +93,17 @@
 	padding-left: 5px;
 }
 
-.fotos{
-	margin-left: 60px;
+.fotos {
+	margin-left: 40px;
 	margin-top: 20px;
 }
 
-.fotos .textoEntradaEdicion{
+.fotos .textoEntradaEdicion {
 	margin-left: 13px;
 	margin-bottom: 5px;
+}
+
+.listaProductos {
+	margin-left: 30px;
+	margin-top: 10px;
 }
