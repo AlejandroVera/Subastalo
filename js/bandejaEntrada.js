@@ -10,6 +10,7 @@ function mostrarMensaje(identificador){
 		var data = JSON.parse(respuesta);
 		$('#asuntoV').html(data.asunto);
 		$('#cuerpoV').html(data.cuerpo);
+		$("#containerBandeja").find("#"+identificador).css({"font-weight": "normal"});
 		$('#vizualizador').show();
 	});
 }
