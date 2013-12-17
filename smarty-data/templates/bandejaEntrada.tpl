@@ -11,13 +11,25 @@
 		</div>
 		
 		{if isset($mensajes)}
-		{foreach $mensajes as $mn}
+		{foreach $mensajes as $key => $mn}
 		{if $mn.leido == 0}
-				<div id="{$mn.id}" onclick="mostrarMensaje({$mn.id})" style="font-weight: bold;">{$mn.datos}</div>
+			{if $key==0}
+				<div class="entradaMsg nuevo first" id="{$mn.id}" onclick="mostrarMensaje({$mn.id})">
+			{else}
+				<div class="entradaMsg nuevo" id="{$mn.id}" onclick="mostrarMensaje({$mn.id})">
+			{/if}
 		{/if}
 		{if $mn.leido == 1}
-			<div id="{$mn.id}" onclick="mostrarMensaje({$mn.id})">{$mn.datos}</div>
+			{if $key==0}
+				<div class="entradaMsg first" id="{$mn.id}" onclick="mostrarMensaje({$mn.id})">
+			{else}
+				<div class="entradaMsg" id="{$mn.id}" onclick="mostrarMensaje({$mn.id})">
+			{/if}
 		{/if}
+					<div class="usuarioMsg">{$mn.usuario}</div>
+					<div class="tituloMsg">{$mn.titulo}</div>
+					<div class="fechaMsg">{$mn.fecha}</div>
+				</div>
 		{/foreach}		
 		{/if}	
 </div>

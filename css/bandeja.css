@@ -1,0 +1,42 @@
+#containerBandeja {
+	text-align: left;
+	width: 600px;
+	padding: 20px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.entradaMsg {
+	border: 1px solid rgba(0,0,0,0.2);
+	padding: 10px;
+	height: 10px;
+	background-color: rgba(0,0,0,0.05);
+	border-top: none;
+}
+
+.entradaMsg:hover {
+	cursor: pointer;
+}
+
+.nuevo {
+	background-color: white;
+	font-weight: 600;
+}
+
+.usuarioMsg {
+	float: left;
+	width: 20%;
+}
+
+.tituloMsg {
+	float: left;
+}
+
+.tituloMsg {
+	float: left;
+	width: 50%;
+}
+
+.first {
+	border-top: 1px solid rgba(0,0,0,0.2);
+}

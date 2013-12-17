@@ -16,7 +16,9 @@ while ($resultado = mysqli_fetch_assoc($res)) {
 	$de = mysqli_fetch_assoc($deQ);
 	$noLeidos[$i]=array();
 	
-	$mensajes[$i]['datos']="FECHA: ". date(" H:m:s d/m/Y", $resultado['fecha'])."   ASUNTO: ".$resultado['asunto']."    DE USUARIO: ".$de['username'];
+	$mensajes[$i]['usuario']=$de['username'];
+	$mensajes[$i]['titulo']=$resultado['asunto'];
+	$mensajes[$i]['fecha']=date(" H:m:s d/m/Y", $resultado['fecha']);
 	$mensajes[$i]['id']=$resultado['idMensaje'];
 	$mensajes[$i]['leido']=$resultado['leido'];
 	$i++;
@@ -27,10 +29,11 @@ $numMsg= $dat['total'];
 
 $smarty -> assign('scripts', array("bandejaEntrada.js"));
 $smarty -> assign('IS_CONTENT', false);
-if( sizeof($noLeidos) != 0 )
+if( sizeof($mensajes) != 0 )
 	$smarty -> assign('mensajes', $mensajes);
 $smarty -> assign('nivelAcceso', estoy_logeado());
 $smarty -> assign('nombreUsuario', userName());
+$smarty -> assign('css', array("bandeja.css"));
 $smarty -> assign('aceptaMsg', aceptaMensajes(userId()));
 $smarty -> assign('numMensajes', $numMsg);
 $smarty -> display('bandejaEntrada.tpl');
