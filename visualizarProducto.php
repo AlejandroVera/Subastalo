@@ -153,7 +153,7 @@ function obtenerDatosSubastas($id) {
 
 		$nomUsr = doquery("SELECT username FROM {{table}} WHERE id = {$results['usrID']}", 'usuarios', false);
 		$nameUsr = mysqli_fetch_assoc($nomUsr);
-		$results['usuario'] = "<a href='Perfil.php?id_perfil=" . $results['usrID'] . "'>" . $nameUsr['username'] . "</a>";
+		$results['usuario'] = "<a href='perfil.php?id_perfil=" . $results['usrID'] . "'>" . $nameUsr['username'] . "</a>";
 
 	}
 

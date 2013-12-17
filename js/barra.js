@@ -39,7 +39,9 @@ $(document).ready(function() {
 	$("#edperfil").click(function() {
 		window.parent.$("#marco").attr("src", "./editarPerfil.php");
 	});
-
+	$("#verPerfil").click(function() {
+		window.parent.$("#marco").attr("src", "./perfil.php?id_perfil="+USUARIO_LOGUEADO);
+	});
 	$("#cambiarC").click(function() {
 		window.parent.$("#marco").attr("src", "./cambiopasswd.php");
 	});

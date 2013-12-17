@@ -10,6 +10,7 @@
 		
 	<div id="lista" class="list" >
   			<div class="listElement" id="edperfil">Editar Perfil</div>
+  			<div class="listElement" id="verPerfil">Ver Perfil</div>
   			<div class="listElement" id="cambiarC">Cambiar Contraseña</div>
   			{if $aceptaMsg==1}
   				<div class="listElement" id="NoRecibirMsg">Deshabilitar Mensajes Privados</div>
