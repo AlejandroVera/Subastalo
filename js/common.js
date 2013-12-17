@@ -8,7 +8,7 @@ function initCommonUtilities(){
 	div.id = 'is2_utilities_msg';
 	div.innerHTML += '<div id="is2_utilities_msg_topvar"><div id="is2_utilities_msg_topvar_close">X</div></div>';
 	div.innerHTML += '<div id="is2_utilities_msg_content"></div>';
-	div.innerHTML += '<div id="is2_utilities_msg_options"><input id="is2_utilities_msg_options_accept" value="Aceptar" type="button"></div>';
+	div.innerHTML += '<div id="is2_utilities_msg_options"><input id="is2_utilities_msg_options_accept" class="redButton" value="Aceptar" type="button"></div>';
 
 	//Lo ocultamos por defecto
 	$(div).hide();

@@ -17,7 +17,7 @@
 	cursor: pointer;
 	float: right;
 	width: 5%;
-	height: 35px;
+	height: 33px;
 	text-align: center;
 	padding-top: 15px;
 	margin-right: 10px;
@@ -108,4 +108,23 @@
 .listElement:hover {
 	color: rgba(255,0,0,0.8);
 	font-weight: bold;
+}
+
+
+#numerito {
+	position: absolute;
+	top: 8px;
+	margin-left: 45px;
+	color: red;
+	font-weight: bold;
+	text-shadow: 0 0 0 rgba(0,0,0,0.5);
+	border: 1px solid rgba(0,0,0,0.2);
+	border-radius: 20px;
+	width: 17px;
+	background-color: white;
+}
+
+#bandeja {
+	padding-top: 8px;
+	height: 40px;
 }

@@ -1,16 +1,19 @@
 #is2_utilities_msg {
-	border-color: #000000;
+	border-color: rgba(0,0,0,0.2);
 	border-radius: 15px 15px 15px 15px;
 	border-style: solid;
-	border-width: 2px;
-	box-shadow: 0 0 20px rgba(200, 200, 200, 0.2) inset, 0 0 10px 5px rgba(0, 0, 0, 0.5);
-	left: 50%;
+	border-width: 1px;
+	box-shadow: 0 0 20px rgba(200, 200, 200, 0.2) inset, 2px 2px 9px rgba(0, 0, 0, 0.5);
+	left: 47.5%;
+	margin-right: auto;
 	margin: 150px auto 0 -275px;
-	padding: 0 8px 5px;
+	padding-bottom: 10px;
 	position: fixed;
 	width: 600px;
 	z-index: 100;
 	background-color: #FFFFFF;
+	text-align: center;
+	overflow: hidden;
 }
 #is2_utilities_msg_topvar > div {
 	border-radius: 15px 15px 0 0;
@@ -18,13 +21,18 @@
 	margin-right: 7px;
 }
 #is2_utilities_msg_topvar {
-	border-radius: 15px 15px 0 0;
+	border-radius: 5px 5px 0 0;
 	clear: both;
 	display: block;
-	margin-top: 3px;
+	height: 25px;
+	background-color: red;
+	width: 100%;
+	margin-bottom: 10px;
 }
 #is2_utilities_msg_content {
 	clear: both;
+	margin-bottom: 10px;
+	color: rgba(0,0,0,0.7);
 }
 #is2_utilities_msg_options {
 	margin-bottom: 2px;
@@ -54,7 +62,7 @@
 	padding-bottom: 10px;
 	text-align: center;
 	box-shadow: 1px 2px 5px rgba(0,0,0,0.2);
-	background-color: rgba(0,0,0,0.02);	
+	background-color: rgba(0,0,0,0.02);
 }
 
 .leftmenuEntry {
@@ -82,7 +90,7 @@
 	margin: 15px 5px 20px 5px;
 }
 
-a:hover{
+a:hover {
 	color: rgba(0,150,255,0.7);
 }
 
@@ -93,3 +101,36 @@ a {
 	display: inline-block;
 	text-decoration: none;
 }
+
+#is2_utilities_msg_topvar_close {
+	font-weight: bold;
+	cursor: pointer;
+	color: white;
+	text-shadow: 0px -1px 0px rgba(0,0,0,0.5);
+	margin-right: 10px !important;
+	margin-top: 5px;
+}
+
+.redButton:hover {
+	transition: 0.1s;
+	box-shadow: inset 0px 0px 7px rgba(255, 255, 255, 0.9);
+}
+
+.redButton:active {
+	transition: 0s;
+	background-color: rgba(255, 0, 0, 0.8);
+	box-shadow: inset 0px 3px 5px rgba(0, 0, 0, 0.6);
+}
+
+.redButton {
+	cursor: pointer;
+	outline: none;
+	padding: 5px;
+	background-color: rgba(255, 0, 0, 0.8);
+	border: 1px solid rgba(0,0,0,0.3);
+	border-radius: 5px;
+	color: rgba(255,255,255,1);
+	font-weight: bold;
+	text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+}
+

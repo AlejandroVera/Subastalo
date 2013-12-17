@@ -44,4 +44,10 @@
 	 Estoy interesado en: {$res.productosInteresados}
 	{/if}
 </div>
+
+<div class="tabla">
+		<table id=historial class = "tablesorter">
+			{$historial}			
+		</table>				
+	</div>	
 {include file="footer.tpl"}
