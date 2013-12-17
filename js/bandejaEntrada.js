@@ -8,9 +8,7 @@ function mostrarMensaje(identificador){
 		id : identificador.toString()
 	}, function(respuesta) {
 		var data = JSON.parse(respuesta);
-		$('#asuntoV').html(data.asunto);
-		$('#cuerpoV').html(data.cuerpo);
-		$("#containerBandeja").find("#"+identificador).removeClass("nuevo");
-		$('#vizualizador').show();
+		$("#containerBandeja").find("#"+identificador.toString()).removeClass("nuevo");
+		$("#"+identificador.toString()).append("<div class=\"mostrarClass\"> <div id=\"asuntoID\" class=\"asuntoClass\">"+data.asunto+"</div><div id=\"cuerpoIDr\" class=\"cuerpoClass\">"+data.cuerpo+"</div><button id=\"cerrarID\" class=\"cerrarClass\">cerrar</button><button id=\"responderID\" class=\"responderClass\">responder</button></div>");
 	});
 }
