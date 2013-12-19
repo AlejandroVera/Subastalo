@@ -134,7 +134,7 @@ function obtenerDatosSubastas($id) {
 	$DatSub = doquery("SELECT * FROM {{table}} WHERE id = {$id}", 'subastas', false);
 	while ($datosProd = mysqli_fetch_assoc($DatSub)) {
 		$results['nombre'] = $datosProd['nombre'];
-		$results['descripcion'] = $datosProd['descripcion'];
+		$results['descripcion'] = nl2br($datosProd['descripcion']);
 		$results['comienzo'] = $datosProd['comienzo'];
 		$results['duracion'] = $datosProd['duracion'];
 		$results['imagen'] = $datosProd['imagen'];
