@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	$("#loginDiv").click(function() {
 		var url = encodeURIComponent(window.location.href);
-		window.parent.$("#marco").attr("src", "./login.php?origen="+url);
+		window.parent.$("#marco").attr("src", "./login.php?origen=" + url);
 	});
 
 	$("#logoutDiv").click(function() {
@@ -12,7 +12,7 @@ $(document).ready(function() {
 	$("#homeButton").click(function() {
 		window.parent.$("#marco").attr("src", "./inicio.php");
 	});
-	
+
 	$("#altaDiv").click(function() {
 		window.parent.$("#marco").attr("src", "./alta.php");
 	});
@@ -40,7 +40,7 @@ $(document).ready(function() {
 		window.parent.$("#marco").attr("src", "./editarPerfil.php");
 	});
 	$("#verPerfil").click(function() {
-		window.parent.$("#marco").attr("src", "./perfil.php?id_perfil="+USUARIO_LOGUEADO);
+		window.parent.$("#marco").attr("src", "./perfil.php?id_perfil=" + USUARIO_LOGUEADO);
 	});
 	$("#cambiarC").click(function() {
 		window.parent.$("#marco").attr("src", "./cambiopasswd.php");
@@ -68,21 +68,19 @@ $(document).ready(function() {
 		$(".list").show();
 		//que hacer al acercar el raton
 	}, function() {
-		//que hacer al alejar el raton
+		$(".list").hide(); //que hacer al sacar el raton
 	});
 
-	$("#panelDiv").click(function() {
+	$(".list").hover(function() {
 		$(".list").show();
+	}, function() {
+		$(".list").hide(); //que hacer al sacar el raton
 	});
 
-	$('html').click(function() {
-		$(".list").hide();
-	});
-	
 	$("#bandeja").click(function() {
 		window.parent.$("#marco").attr("src", "./bandejaEntrada.php");
 	});
-	
+
 });
 
 function sendAltaForm() {

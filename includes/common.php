@@ -57,13 +57,8 @@ function obtenerDatos($id_perfil) {
 
 function aceptaMensajes($id_perfil) {
 
-	if (estoy_logeado()) {
-		$datos = array();
-		$datos = obtenerDatos(userId());
-		$acpmsg = $datos['aceptaMensajes'];
-	} else {
-		$acpmsg = 0;
-	}
-	return $acpmsg;
+	$res = doquery("SELECT aceptaMensajes FROM {{table}} WHERE id='{$id_perfil}'", 'usuarios', false);
+	$recibeMensajes = mysqli_fetch_assoc($res);
+	return $recibeMensajes['aceptaMensajes'];
 }
 ?>

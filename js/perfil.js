@@ -13,10 +13,16 @@ $(document).ready(function() {
 			idTo : getParameterByName("id_perfil"),
 			asunto: $("#asuntoMsg").val(),
 			cuerpo: $("#cuerpoMsg").val()
-		}, function(respuesta) {
+		}, function(info) {
+			
+			var respuesta = JSON.parse(info);
+			
 			$("#popupMsg").hide();
-			enviarMensaje(USUARIO_LOGUEADO, getParameterByName("id_perfil"));
-			message("El mensaje ha sido enviado correctamente");
+			$("#sombra").hide();
+			if(respuesta.aceptado=="si"){
+				enviarMensaje(USUARIO_LOGUEADO, getParameterByName("id_perfil"));
+			}
+			message(respuesta.msg);
 		});
 
 	});

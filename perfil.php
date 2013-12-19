@@ -11,8 +11,7 @@ require (IS2_ROOT_PATH . "includes/validate.php");
 
 $datos = array();
 $lista = array();
-$id = userId();
-//id usuario logueado
+$id = userId();//id usuario logueado
 $id_perfil = (double)$_GET['id_perfil'];
 $datos = obtenerDatos($id_perfil);
 $dat = doquery("SELECT count(*) as total FROM {{table}} WHERE idTo='{$id}' AND leido=0", 'mensajes', true);
@@ -34,7 +33,7 @@ if ($id != null)
 
 $smarty -> assign('nivelAcceso', estoy_logeado());
 $smarty -> assign('nombreUsuario', userName());
-$smarty -> assign('aceptaMsg', aceptaMensajes(userId()));
+$smarty -> assign('aceptaMsg', aceptaMensajes($id_perfil));
 $smarty -> assign('numMensajes', $numMsg);
 $smarty -> assign('css', array("perfil.css"));
 

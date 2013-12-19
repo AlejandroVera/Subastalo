@@ -24,7 +24,11 @@
 	<div id="logoutDiv" class="menu_element" >Logout</div>
 
 	<div id="bandeja" class="menu_element">
+		{if !$IN_ADMIN}
 		<img src="images/carta.png">
+		{else}
+		<img src="../images/carta.png">
+		{/if}
 		<div id="numerito">{$numMensajes}</div>
 	</div>
 {else}

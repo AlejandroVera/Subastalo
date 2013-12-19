@@ -40,12 +40,18 @@ if (isset($_GET['validate'])) {
 	$us = doquery("SELECT nombre FROM {{table}} WHERE id = '{$id}' LIMIT 1", 'usuarios', false);
 	$res = mysqli_fetch_assoc($us);
 	$nombre = $res['nombre'];
+	
+	$id=userId();
+	$dat = doquery("SELECT count(*) as total FROM {{table}} WHERE idTo='{$id}' AND leido=0", 'mensajes', true);
+	$numMsg= $dat['total'];
+	
 	$smarty -> assign('nombre', $nombre);
 	$smarty -> assign('scripts', array("cambiopasswd.js"));
 	$smarty -> assign('css', array("cambiopasswd.css"));
 	$smarty -> assign('nivelAcceso', estoy_logeado());
 	$smarty -> assign('nombreUsuario', userName());
 	$smarty -> assign('aceptaMsg', aceptaMensajes(userId()));
+	$smarty -> assign('numMensajes', $numMsg);
 	$smarty -> display('cambiopasswd.tpl');
 
 }

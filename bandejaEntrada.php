@@ -9,7 +9,7 @@ $mensajes=array();
 
 $id=userId();
 
-$res = doquery("SELECT idMensaje,idFrom,asunto,leido,fecha FROM {{table}} WHERE idTo='{$id}'", 'mensajes', false);
+$res = doquery("SELECT idMensaje,idFrom,asunto,leido,fecha FROM {{table}} WHERE idTo='{$id}' ORDER BY fecha DESC", 'mensajes', false);
 $i=0;
 while ($resultado = mysqli_fetch_assoc($res)) {
 	$deQ = doquery("SELECT username FROM {{table}} WHERE id={$resultado['idFrom']}", 'usuarios', false);
