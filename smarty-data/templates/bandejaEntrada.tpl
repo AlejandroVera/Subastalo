@@ -2,13 +2,6 @@
 {include file ="barra.tpl" nivelAcceso=$nivelAcceso IN_ADMIN=$IN_ADMIN nombreUsuario=$nombreUsuario aceptaMsg=$aceptaMsg}
 
 <div id = "containerBandeja">
-		<div id="vizualizador" style="display:none">
-			<div id="asuntoV"></div>
-			<div id="cuerpoV"></div>
-			<button title="cerrar" id="bCerrarM">
-				cerrar
-			</button>
-		</div>
 		
 		{if isset($mensajes)}
 		{foreach $mensajes as $key => $mn}
@@ -26,11 +19,15 @@
 				<div class="entradaMsg" id="{$mn.id}" onclick="mostrarMensaje({$mn.id})">
 			{/if}
 		{/if}
-					<div class="usuarioMsg">{$mn.usuario}</div>
+					<div class="usuarioMsg"> <a href="perfil.php?id_perfil={$mn.idFrom}">{$mn.usuario}</a> </div>
 					<div class="tituloMsg">{$mn.titulo}</div>
 					<div class="fechaMsg">{$mn.fecha}</div>
 				</div>
 		{/foreach}		
+		{else}
+			<div id="mensaje" class="mensajeC">La bandeja de entrada está vacía</div>
+			<div id="fl" class="flC"><img src="images/foreverAlone.jpg"></div>
+			
 		{/if}	
 </div>
 

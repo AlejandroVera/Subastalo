@@ -21,6 +21,7 @@ while ($resultado = mysqli_fetch_assoc($res)) {
 	$mensajes[$i]['fecha']=date(" H:m:s d/m/Y", $resultado['fecha']);
 	$mensajes[$i]['id']=$resultado['idMensaje'];
 	$mensajes[$i]['leido']=$resultado['leido'];
+	$mensajes[$i]['idFrom']=$resultado['idFrom'];
 	$i++;
 }
 $id=userId();

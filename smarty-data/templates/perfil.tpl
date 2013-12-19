@@ -1,53 +1,55 @@
 {include file="header.tpl" title="Pagina principal" USUARIO_LOGUEADO=$USUARIO_LOGUEADO numMensajes=$numMensajes}
-
-{include file ="barra.tpl" nivelAcceso=$nivelAcceso IN_ADMIN=$IN_ADMIN nombreUsuario=$nombreUsuario aceptaMsg=$aceptaMsg}
-
-<p>Perfil de Usuario</p>
-{if $aceptaMsg==1 && $idPerfil != $usuarioLogueado && isset($USUARIO_LOGUEADO)}
-<button title="mensaje" id="buttonMsg">
-	Mensaje Privado
-</button>
+<div id="sombra" style="display:none"></div>
 <div id="popupMsg" style="display:none">
-	<textarea id="asuntoMsg" rows="1" cols="40">asunto</textarea>
-	<textarea id="cuerpoMsg" rows="4" cols="40">cuerpo</textarea>
-	<button title="enviar" id="buttonEnv">
+	<div class="titulo">Mensaje privado</div>
+	<textarea id="asuntoMsg" rows="1" class="campoTexto" cols="40">Asunto</textarea>
+	<textarea id="cuerpoMsg" rows="4" class="campoTexto" cols="40">Escriba aquí su mensaje</textarea>
+	<button title="enviar" id="buttonEnv" class="redButton">
 		Enviar
 	</button>
+	<button title="Cancelar" id="buttonCan" class="redButton">
+		Cancelar
+	</button>
 </div>
+{include file ="barra.tpl" nivelAcceso=$nivelAcceso IN_ADMIN=$IN_ADMIN nombreUsuario=$nombreUsuario aceptaMsg=$aceptaMsg}
+
+
+
+<div id="contenedor">
+
+
+<div id="datos">
+<div class="imagenPerfil">
+	{if $res.imagenPerfil==""}
+		<img src="images/noImage.jpg"> 
+	{else}
+		<img src="images/uploaded/{$res.imagenPerfil}"> 
+	{/if}
+</div>
+<div id="datosPersonales">
+<div class="entradaEdicion">
+	<div class="enunciado">Usuario</div> <div class="entradaDatos">{$res.username} </div>
+</div>
+<div class="entradaEdicion">
+	<div class="enunciado">Teléfono</div><div class="entradaDatos">{$res.telefono}</div>
+</div>
+<div class="entradaEdicion">
+	<div class="enunciado">Email</div><div class="entradaDatos">{$res.email}</div>
+</div>
+</div>
+{if $aceptaMsg==1 && $idPerfil != $usuarioLogueado && isset($USUARIO_LOGUEADO)}
+
+<button title="mensaje" id="buttonMsg" class="redButton">
+	Mensaje Privado
+</button>
+
 {/if}
-
-<div class="entradaEdicion">
-	Usuario: {$res.username} 
 </div>
-
-<div class="entradaEdicion">
-	Teléfono:{$res.telefono}
-</div>
-<div class="entradaEdicion">
-	Email:{$res.email}
-</div>
-<div class="textoentradaEdicion">
-	{if $lista!=null}
-	Lista de mis intereses:	
-		{foreach key=key item=item from=$lista}
-			{if $item == 1}
-				<div class="valorEntradaTabla">
-					{$key}
-				</div>
-			{/if}
-			
-		{/foreach}
-	{/if}
-</div>
-<div class="entradaEdicion">
-	{if $res.productosInteresados!=""}
-	 Estoy interesado en: {$res.productosInteresados}
-	{/if}
-</div>
-
 <div class="tabla">
+<div class="titulo bordeSuperior">Historial de pujas</div>
 		<table id=historial class = "tablesorter">
 			{$historial}			
 		</table>				
 	</div>	
+</div>
 {include file="footer.tpl"}

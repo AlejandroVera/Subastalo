@@ -1,0 +1,134 @@
+#contenedor {
+	width: 700px;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 10px;
+	margin-top: 20px;
+	border: 1px solid rgba(0,0,0,0.2);
+	border-radius: 5px;
+	box-shadow: 2px 2px 15px rgba(0,0,0,0.5);
+}
+
+.imagenPerfil {
+	float: left;
+	width: 250px;
+	height: 200px;
+	border: 1px solid rgba(0,0,0,0.2);
+	padding: 10px;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 200px;
+}
+
+.imagenPerfil img {
+	max-width: 250px;
+	max-height: 200px;
+	margin-top: auto;
+	margin-bottom: auto;
+	vertical-align: middle;
+}
+
+#datos {
+	height: 250px;
+}
+
+#datosPersonales {
+	width: 400px;
+	float: left;
+	padding: 10px;
+	margin-bottom: 10px;
+	margin-top: 30px;
+}
+
+.entradaDatos {
+	display: inline-block;
+	width: 250px !important;
+	text-align: left;
+}
+
+.enunciado {
+	display: inline-block;
+	margin-right: 30px;
+	font-weight: bold;
+	color: rgba(0,0,0,0.5);
+}
+
+.entradaEdicion {
+	width: 400px;
+	margin-top: 10px;
+	text-align: right;
+}
+
+.redButton:hover {
+	transition: 0.1s;
+	box-shadow: inset 0px 0px 7px rgba(255, 255, 255, 0.9);
+}
+
+.redButton:active {
+	transition: 0s;
+	background-color: rgba(255, 0, 0, 0.8);
+	box-shadow: inset 0px 3px 5px rgba(0, 0, 0, 0.6);
+}
+
+.redButton {
+	cursor: pointer;
+	outline: none;
+	padding: 5px;
+	background-color: rgba(255, 0, 0, 0.8);
+	border: 1px solid rgba(0,0,0,0.3);
+	border-radius: 5px;
+	color: rgba(255,255,255,1);
+	font-weight: bold;
+	text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+}
+
+.campoTexto {
+
+	border-radius: 5px;
+	border: 1px solid rgba(0,0,0,0.2);
+	padding: 3px;
+	padding-left: 5px;
+}
+
+.campoTexto:focus {
+	outline: none;
+	transition: 0.2s;
+	border-color: #9ecaed;
+	box-shadow: 0 0 10px #9ecaed;
+}
+
+#popupMsg {
+	width: 400px;
+	padding: 10px;
+	top: 0;
+	float: left;
+	border: 1px solid rgba(0,0,0,0.2);
+	border-radius: 5px;
+	position: fixed;
+	background-color: white;
+	margin-top: 12%;
+	margin-left: 35%;
+	text-align: center;
+	box-shadow: 2px 2px 15px rgba(0,0,0,0.5);
+}
+
+#sombra {
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.2);
+	position: fixed;
+}
+
+.titulo {
+	font-weight: bold;
+	color: rgba(0,0,0,0.5);
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+.bordeSuperior {
+	padding-top: 10px;
+	border-top: solid 1px rgba(0,0,0,0.2);
+}
+

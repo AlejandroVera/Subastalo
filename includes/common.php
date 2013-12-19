@@ -50,6 +50,7 @@ function obtenerDatos($id_perfil) {
 		$results['email'] = $resultado['email'];
 		$results['productosInteresados'] = $resultado['productosInteresados'];
 		$results['aceptaMensajes'] = $resultado['aceptaMensajes'];
+		$results['imagenPerfil'] = $resultado['imagenPerfil'];
 	}
 	return $results;
 }

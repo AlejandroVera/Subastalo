@@ -1,5 +1,5 @@
 {include file="header.tpl" title="Edición de usuario" scripts=$scripts}
-{include file ="barra.tpl" nivelAcceso=$nivelAcceso IN_ADMIN=$IN_ADMIN aceptaMsg=$aceptaMsg}
+{include file ="barra.tpl" nivelAcceso=$nivelAcceso IN_ADMIN=$IN_ADMIN nombreUsuario=$nombreUsuario aceptaMsg=$aceptaMsg numMensajes=$numMensajes}
 <div id="divEdicion">
 <form id="editarPerfil" enctype="multipart/form-data">
 	<div class="fotos">

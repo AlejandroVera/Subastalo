@@ -4,6 +4,7 @@ $(document).ready(function() {
 	$("#buttonMsg").click(function() {
 
 		$("#popupMsg").show();
+		$("#sombra").show();
 	});
 
 	$("#buttonEnv").click(function() {
@@ -18,6 +19,10 @@ $(document).ready(function() {
 			message("El mensaje ha sido enviado correctamente");
 		});
 
+	});
+	$("#buttonCan").click(function() {
+		$("#popupMsg").hide();
+		$("#sombra").hide();
 	});
 	$("#historial").tablesorter();
 });

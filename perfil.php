@@ -36,7 +36,7 @@ $smarty -> assign('nivelAcceso', estoy_logeado());
 $smarty -> assign('nombreUsuario', userName());
 $smarty -> assign('aceptaMsg', aceptaMensajes(userId()));
 $smarty -> assign('numMensajes', $numMsg);
-$smarty -> assign('css', array(""));
+$smarty -> assign('css', array("perfil.css"));
 
 $smarty -> display('perfil.tpl');
 
